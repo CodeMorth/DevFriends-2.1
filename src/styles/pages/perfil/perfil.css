@@ -1,0 +1,12 @@
+.perfil-box{
+    @apply  bg-[#1E1E1E] w-full h-screen  pt-[13rem] flex flex-col 
+    gap-[3rem] items-center;
+}
+
+.data-perfil{
+    @apply w-[90%] h-[100%] flex  items-center justify-evenly ;
+}
+
+.box-inputs{
+    @apply flex flex-wrap justify-between gap-[15rem] w-[40%] ;
+}

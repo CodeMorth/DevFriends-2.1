@@ -1,0 +1,77 @@
+.logi_box {
+  @apply !bg-[#2B3146] p-[4rem] pr-[3rem] pl-[0rem] w-[90%] max-w-[30rem];
+
+  @screen tablet {
+    @apply max-w-[40rem];
+
+    padding: calc(4rem *var(--scale));
+    padding-right: calc(3rem *var(--scale));
+    padding-left:0;
+
+  }
+
+  .p-dialog-header-icons {
+    @apply text-[#F969AA] hidden;
+  }
+}
+
+.login_modal {
+  @apply flex flex-col items-center justify-center  gap-[1rem] pl-[1.5rem] pr-[1.5rem];
+
+  @screen tablet{
+
+    gap: calc(4rem *var(--scale));
+
+  }
+
+}
+
+.imagen-logo-tw {
+  @apply w-[100%];
+
+  @screen tablet {
+    @apply w-[13rem] h-[10rem];
+  }
+}
+
+.btn_login_box_ingreso {
+
+    
+  @apply bg-[#4E5163] text-[#57A3E1] text-[1.5rem] px-[2rem] py-[.5rem] rounded-[.5rem] border border-[#57A3E1] 
+  duration-300 ease-in-out hover:bg-[#396f9b7e];
+
+  @screen tablet{
+
+    
+  @apply bg-[#4E5163] text-[#57A3E1] text-[2rem] px-[4rem] py-[.5rem] rounded-[.5rem] border border-[#57A3E1] 
+  duration-300 ease-in-out hover:bg-[#396f9b7e];
+
+  }
+
+}
+
+.box_inputs {
+  @apply flex flex-col gap-[2.5rem] p-[1rem];
+}
+
+.input_option {
+  @apply flex flex-col  gap-[1.5rem];
+}
+
+.logo-name_two {
+  @apply flex items-center text-[2.4rem] gap-[.5rem];
+  & h3 {
+    @apply text-[#E56AA3] font-bold;
+
+    @screen tablet {
+      @apply text-[3.5rem];
+    }
+  }
+  & h2 {
+    @apply text-[#58A0DE]  font-bold;
+
+    @screen tablet {
+      @apply text-[3.5rem];
+    }
+  }
+}

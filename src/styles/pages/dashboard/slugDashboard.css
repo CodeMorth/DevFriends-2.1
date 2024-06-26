@@ -1,0 +1,90 @@
+.SlugDashboard {
+  @apply bg-[#2C2A2A] w-full h-full min-h-[100vh];
+
+  .container-slug-dashboard {
+    @apply w-full pt-[10rem] flex h-full min-h-[100vh];
+  }
+
+  .container-slug-left {
+    @screen laptop {
+      @apply border-r-[#F969AA] border-r-[0.2rem];
+    }
+  }
+
+  .menu-slug {
+    @screen laptop {
+      @apply pt-[5rem] pl-[2rem];
+    }
+  }
+
+  .AccordionHorizontal {
+    @screen laptop {
+      width: calc(35rem * var(--scale));
+    }
+  }
+
+  .container-slug-rigth {
+    @apply flex flex-col  w-full h-full;
+  }
+
+  .header-rigth {
+    @apply flex justify-between items-center bg-[#534C55] w-full h-full p-[1rem];
+  }
+
+  .title-table {
+    @apply text-[white] text-[1.4rem];
+
+    @screen laptop {
+      @apply text-[white] text-[1.8rem];
+
+      font-size: calc(3rem * var(--scale));
+    }
+  }
+
+  .button-share {
+    @apply flex  bg-[#864977] p-[0.5rem] rounded-[0.5rem] gap-[1rem] justify-between items-center text-[#57A3E1] text-[1.3rem];
+
+    @screen laptop {
+      @apply flex  bg-[#864977] p-[0.7rem] rounded-[0.5rem] gap-[1rem] justify-between items-center text-[#57A3E1] text-[1.5rem];
+    }
+  }
+
+  /*AccordionHorizontal Classes*/
+
+  .container-accordion {
+    @apply !border-t-[0rem] !border-b-[#F969AA];
+  }
+
+  /*AccordionHorizontal Classes*/
+
+  /*-----------------------Work space copy classes------------------------------*/
+
+  .container {
+    @apply flex flex-col gap-[1rem] mt-[2rem];
+  }
+
+  .dev-friends {
+    @apply text-[#57A3E1];
+  }
+
+  .boards-container,
+  .members-container {
+    @apply flex justify-start items-center gap-[2rem];
+  }
+
+  .boards-image,
+  .members-image {
+    @apply w-[5rem] h-auto;
+  }
+
+  .boards-text,
+  .members-text {
+    @apply text-[#F969AA] text-[1.8rem];
+
+    @screen laptop {
+      font-size: calc(2rem * var(--scale));
+    }
+  }
+
+  /*-----------------------Work space copy classes------------------------------*/
+}

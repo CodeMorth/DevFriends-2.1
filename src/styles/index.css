@@ -1,0 +1,15 @@
+@import './globals.css';
+@import './scale.css';
+@import './pages/';
+@import './iu/';
+@import './organins/';
+@import './molecules/';
+@import './pages/perfil/';
+@import './design/';
+
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

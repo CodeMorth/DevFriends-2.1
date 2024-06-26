@@ -1,0 +1,24 @@
+.card_main-box {
+    @apply w-[90%]  bg-[#2B3146] flex flex-col justify-center items-center gap-[2rem] py-8  mb-auto;
+    @screen laptop{
+        width: calc(35rem * var(--scale));
+    }
+    & .title_cards-  {
+        @apply text-[#F468A8]  text-[2rem] text-center;
+        @screen laptop{
+            font-size: calc(2.5rem * var(--scale));
+        }
+    }
+    & .task_children_cards{
+        @apply  text-[#B06FA0] text-[1.8rem];
+        @screen laptop{
+            font-size: calc(2rem * var(--scale));
+        }
+    }
+    & .btn_cards_add_task{
+        @apply  px-[2rem] py-2  rounded-[.5rem]  bg-[#57A3E1] text-[#2B3146] text-[1.6rem];
+        @screen laptop{
+            font-size: calc(1.8rem * var(--scale));
+        }
+    }
+}

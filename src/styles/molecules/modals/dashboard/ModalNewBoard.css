@@ -1,0 +1,124 @@
+.ModalNewBoard {
+  @apply flex flex-col gap-[2rem] justify-center items-center p-[2rem];
+
+  @screen tablet {
+  }
+
+  @screen laptop {
+    gap: calc(2rem * var(--scale));
+    padding-left: calc(4rem * var(--scale));
+    padding-right: calc(4rem * var(--scale));
+  }
+
+  .create-board,
+  .title-board,
+  .visibility {
+    @apply text-[#F969AA] text-[1.7rem];
+
+    @screen laptop {
+      font-size: calc(2.5rem * var(--scale));
+    }
+  }
+
+  .image-board {
+    @apply w-full;
+
+    @screen laptop {
+      height: calc(14.6rem * var(--scale));
+    }
+  }
+
+  .description {
+    @apply self-start text-[#F969AA];
+
+    @screen laptop {
+      font-size: calc(1.8rem * var(--scale));
+    }
+  }
+
+  .title-board {
+    @apply self-start text-[#F969AA];
+
+    @screen laptop {
+      font-size: calc(2.1rem * var(--scale));
+    }
+  }
+
+  .title-board-input {
+    @apply bg-transparent border-[#56A3E1] text-[#56A3E1] w-full border-[0.25rem] text-[1.3rem] p-[0.3rem];
+
+    @screen laptop {
+      font-size: calc(1.6rem * var(--scale));
+      padding: calc(0.5rem * var(--scale));
+      height: calc(3.2rem * var(--scale));
+    }
+  }
+
+  .visibility-label {
+    @apply self-start place-self-center text-[#F969AA] text-[1.65rem];
+
+    @screen laptop {
+      font-size: calc(2.1rem * var(--scale));
+    }
+  }
+
+  .visibility-select {
+    @apply bg-transparent border-[#56A3E1] text-[#F969AA] border-[0.25rem] border-solid text-[1.3rem] p-[0.3rem];
+
+    @screen laptop {
+      font-size: calc(1.55rem * var(--scale));
+      padding: calc(0.4rem * var(--scale));
+    }
+  }
+
+  .visibility-option {
+    @apply bg-[#2C2A2A] text-[#56A3E1] text-[1.3rem] p-[0.3rem];
+
+    @screen laptop {
+      padding: calc(1rem * var(--scale));
+    }
+  }
+
+  .button-create {
+    @apply w-full border-[#56A3E1] text-[#F969AA] border-[0.25rem] rounded-[0.5rem] text-[1.3rem] p-[0.3rem];
+
+    @screen laptop {
+      font-size: calc(1.6rem * var(--scale));
+      margin-top: calc(0.8rem * var(--scale));
+      padding: calc(0.3rem * var(--scale));
+    }
+  }
+
+  .container-image-upload {
+    @apply w-full rounded-[0.8rem] h-[12rem] flex justify-center items-center border-[#F183B6] border-[0.3rem];
+
+    @screen laptop {
+      padding: calc(2.5rem * var(--scale));
+      height: calc(16rem * var(--scale));
+    }
+  }
+
+  .image-upload {
+    @apply text-[#F183B6];
+
+    @screen laptop {
+      font-size: calc(7rem * var(--scale));
+    }
+  }
+}
+
+.ModalNewBoardBG {
+  @apply !bg-[#2B3146] p-[1rem] w-[70%] max-w-[28rem];
+
+  @screen tablet {
+    @apply w-[30%] max-w-[108rem];
+  }
+
+  @screen laptop {
+    width: calc(40rem * var(--scale));
+  }
+
+  .p-dialog-header-icons {
+    @apply hidden;
+  }
+}

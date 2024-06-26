@@ -1,0 +1,30 @@
+.main_cards_conten_box{
+    @apply w-[80%] bg-[#2B3146] p-4  tablet:w-[38%]  shadow-[1px_1px_4px_-1px_#121625];
+    @screen laptop{
+        width: calc(40rem * var(--scale));
+    }
+}
+
+
+
+
+
+.moda-cards-box{
+    @apply  w-[100%] h-auto p-8 bg-[#2B3146]  flex flex-col items-center gap-8 text-[1.5rem];
+    
+  
+   
+     
+    & input {
+        @apply text-center  py-2 w-full outline-none border-[#F468A8] border-2 text-[#57A3E1] bg-transparent;
+       
+    }
+    & button {
+        @apply w-[35%] py-2  rounded-[.5rem]  bg-[#57A3E1] text-[#2B3146] ;
+    }
+   
+}
+
+.p-dialog-header-icons {
+    @apply hidden;
+  }

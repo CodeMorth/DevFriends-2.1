@@ -1,0 +1,119 @@
+.conten-last {
+  @apply px-[2rem] h-full flex flex-col pt-[12rem] items-center justify-center gap-[3rem] py-[1rem] md:flex-row min-h-[100vh] h-full;
+
+  @screen tablet{
+
+    @apply pl-[5rem] pt-[10rem] ;
+
+  }
+
+}
+
+
+
+.conten-last-info {
+  @apply w-full  h-full flex flex-col justify-center gap-[2rem];
+  @screen laptop {
+    width: 50%;
+    gap: calc(4rem * var(--scale));
+  }
+  & p {
+    @apply text-[#7AA8D8] text-[1.5rem] font-semibold;
+
+    @screen tablet{
+
+      @apply text-[2rem] ;
+
+    }
+
+    @screen laptop {
+      font-size: calc(2.5rem * var(--scale));
+    }
+  }
+  & button {
+    @apply border-2 border-[#E56AA3] text-[#E56AA3] 
+    px-[2rem] py-[.5rem] rounded-[.5rem] font-semibold text-[1.2rem] duration-300
+    ease-in-out hover:bg-[#2B3146] ;
+
+    @screen tablet{
+
+      @apply border-2 border-[#E56AA3] text-[#E56AA3] 
+    px-[4rem] py-[.7rem] rounded-[.5rem] font-bold text-[1.5rem] duration-300
+    ease-in-out hover:bg-[#2B3146];
+
+    }
+
+  }
+}
+
+.container-button{
+
+  @apply flex justify-center  ;
+
+  @screen tablet{
+
+    @apply block ;
+
+  }
+
+}
+
+.content-info-dev {
+  @apply w-full ;
+  & h4 {
+    @apply text-[2.7rem] text-[#4E5163] font-bold drop-shadow-[1px_1px_1px_#7AA8D8];
+
+    @screen tablet{
+
+      @apply text-[4.5rem] ;
+
+    }
+
+    @screen laptop {
+      font-size: calc(6rem * var(--scale));
+    }
+  }
+  & span {
+    @apply last:text-[#58A0DE] font-bold text-[2.7rem];
+
+    @screen tablet{
+
+      @apply text-[5rem] ;
+
+    }
+
+    @screen laptop {
+      font-size: calc(7rem * var(--scale));
+    }
+  }
+  & span:nth-child(+ 1) {
+    @apply text-[#E56AA3] font-bold text-[2.7rem];
+    @screen tablet{
+
+      @apply text-[5rem] ;
+
+    }
+    @screen laptop {
+      font-size: calc(7rem * var(--scale));
+    }
+  }
+
+}
+
+.conten-last-logo {
+  @apply w-auto  h-[45%] drop-shadow-[1px_1px_10px_#58A0DE] flex justify-center items-center ;
+  
+  @screen tablet{
+
+    @apply h-auto ;
+
+  }
+
+  @screen laptop {
+    height: 48rem;
+    width: 55rem;
+  }
+}
+
+
+

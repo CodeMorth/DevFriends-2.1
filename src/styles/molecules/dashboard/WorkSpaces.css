@@ -1,0 +1,46 @@
+.WorkSpaces {
+
+  .accordion-container{
+
+    @apply flex flex-col gap-[2.5rem] pt-[2.5rem] pb-[2.5rem] ;
+
+  }
+
+  .container {
+    @apply flex flex-col gap-[1rem] mt-[2rem];
+  }
+
+  .dev-friends {
+    @apply text-[#57A3E1];
+  }
+
+  .boards-container,
+  .members-container {
+    @apply flex justify-start items-center gap-[2rem] ;
+  }
+
+  .boards-image,
+  .members-image {
+    @apply w-[5rem] h-auto;
+  }
+
+  .boards-text,
+  .members-text {
+    @apply text-[#F969AA];
+  }
+
+  /* ------------------Accordion Classes------------------ */
+
+  .p-accordion-header-link{
+
+    @apply flex flex-row-reverse ;
+
+  }
+
+  .p-icon.p-accordion-toggle-icon{
+
+    @apply rotate-90 ; 
+
+  }
+
+}

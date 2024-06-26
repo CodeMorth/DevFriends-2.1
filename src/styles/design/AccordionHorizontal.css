@@ -1,0 +1,72 @@
+.AccordionHorizontal {
+
+    @apply absolute left-0 w-auto rounded-r-[1rem];
+
+  @screen laptop {
+    @apply h-auto static;
+
+    width: calc(52rem * var(--scale));
+  }
+  
+
+  .container-accordion-general {
+
+    @apply w-auto overflow-hidden ;
+
+  }
+
+  .container-accordion {
+    @apply h-auto bg-[#2c2a2ac7] w-[35rem] max-w-[29rem] pl-[1rem] border-t-[#57A3E1] border-t-[0.2rem] border-b-[#57A3E1] border-b-[0.2rem] ;
+
+    backdrop-filter: blur(3px);
+
+
+
+    @screen laptop {
+
+        @apply bg-[#2C2A2A] pl-0 max-w-[100rem];
+
+      width: calc(35rem * var(--scale));
+    }
+  }
+
+  .container-arrow {
+    @screen laptop {
+      @apply w-full h-full;
+    }
+  }
+
+  .container-letter{
+
+    @apply text-[2rem] ;
+
+    @screen laptop{
+
+        font-size:calc(3.1rem *var(--scale));
+
+    }
+
+  }
+
+  .title-accordion {
+    font-size: 50rem;
+  }
+
+
+}
+
+.container-svg-accordion{
+    @apply absolute z-[100];
+
+    margin-right: calc(-0.3rem * var(--scale));
+    padding-left: calc(1rem * var(--scale));
+    padding-top: calc(1rem * var(--scale));
+
+    @screen laptop {
+
+      margin-right: calc(-0.3rem * var(--scale));
+      padding-left: calc(1rem * var(--scale));
+      padding-top: calc(1rem * var(--scale));
+    }
+
+}
