@@ -1,9 +1,9 @@
 'use client'
-import {ModalDashboard,TablesWorkSpaces,WorkSpaces} from "@/components/molecules";
-import {useOpenModal} from "@/hook";
-import { useState } from "react";
-import { AccordionHorizontal } from "@/components/design/AccordionHorizontal";
-import { SpaceWork } from "@/interface/page";
+import { ModalDashboard, TablesWorkSpaces, WorkSpaces } from '@/components/molecules'
+import { useOpenModal } from '@/hook'
+import { useState } from 'react'
+import { AccordionHorizontal } from '@/components/design/AccordionHorizontal'
+import { SpaceWork } from '@/interface/page'
 
 // export const metadata = {
 //  title: 'Work Spaces',
@@ -11,16 +11,16 @@ import { SpaceWork } from "@/interface/page";
 // };
 
 const Page = () => {
-  const { open, closeModal, openModal } = useOpenModal();
-  const [spaceWorks, setspaceWorks] = useState<SpaceWork[]>([]);
-  const [tableSelect, settableSelect] = useState<number>(0);
+  const { open, closeModal, openModal } = useOpenModal()
+  const [spaceWorks, setspaceWorks] = useState<SpaceWork[]>([])
+  const [tableSelect, settableSelect] = useState<number>(0)
 
   return (
     <>
       <div className="dashboard main-page">
         <main className="dashboard-container">
           <AccordionHorizontal
-            title={"Espacio de trabajo"}
+            title={'Espacio de trabajo'}
             titleColor="#f969aa"
           >
             <div className="dashboard-left">
@@ -46,7 +46,7 @@ const Page = () => {
         ></ModalDashboard>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page
