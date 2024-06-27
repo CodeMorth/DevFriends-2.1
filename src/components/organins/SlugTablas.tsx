@@ -10,8 +10,6 @@ export const SlugTablas = () => {
 
   const [tables, settables] = useState<any>([]);
 
-  console.log("slugtables tablas",tables)
-
   return (
     <div className="main-rigth ">
       <button className='buton_add_cards  ' onClick={openModal}>Añadir Tarjeta +</button>

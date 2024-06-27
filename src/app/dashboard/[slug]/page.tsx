@@ -1,11 +1,30 @@
-'use client'
-import { AccordionHorizontal } from "@/components/design";
-import {SlugTablas} from "@/components/organins";
-import Image from "next/image";
-import { FaShareAltSquare } from "react-icons/fa";
+import { AccordionHorizontal } from '@/components/design'
+import { SlugTablas } from '@/components/organins'
+import Image from 'next/image'
+import { FaShareAltSquare } from 'react-icons/fa'
+import { Metadata } from 'next'
 
-function Page() {
+interface SlugProps {
+  params: {
+    slug: string
+  }
+  searchParams: {}
+}
 
+export async function generateMetadata({params}: SlugProps): Promise<Metadata> {
+
+  const metadada: Metadata = {
+
+    title: `Tablero ${params.slug}`,
+    description:"Tableros especificos"
+    
+  }
+
+  return metadada
+
+}
+
+export default function Page() {
 
   return (
     <>
@@ -13,12 +32,12 @@ function Page() {
         <div className="container-slug-dashboard">
           <div className="container-slug-left">
             <div className="menu-slug">
-              <AccordionHorizontal title={"Dev Friend"} titleColor="#f969aa">
+              <AccordionHorizontal title={'Dev Friend'} titleColor="#f969aa">
                 <div className="container">
                   <div className="boards-container">
                     <div className="boards-image">
                       <Image
-                        src={"/dashboard/tablero.png"}
+                        src={'/dashboard/tablero.png'}
                         alt=""
                         width={1000}
                         height={1000}
@@ -30,7 +49,7 @@ function Page() {
                   <div className="members-container">
                     <div className="members-image">
                       <Image
-                        src={"/dashboard/group_2990282.png"}
+                        src={'/dashboard/group_2990282.png'}
                         alt=""
                         width={1000}
                         height={1000}
@@ -53,12 +72,10 @@ function Page() {
                 <p>Compartir</p>
               </button>
             </div>
-            <SlugTablas/>
+            <SlugTablas />
           </div>
         </div>
       </div>
     </>
-  );
+  )
 }
-
-export default Page;

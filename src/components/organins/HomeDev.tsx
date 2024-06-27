@@ -1,11 +1,11 @@
 'use client'
-import React from "react";
-import {ModalRegister} from "@/components/molecules";
-import Image from "next/image";
-import { useOpenModal } from '@/hook';
+import React from 'react'
+import { ModalRegister } from '@/components/molecules'
+import Image from 'next/image'
+import { useOpenModal } from '@/hook'
 
 export const HomeDev = () => {
-  const { open, closeModal, openModal } = useOpenModal();
+  const { open, closeModal, openModal } = useOpenModal()
 
   return (
     <div className="conten-last main-page">
@@ -24,7 +24,7 @@ export const HomeDev = () => {
 
       <div className="conten-last-logo">
         <Image
-          src={"/logo/logo-tareas.png"}
+          src={'/logo/logo-tareas.png'}
           alt="logo"
           width={1000}
           height={1000}
@@ -34,6 +34,5 @@ export const HomeDev = () => {
       </div>
       <ModalRegister visible={open} closeModal={closeModal} />
     </div>
-  );
+  )
 }
-
