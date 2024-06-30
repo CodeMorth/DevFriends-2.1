@@ -76,7 +76,7 @@ body {
 
 
   .p-toast-message-content {
-  @apply w-[30rem] !border-[#F969AA] border text-[#57A3E1] bg-[#3a091f23]  text-[2rem] gap-[1rem]  text-center px-[2.5rem] py-[1rem] rounded-[1rem];
+  @apply w-[30rem] !border-[#F969AA] border text-[#57A3E1] bg-[#2D2B40]  text-[2rem] gap-[1rem]  text-center px-[2.5rem] py-[1rem] rounded-[1rem];
   font-family: "Black Ops One", system-ui;
   .p-toast-icon-close{
     @apply hidden;

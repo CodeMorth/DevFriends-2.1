@@ -11,21 +11,18 @@ interface SlugProps {
   searchParams: {}
 }
 
-export async function generateMetadata({params}: SlugProps): Promise<Metadata> {
-
+export async function generateMetadata({
+  params
+}: SlugProps): Promise<Metadata> {
   const metadada: Metadata = {
-
     title: `Tablero ${params.slug}`,
-    description:"Tableros especificos"
-    
+    description: 'Tableros especificos'
   }
 
   return metadada
-
 }
 
 export default function Page() {
-
   return (
     <>
       <div className="SlugDashboard">
