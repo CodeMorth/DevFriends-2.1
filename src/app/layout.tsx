@@ -16,7 +16,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  
   return (
     <html lang="en">
       <PrimeReactProvider>
@@ -24,17 +23,9 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Toaster
-          position='top-center'
+            position="top-center"
             toastOptions={{
-              // classNames: {
-              //   toast: 'bg-[#2B3146]  border-[#F969AA] ',
-              //   title: 'text-[#57A3E1]',
-              //   description: 'text-red-400',
-              //   actionButton: 'bg-zinc-400',
-              //   cancelButton: 'bg-orange-400',
-              //   closeButton: 'bg-lime-400'
-              // }
-              className:"p-toast-message-content"
+              className: 'p-toast-message-content'
             }}
           />
         </body>

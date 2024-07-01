@@ -1,14 +1,10 @@
-'use client'
 import { Modal } from '@/components/global'
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
-import { Toast } from 'primereact/toast'
-import { useFormss, userLocalStoras } from '@/hook'
 import { Buttonss } from '@/components/atoms'
-import { useAlerts } from '@/hook/useAlerts'
-import { userType } from '@/interface/components/modals/ModalRegistrer'
 import { Labels, Inputs } from '@/components/atoms'
 import { postRegister } from '@/services/generalServices.service'
+import { userType } from '@/interface/components'
+import { useRouter } from 'next/navigation'
 
 interface ModalRegister {
   visible: boolean
@@ -16,42 +12,16 @@ interface ModalRegister {
 }
 
 export const ModalRegister = ({ visible, closeModal }: ModalRegister) => {
-  const { show, toast } = useAlerts()
+  const router = useRouter()
 
-  const [users, setusers] = useState<userType>({
-    nombre: '',
-    email: '',
-    password: ''
-  })
+  const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
 
-  const { datos, capTure } = useFormss()
+    const dataRegister: userType = Object.fromEntries(
+      new FormData(event.target as HTMLFormElement).entries()
+    ) as userType
 
-  const { obtenerLocal } = userLocalStoras()
-
-  const postRegistrer = async () => {
-
-    const {data} = await postRegister({ data: 'ejemplo' })
-
-  }
-
-  useEffect(() => {
-    const dts = obtenerLocal('user')
-    setusers(dts)
-  }, [datos])
-
-  const close = () => {
-    postRegistrer()
-    if (
-      users?.email !== undefined &&
-      users?.nombre !== undefined &&
-      users?.password !== undefined
-    ) {
-      closeModal()
-      show('Registro Exitoso')
-    } else {
-      show('Completa los campos')
-    }
-  }
+    postRegister(dataRegister).then(() => {router.push('/dashboard'), closeModal()}).catch((error) => error)}
 
   return (
     <div>
@@ -61,7 +31,7 @@ export const ModalRegister = ({ visible, closeModal }: ModalRegister) => {
         widthModal="w-[90%]  phone:w-[45rem] py-[3rem] h-[60rem] "
         className="logi_box main-page"
       >
-        <div className="login_modal">
+        <form onSubmit={handleRegister} className="login_modal">
           <div className="logo">
             <div className="imagen-logo-tw">
               <Image
@@ -73,49 +43,63 @@ export const ModalRegister = ({ visible, closeModal }: ModalRegister) => {
                 className="w-full h-full drop-shadow-[0px_1px_2px_#4C6E9E]"
               />
             </div>
-
             <div className="logo-name_two">
               <h3>Dev</h3>
               <h2>Friend</h2>
             </div>
           </div>
-
           <div className="box_inputs">
             <div className="input_option">
-              <Labels>Nombre</Labels>
+              <Labels htmlFor="first_name">Nombre</Labels>
               <Inputs
-                onChange={capTure}
-                name="nombre"
+                name="first_name"
+                id="first_name"
                 type="text"
                 placeholder="Mario"
               />
             </div>
             <div className="input_option">
-              <Labels>Email</Labels>
+              <Labels htmlFor="last_name">Apellido</Labels>
               <Inputs
-                onChange={capTure}
+                name="last_name"
+                id="last_name"
+                type="text"
+                placeholder="Ramirez"
+              />
+            </div>
+            <div className="input_option">
+              <Labels htmlFor="username">Nombre de usuario</Labels>
+              <Inputs
+                name="username"
+                id="username"
+                type="text"
+                placeholder="CodeMorth"
+              />
+            </div>
+            <div className="input_option">
+              <Labels htmlFor="email">Email</Labels>
+              <Inputs
                 name="email"
+                id="email"
                 type="email"
                 placeholder="devfriend@gmail.com"
               />
             </div>
             <div className="input_option">
-              <Labels>Password</Labels>
+              <Labels htmlFor="password">Password</Labels>
               <Inputs
-                onChange={capTure}
+                id="password"
                 name="password"
                 type="password"
                 placeholder="*******"
               />
             </div>
           </div>
-
           <div>
-            <Buttonss onClick={close}>Registrar</Buttonss>
+            <Buttonss>Registrar</Buttonss>
           </div>
-        </div>
+        </form>
       </Modal>
-      {/* <Toast ref={toast} position="top-center" /> */}
     </div>
   )
 }

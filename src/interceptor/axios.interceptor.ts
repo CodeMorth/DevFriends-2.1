@@ -1,36 +1,30 @@
-import { getValidationError } from '@/utilities/getValidationError'
+import { CapitalizeString, urlValidator } from '@/utilities'
 import axios from 'axios'
 import { toast } from 'sonner'
 
 const url = process.env.NEXT_PUBLIC_BASIC_URL
 
-export const axiosGlobal = axios.create({baseURL:`${url}`})
+export const axiosGlobal = axios.create({ baseURL: `${url}`, timeout: 5000 })
 
 axiosGlobal.interceptors.request.use(
   (request) => {
-    console.log('Soy el interceptor request ', request)
-    toast.success('Request correcto')
     return request
   },
   (error) => {
-    console.log('Soy el error del interceptor del request ', error)
-    toast.error('Error en la peticion request')
+    toast.error('Error en la peticion')
     return Promise.reject(error)
   }
 )
 
 axiosGlobal.interceptors.response.use(
   (response) => {
-    console.log('Soy el interceptor de response ', response)
-    toast.success('Response correcta')
+    urlValidator(response)
     return response
   },
   (error) => {
-    console.log('Soy el error del interceptor del response ', error)
-
-    const errorMessage =  getValidationError(error.code)
-
-    toast.error(`${errorMessage}`)
+    typeof error?.response?.data?.message === 'string'
+      ? toast.error(CapitalizeString(error?.response?.data?.message))
+      : toast.error(CapitalizeString(error?.response?.data?.message.errors[0]))
 
     return Promise.reject(error)
   }

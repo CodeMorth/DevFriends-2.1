@@ -1,47 +1,29 @@
 'use client'
-import {Inputs,Labels} from '@/components/atoms';
-import {Modal} from "@/components/global";
-import { useAlerts,useFormss,userLocalStoras } from "@/hook";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { Toast } from "primereact/toast";
-import { useEffect } from "react";
-import { setTimeout } from "timers";
-
+import { Inputs, Labels } from '@/components/atoms'
+import { Modal } from '@/components/global'
+import { userType } from '@/interface/components'
+import { postLogin } from '@/services/generalServices.service'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 interface ModalLogin {
-  visible: boolean;
-  closeModal:  () => void;
-  setlogin?: React.Dispatch<React.SetStateAction<boolean>>;
+  visible: boolean
+  closeModal: () => void
+  setlogin?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const LoginModal = ({ visible, closeModal, setlogin }: ModalLogin) => {
-  const { show, toast } = useAlerts();
+  const router = useRouter()
 
-  const { datos, capTure, setdatos } = useFormss();
+  const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
 
-  const { obtenerLocal } = userLocalStoras();
+    const dataRegister: userType = Object.fromEntries(
+      new FormData(event.target as HTMLFormElement).entries()
+    ) as userType
 
-  const router = useRouter();
+    postLogin(dataRegister).then(() => {router.push('/dashboard'),closeModal()}).catch((error) => error)
 
-  useEffect(() => {
-    let dts = obtenerLocal("user");
-    setdatos(dts);
-  }, []);
-
-  useEffect(() => {}, [datos]);
-
-  const close = () => {
-    if (datos?.email !== null && datos?.password !== null) {
-      closeModal();
-      show("Ingreso Exitoso");
-      if (setlogin) setlogin(true);
-      setTimeout(() => {
-        router.push("/dashboard");
-      }, 1000);
-    } else {
-      show("Ingrese los datos correctos");
-    }
-  };
+  }
 
   return (
     <div>
@@ -51,11 +33,11 @@ export const LoginModal = ({ visible, closeModal, setlogin }: ModalLogin) => {
         widthModal="w-[90%]  phone:w-[45rem] py-[3rem] h-[50rem] "
         className="logi_box main-page"
       >
-        <div className="login_modal">
+        <form onSubmit={handleRegister} className="login_modal">
           <div className="logo">
             <div className="imagen-logo-tw">
               <Image
-                src={"/logo/logo-tareas.png"}
+                src={'/logo/logo-tareas.png'}
                 alt="logo"
                 width={1000}
                 height={1000}
@@ -72,21 +54,19 @@ export const LoginModal = ({ visible, closeModal, setlogin }: ModalLogin) => {
 
           <div className="box_inputs">
             <div className="input_option">
-              <Labels>Email</Labels>
+              <Labels htmlFor="email">Email</Labels>
               <Inputs
                 name="email"
+                id="email"
                 type="email"
-                value={datos?.email}
-                onChange={capTure}
                 placeholder="devfriend@gmail.com"
               />
             </div>
             <div className="input_option">
-              <Labels>Password</Labels>
+              <Labels htmlFor="password">Password</Labels>
               <Inputs
                 name="password"
-                value={datos?.password}
-                onChange={capTure}
+                id="password"
                 type="password"
                 placeholder="*******"
               />
@@ -94,14 +74,10 @@ export const LoginModal = ({ visible, closeModal, setlogin }: ModalLogin) => {
           </div>
 
           <div>
-            <button className="btn_login_box_ingreso" onClick={close}>
-              Ingresar
-            </button>
+            <button className="btn_login_box_ingreso">Ingresar</button>
           </div>
-        </div>
+        </form>
       </Modal>
-      <Toast ref={toast} position="top-center" />
     </div>
-  );
+  )
 }
-
