@@ -2,9 +2,10 @@ import { Modal } from '@/components/global'
 import Image from 'next/image'
 import { Buttonss } from '@/components/atoms'
 import { Labels, Inputs } from '@/components/atoms'
-import { postRegister } from '@/services/generalServices.service'
-import { userType } from '@/interface/components'
+import { postRegister } from '@/services/userServices.service'
 import { useRouter } from 'next/navigation'
+import { userTypeLRU } from '@/interface/components'
+import { InputToFormData } from '@/utilities'
 
 interface ModalRegister {
   visible: boolean
@@ -17,11 +18,12 @@ export const ModalRegister = ({ visible, closeModal }: ModalRegister) => {
   const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const dataRegister: userType = Object.fromEntries(
-      new FormData(event.target as HTMLFormElement).entries()
-    ) as userType
+    const dataRegister: userTypeLRU = InputToFormData(event)
 
-    postRegister(dataRegister).then(() => {router.push('/dashboard'), closeModal()}).catch((error) => error)}
+    postRegister(dataRegister)
+      .then(() => closeModal())
+      .catch((error) => error)
+  }
 
   return (
     <div>

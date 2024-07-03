@@ -1,2 +1,2 @@
-export * from './modals/ModalRegistrer';
+export * from './modals/UserTypes';
 export * from './ui/Navbar';

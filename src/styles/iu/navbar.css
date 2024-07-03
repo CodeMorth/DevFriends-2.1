@@ -17,6 +17,7 @@
 .imagen-avatar{
     @apply w-[7rem] h-[6rem] drop-shadow-[1px_1px_3px_#58A0DE];
     @screen laptop{
+        margin-top: calc(-10rem *var(--scale));
         width: calc(40rem * var(--scale));
         height: calc(40rem * var(--scale));
     }

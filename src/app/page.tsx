@@ -6,7 +6,7 @@ export const metadata:Metadata = {
   description: 'Initial Page'
 }
 
-export default function Home() {
+export default function PageHome() {
   return (
     <div className="h-auto phone:h-screen bg-gradient-to-l from-[#121629] via-[#663058] to-[#121629]">
       <HomeDev />

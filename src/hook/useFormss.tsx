@@ -1,28 +1,15 @@
-import { useState } from "react";
-import {userLocalStoras} from "@/hook";
-
+import { useState } from 'react'
 interface datosInterface {
-  email: string;
-  image: File[];
-  password: string;
-  tableName: string;
-  visibility: string;
-  titleSpaceWork:string;
-  descriptionSpaceWork:string;
+  [key: string]: string | undefined
 }
 
-export function useFormss () {
-  const [datos, setdatos] = useState<datosInterface | any>({
- 
-  });
-  const { agregarLocal } = userLocalStoras();
+export function useFormss() {
+  const [datos, setdatos] = useState<datosInterface>({})
 
-  const capTure = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setdatos({ ...datos, [e.target.name]: e.target.value });
+  const capTure = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    setdatos({ ...datos, [event.target.name]: event.target.value })
+  }
 
-    agregarLocal("user", datos);
-    // localStorage.setItem('user', JSON.stringify(datos));
-  };
-
-  return { datos, setdatos, capTure };
+  return { datos, setdatos, capTure }
 }

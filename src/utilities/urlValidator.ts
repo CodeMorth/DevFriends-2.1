@@ -9,6 +9,8 @@ export const urlValidator = (response: any) => {
     toast.success('El registro se hizo correctamente')
     return response
   }
-
-
+  if (response.data.url === 'updateUser') {
+    toast.success('El usuario se modifico correctamente')
+    return response
+  }
 }

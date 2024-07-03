@@ -9,8 +9,8 @@ interface datosInterface {
 export function userLocalStoras  ()  {
   const agregarLocal = (clave: string, datos: datosInterface) => {
 
-
     localStorage.setItem(clave, JSON.stringify(datos));
+    
   };
 
 

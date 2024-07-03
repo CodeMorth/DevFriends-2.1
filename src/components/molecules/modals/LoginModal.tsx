@@ -1,28 +1,37 @@
-'use client'
 import { Inputs, Labels } from '@/components/atoms'
 import { Modal } from '@/components/global'
-import { userType } from '@/interface/components'
-import { postLogin } from '@/services/generalServices.service'
+import { userLocalStoras } from '@/hook'
+import { userTypeLRU } from '@/interface/components'
+import { postLogin } from '@/services/userServices.service'
+import { InputToFormData } from '@/utilities'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 interface ModalLogin {
   visible: boolean
   closeModal: () => void
-  setlogin?: React.Dispatch<React.SetStateAction<boolean>>
+  setlogin: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const LoginModal = ({ visible, closeModal, setlogin }: ModalLogin) => {
+
   const router = useRouter()
 
+  const { agregarLocal } = userLocalStoras()
+
   const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
+
     event.preventDefault()
 
-    const dataRegister: userType = Object.fromEntries(
-      new FormData(event.target as HTMLFormElement).entries()
-    ) as userType
+    const dataRegister: userTypeLRU = InputToFormData(event)
 
-    postLogin(dataRegister).then(() => {router.push('/dashboard'),closeModal()}).catch((error) => error)
-
+    postLogin(dataRegister)
+      .then((response) => {
+        agregarLocal('token', response.data.user.token),
+          router.push('/dashboard'),
+          setlogin(true),
+          closeModal()
+      })
+      .catch((error) => error)
   }
 
   return (
