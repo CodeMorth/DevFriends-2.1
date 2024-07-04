@@ -28,6 +28,7 @@
 
 html {
   font-size: 62.5%;
+  background-color:#2C2A2A;
 }
 
 select,
@@ -76,7 +77,7 @@ body {
 
 
   .p-toast-message-content {
-  @apply w-[30rem] !border-[#F969AA] border text-[#57A3E1] bg-[#2D2B40]  text-[2rem] gap-[1rem]  text-center px-[2.5rem] py-[1rem] rounded-[1rem];
+  @apply w-[40rem] !border-[#F969AA] border text-[#57A3E1] bg-[#2D2B40] text-[1.7rem] ;
   font-family: "Black Ops One", system-ui;
   .p-toast-icon-close{
     @apply hidden;

@@ -3,7 +3,6 @@ import Image from 'next/image'
 import { Buttonss } from '@/components/atoms'
 import { Labels, Inputs } from '@/components/atoms'
 import { postRegister } from '@/services/userServices.service'
-import { useRouter } from 'next/navigation'
 import { userTypeLRU } from '@/interface/components'
 import { InputToFormData } from '@/utilities'
 
@@ -13,7 +12,6 @@ interface ModalRegister {
 }
 
 export const ModalRegister = ({ visible, closeModal }: ModalRegister) => {
-  const router = useRouter()
 
   const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()

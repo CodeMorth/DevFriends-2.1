@@ -25,6 +25,12 @@ export const getByToken = (token: string) => {
   })
 }
 
+export const getByID = (id: string) => {
+  return axiosGlobal.get(`userId/${id}`, {
+    headers: { 'Content-Type': 'application/json' }
+  })
+}
+
 export const deleteById = (id: string) => {
   return axiosGlobal.get(`userDelete/${id}`, {
     headers: { 'Content-Type': 'application/json' }

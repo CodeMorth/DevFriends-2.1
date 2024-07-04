@@ -1,13 +1,7 @@
-export interface Table {
-  image: File[];
-  tableName: string;
-  visibility: string;
+export interface SpaceWork {
+  id_work_space:          number;
+  name_work_space:        string;
+  description_work_space: string;
+  createdAt:              Date;
+  updatedAt:              Date;
 }
-  
-  export interface SpaceWork {
-    datos: {
-      descriptionSpaceWork: string;
-      titleSpaceWork: string;
-    };
-    tables: Table[];
-  }

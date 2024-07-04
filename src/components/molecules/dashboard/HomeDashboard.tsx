@@ -20,7 +20,6 @@ export const HomeDashboard = () => {
           >
             <div className="dashboard-left">
               <WorkSpaces
-                spaceWorks={spaceWorks}
                 settableSelect={settableSelect}
               />
               <button onClick={openModal} className="dashboard-left-content">
@@ -35,7 +34,6 @@ export const HomeDashboard = () => {
           />
         </main>
         <ModalDashboard
-          setspaceWorks={setspaceWorks}
           visible={open}
           closeModal={closeModal}
         ></ModalDashboard>
