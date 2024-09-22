@@ -34,7 +34,7 @@ export function  useSidebar (setclose: () => void): SidebarHook  {
   const navigateRuta = (ruta: string) => {
     if (ruta === '/') {
       router.push(ruta);
-      eliminarLocal('user');
+      eliminarLocal('token');
       setclose();
     } else {
       router.push(ruta);

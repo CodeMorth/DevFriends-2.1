@@ -19,7 +19,7 @@ export const Navbar = () => {
     }
   );
 
-  const [login, setlogin] = useState<boolean>(false);
+  
   const { open, closeModal, openModal } = useOpenModal();
 
   const { obtenerLocal } = userLocalStoras();
@@ -29,9 +29,9 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
-    const dts = obtenerLocal("user");
+    const dts = obtenerLocal("token");
     setusers(dts);
-  }, [login]);
+  }, []);
 
   return (
     <Container>
@@ -54,13 +54,13 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {login ? (
+        {users ? (
           <Buttonss onClick={() => setvisible(true)}>Perfil</Buttonss>
         ) : (
           <Buttonss onClick={openModal}>Login</Buttonss>
         )}
       </div>
-      <LoginModal setlogin={setlogin} visible={open} closeModal={closeModal} />
+      <LoginModal visible={open} closeModal={closeModal} />
       <SideBar
         closeSideb={closeSideb}
         setvisible={setvisible}

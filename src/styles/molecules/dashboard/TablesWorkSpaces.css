@@ -1,14 +1,14 @@
 .TablesWorkSpaces {
 
-  @apply flex flex-col gap-[2rem] w-full h-full;
+  @apply flex flex-col gap-[2rem] w-full h-full ;
 
 
   @screen laptop {
-    @apply flex flex-col gap-[2rem] w-full h-full;
+    @apply flex flex-col gap-[2rem]  w-[70%];
   }
   .tables-title {
 
-    @apply text-[#94849C] text-[2.7rem];
+    @apply text-[#94849C] text-[2.7rem] w-full;
 
 
     @screen laptop {
@@ -18,7 +18,7 @@
 
   .tables-content {
 
-    @apply flex flex-col gap-[2.5rem] w-full h-full justify-center items-center;
+    @apply flex flex-col gap-[2.5rem] w-full h-full justify-center items-center ;
 
 
     @screen laptop {
@@ -28,17 +28,17 @@
 
   .content-top {
 
-    @apply flex items-center w-full flex-wrap justify-around gap-[1.5rem];
+    @apply flex items-center w-full  flex-wrap justify-around gap-[1.5rem];
 
 
     @screen tablet{
 
-      @apply w-[70%] ;
+      @apply w-[70%]  ;
 
     }
 
     @screen laptop {
-      @apply flex flex-nowrap gap-[8rem] items-center w-[20rem];
+      @apply flex flex-nowrap gap-[8rem] items-center w-[20%] ;
     }
   }
 

@@ -9,6 +9,9 @@ export const HomeDashboard = () => {
   const { open, closeModal, openModal } = useOpenModal()
   const [spaceWorks, setspaceWorks] = useState<SpaceWork[]>([])
   const [tableSelect, settableSelect] = useState<number>(0)
+  const [idWork, setidWork] = useState<number | null>(null);
+
+
 
   return (
     <>
@@ -20,7 +23,7 @@ export const HomeDashboard = () => {
           >
             <div className="dashboard-left">
               <WorkSpaces
-                settableSelect={settableSelect}
+              setidWork={setidWork}
               />
               <button onClick={openModal} className="dashboard-left-content">
                 + Crear un espacio de trabajo
@@ -31,6 +34,7 @@ export const HomeDashboard = () => {
             spaceWorks={spaceWorks}
             tableSelect={tableSelect}
             setspaceWorks={setspaceWorks}
+            idWork={idWork}
           />
         </main>
         <ModalDashboard

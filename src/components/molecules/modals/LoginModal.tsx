@@ -9,10 +9,10 @@ import { useRouter } from 'next/navigation'
 interface ModalLogin {
   visible: boolean
   closeModal: () => void
-  setlogin: React.Dispatch<React.SetStateAction<boolean>>
+
 }
 
-export const LoginModal = ({ visible, closeModal, setlogin }: ModalLogin) => {
+export const LoginModal = ({ visible, closeModal }: ModalLogin) => {
 
   const router = useRouter()
 
@@ -28,7 +28,7 @@ export const LoginModal = ({ visible, closeModal, setlogin }: ModalLogin) => {
       .then((response) => {
         agregarLocal('token', response.data.user.token),
           router.push('/dashboard'),
-          setlogin(true),
+         
           closeModal()
       })
       .catch((error) => error)

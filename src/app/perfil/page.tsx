@@ -44,9 +44,6 @@ export default function PagePerfil() {
     putUpdate(userData?.id_user ?? '', dataRegister).catch((error) => error)
   }
 
-  console.log('userData', userData)
-
-  console.log('userData?.id_user', userData?.id_user)
 
   return (
     <div className="perfil-box main-page">

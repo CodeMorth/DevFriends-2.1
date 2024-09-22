@@ -1,44 +1,44 @@
 'use client'
 import Image from 'next/image'
 import { Accordion, AccordionTab } from 'primereact/accordion'
-import { SpaceWork } from '@/interface/page'
-import { userLocalStoras } from '@/hook'
 import { useEffect, useState } from 'react'
-import { getByID, getByToken, getWorkSpace } from '@/services'
-import { UserByID, WorkSpace } from '@/interface/UserType'
+import { allWorkSpacesUser } from '@/services'
 
-interface WorkSpacesProps {
-  settableSelect: (number: number) => void
+
+interface WorkSpace {
+  id_work_space: number
+  name_work_space: string
 }
 
-export const WorkSpaces = ({ settableSelect }: WorkSpacesProps) => {
-  const [controller, setcontroller] = useState<boolean>(true)
-  const [userData, setuserData] = useState<UserByID>()
+interface WorkSpaceUser {
+  id_user: number
+  work_spaces: WorkSpace[]
+}
 
-  const { obtenerLocal } = userLocalStoras()
+export const WorkSpaces = ({
+  setidWork
+}: {
+  setidWork: (id: number) => void
+}) => {
+  const [Work_Space_user, setWork_Space_user] = useState<
+    WorkSpaceUser[] | null
+  >(null)
 
-  ;(async () => {
-    if (controller) {
-      const token = await obtenerLocal('token')
+  const enviarId = (id: any) => {
+    setidWork(id)
+  }
 
-      getByToken(token)
-        .then((response) => {
-          getByID(response.data.id_user)
-            .then((response) => setuserData(response.data.user))
-            .catch((error) => error)
-        })
-        .catch((error) => error)
-
-      setcontroller(false)
-    }
-  })()
-
-  console.log('userData', userData)
+  useEffect(() => {
+    //trae los work_space_user
+    allWorkSpacesUser()
+      .then(({ data }) => setWork_Space_user(data.workAllUser))
+      .catch((error) => console.log(error))
+  }, [])
 
   return (
     <div className="WorkSpaces">
       <Accordion className="accordion-container" activeIndex={0}>
-        {userData?.work_spaces?.map((data: WorkSpace) => (
+        {Work_Space_user?.[0]?.work_spaces?.map((data: WorkSpace) => (
           <AccordionTab
             key={data?.id_work_space}
             className="dev-friends"
@@ -57,7 +57,7 @@ export const WorkSpaces = ({ settableSelect }: WorkSpacesProps) => {
                 </div>
                 <h1
                   className="boards-text"
-                  onClick={() => settableSelect(data.id_work_space)}
+                  onClick={() => enviarId(data?.id_work_space)}
                 >
                   Tableros
                 </h1>

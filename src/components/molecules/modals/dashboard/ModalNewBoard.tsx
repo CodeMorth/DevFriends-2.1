@@ -6,24 +6,24 @@ import { useDropzone } from "react-dropzone";
 import { motion } from "framer-motion";
 import {useFormss} from "@/hook";
 import { SpaceWork } from "@/interface/page";
+import { createTable } from "@/services/table.service";
 
 
 interface ModalNewBoard {
   visible: boolean;
   closeModal: () => void;
-  spaceWorks: SpaceWork[];
-  tableSelect: number;
   setspaceWorks: React.Dispatch<React.SetStateAction<SpaceWork[]>>;
+  idWork:any
 }
 
 export const ModalNewBoard = ({
   visible,
   closeModal,
-  spaceWorks,
-  tableSelect,
+  idWork,
+ 
   setspaceWorks,
 }: ModalNewBoard) => {
-  const [acceptedFiles, setacceptedFiles] = useState<File[]>([]);
+  const [acceptedFiles, setacceptedFiles] = useState<File[] | any>([]);
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (files: File[]) => {
@@ -33,24 +33,27 @@ export const ModalNewBoard = ({
   });
   const { datos, capTure, setdatos } = useFormss();
 
-  let spaceWorMoment:SpaceWork[] = spaceWorks;
 
-  const updateSpaceWork = () => {
-    spaceWorMoment[tableSelect].tables.push(datos);
 
-    setspaceWorks(spaceWorMoment);
+  const createSpaceWork = () => {
+    datos.id_work_space = idWork
+    createTable(datos).then(res => console.log("res",res)).catch(err => console.log(err))
+
+
 
     closeModal();
 
-    setacceptedFiles([]);
+   
   };
 
   useEffect(() => {
     setdatos({
       ...datos,
-      image: acceptedFiles,
+      avatar_table: acceptedFiles[0]?.path,
     });
   }, [acceptedFiles]);
+
+
 
   return (
     <Modal
@@ -62,7 +65,7 @@ export const ModalNewBoard = ({
         <div className="create-board">Crear Tablero</div>
         <section className="container">
           <div {...getRootProps({ className: "dropzone" })}>
-            <input type="file" name="image" {...getInputProps()} />
+            <input type="file" name="avatar_table" {...getInputProps()} />
             {acceptedFiles.length > 0 ? (
               <Image
                 src={URL.createObjectURL(acceptedFiles[0])}
@@ -100,7 +103,7 @@ export const ModalNewBoard = ({
         </label>
         <input
           type="text"
-          name="tableName"
+          name="title_table"
           onChange={capTure}
           className="title-board-input"
         />
@@ -108,21 +111,21 @@ export const ModalNewBoard = ({
           Visibildidad
         </label>
         <select
-          name="visibility"
+          name="id_type_table"
           onChange={capTure}
           className="visibility-select"
         >
           <option value="Publico-Privado" className="visibility-option">
             Publico-Privado
           </option>
-          <option value="Publico" className="visibility-option">
+          <option value={2} className="visibility-option">
             Publico
           </option>
-          <option value="Privado" className="visibility-option">
+          <option value={1} className="visibility-option">
             Privado
           </option>
         </select>
-        <button onClick={updateSpaceWork} className="button-create">
+        <button onClick={createSpaceWork} className="button-create">
           Crear
         </button>
       </div>

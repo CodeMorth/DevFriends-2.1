@@ -11,7 +11,7 @@ axiosGlobal.interceptors.request.use(
 
     const url = request?.url
 
-    if (url?.includes('updateUser') || url?.includes('work_space') )
+    if (url?.includes('updateUser') || url?.includes('work_space') || url?.includes('all_Work_spaces_user') || url?.includes('tablas_x_work_space') || url?.includes('CreateTable') )
       return updateAuthorizationHeader(request as InternalAxiosRequestConfig)
 
     return request

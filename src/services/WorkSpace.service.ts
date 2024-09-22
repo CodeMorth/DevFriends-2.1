@@ -11,3 +11,12 @@ export const getWorkSpace = (id: string) => {
     headers: { 'Content-Type': 'application/json' }
   })
 }
+
+
+//all_Work_spaces_user
+
+export const allWorkSpacesUser = () => {
+  return axiosGlobal.get(`all_Work_spaces_user`, {
+    headers: { 'Content-Type': 'application/json' }
+  })
+}
