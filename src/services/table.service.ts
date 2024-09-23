@@ -12,8 +12,16 @@ export const tablasUserWorkSpace = (id:any) => {
 
   //CreateTable
 
-  export const createTable = (data: any) => {
-    return axiosGlobal.post('CreateTable', data, {
-      headers: { 'Content-Type': 'application/json' }
-    })
-  }
+// CreateTable con FormData para envío de archivos
+export const createTable = (data: any, file: File) => {
+  const formData = new FormData();
+
+  // Agregar los datos al formData
+  formData.append('avatar_table', file);  // Suponiendo que 'file' es el archivo de imagen
+  formData.append('title_table', data.title_table);
+  formData.append('id_type_table', data.id_type_table);
+  formData.append('id_work_space', data.id_work_space);
+
+  // Hacer la petición con axiosGlobal usando FormData
+  return axiosGlobal.post('CreateTable', formData);
+};

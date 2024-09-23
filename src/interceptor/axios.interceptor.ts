@@ -4,14 +4,14 @@ import { toast } from 'sonner'
 
 const url = process.env.NEXT_PUBLIC_BASIC_URL
 
-export const axiosGlobal = axios.create({ baseURL: `${url}`, timeout: 1000 })
+export const axiosGlobal = axios.create({ baseURL: `${url}`, timeout: 1000 | 5000 })
 
 axiosGlobal.interceptors.request.use(
   (request) => {
 
     const url = request?.url
 
-    if (url?.includes('updateUser') || url?.includes('work_space') || url?.includes('all_Work_spaces_user') || url?.includes('tablas_x_work_space') || url?.includes('CreateTable') )
+    if (url?.includes('updateUser') || url?.includes('work_space') || url?.includes('all_Work_spaces_user') || url?.includes('tablas_x_work_space') || url?.includes('CreateTable') || url?.includes('cardsPerUser') || url?.includes('createCard'))
       return updateAuthorizationHeader(request as InternalAxiosRequestConfig)
 
     return request

@@ -9,6 +9,7 @@ import { SpaceWork } from "@/interface/page";
 import { createTable } from "@/services/table.service";
 
 
+
 interface ModalNewBoard {
   visible: boolean;
   closeModal: () => void;
@@ -36,15 +37,29 @@ export const ModalNewBoard = ({
 
 
   const createSpaceWork = () => {
-    datos.id_work_space = idWork
-    createTable(datos).then(res => console.log("res",res)).catch(err => console.log(err))
-
-
-
+    const data = {
+      title_table: datos.title_table || '',
+      id_type_table: datos.id_type_table || '',
+      id_work_space: idWork,
+    };
+  
+    let file = null;
+  
+    // Verificar si se ha seleccionado un archivo de imagen
+    if (acceptedFiles.length > 0) {
+      file = acceptedFiles[0];  // Obtén el archivo completo, no solo el nombre
+    }
+  
+    // Llamar al servicio y enviar los datos y el archivo
+    createTable(data, file)
+      .then((res) => console.log('res', res))
+      .catch((err) => console.log(err));
+  
     closeModal();
-
-   
   };
+  
+  
+
 
   useEffect(() => {
     setdatos({

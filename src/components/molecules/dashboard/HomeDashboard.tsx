@@ -8,7 +8,6 @@ import { SpaceWork } from '@/interface/page'
 export const HomeDashboard = () => {
   const { open, closeModal, openModal } = useOpenModal()
   const [spaceWorks, setspaceWorks] = useState<SpaceWork[]>([])
-  const [tableSelect, settableSelect] = useState<number>(0)
   const [idWork, setidWork] = useState<number | null>(null);
 
 
@@ -31,8 +30,6 @@ export const HomeDashboard = () => {
             </div>
           </AccordionHorizontal>
           <TablesWorkSpaces
-            spaceWorks={spaceWorks}
-            tableSelect={tableSelect}
             setspaceWorks={setspaceWorks}
             idWork={idWork}
           />

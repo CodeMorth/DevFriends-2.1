@@ -1,28 +1,20 @@
+"use client"; 
 import { AccordionHorizontal } from '@/components/design'
 import { SlugTablas } from '@/components/organins'
 import Image from 'next/image'
 import { FaShareAltSquare } from 'react-icons/fa'
-import { Metadata } from 'next'
+import { useSearchParams } from 'next/navigation'
 
-interface SlugProps {
-  params: {
-    slug: string
-  }
-  searchParams: {}
-}
 
-export async function generateMetadata({
-  params
-}: SlugProps): Promise<Metadata> {
-  const metadada: Metadata = {
-    title: `Tablero ${params.slug}`,
-    description: 'Tableros especificos'
-  }
 
-  return metadada
-}
 
-export default function Page() {
+
+export default function Page({ params }: { params: { slug: string } }) {
+
+  const slug = params.slug;  // El slug es el nombre del tablero
+
+
+  
   return (
     <>
       <div className="SlugDashboard">
@@ -61,7 +53,7 @@ export default function Page() {
           </div>
           <div className="container-slug-rigth">
             <div className="header-rigth">
-              <h1 className="title-table">Titulo del tablero</h1>
+              <h1 className="title-table">{slug!}</h1>
               <button className="button-share">
                 <div>
                   <FaShareAltSquare />
