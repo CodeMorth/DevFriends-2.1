@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ModalTareas } from "@/components/molecules";
 import {useOpenModal,useDragAndDrop} from '@/hook';
+import useTask_x_table from '@/hook/task/useTask_x_table';
 export const  Tarjeta = ({ card, settables, index }: any) => {
   const { open, closeModal, openModal } = useOpenModal();
 
   const { onDrop, draginOver, startDrap } = useDragAndDrop({ index,settables,});
+
+ const {task , setTask ,taskAllCard} =  useTask_x_table()
+
+
+  
+
+  useEffect(() => {
+    taskAllCard(card) 
+  }, [])
+  
 
   return (
     <div
@@ -14,29 +25,18 @@ export const  Tarjeta = ({ card, settables, index }: any) => {
     >
       <h1 className='title_cards-'>{card?.title_card}</h1>
 
-      {card !== null &&
-        card?.tareas?.map((tarea: any, index: any) => (
-          <p key={index}>{tarea?.tarea}</p>
+      {task !== null &&
+        task?.map((tarea: any) => (
+          <p className='task_children_cards' key={tarea.id_task}>{tarea?.title_task}</p>
         ))}
 
-      {card?.tareasTablas &&
-        card?.tareasTablas?.map((title: any, index: number) => (
-          <h3
-            className='task_children_cards'
-            draggable
-            onDragStart={(e: any) => startDrap(e, title)}
-            key={index}
-          >
-            {title?.tareasTables}
-          </h3>
-        ))}
-
-      {card && (
+      
+      {task && (
         <button onClick={openModal} className='btn_cards_add_task '>
           Añadir tareas
         </button>
       )}
-      <ModalTareas table={card} visible={open} closeModal={closeModal} />
+      <ModalTareas taskAllCard={taskAllCard} table={card} visible={open} closeModal={closeModal} />
     </div>
   );
 };

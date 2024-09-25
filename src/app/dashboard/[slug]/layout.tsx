@@ -1,4 +1,3 @@
-// src/app/dashboard/[slug]/layout.tsx
 
 import { Metadata } from 'next';
 

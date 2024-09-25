@@ -4,7 +4,7 @@ interface datosInterface {
 }
 
 export function useFormss() {
-  const [datos, setdatos] = useState<datosInterface>({})
+  const [datos, setdatos] = useState<datosInterface | any >(null)
 
   const capTure = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {

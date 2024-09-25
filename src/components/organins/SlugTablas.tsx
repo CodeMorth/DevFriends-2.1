@@ -14,18 +14,18 @@ export const SlugTablas = () => {
   
   const {closeModal, open , openModal} = useOpenModal();
 
-  const [tables, settables] = useState<any>([]);
   const [titleCard, setTitleCard] = useState<any>(null)
 
+  const getCards = () => cardsPerUser(id!).then((res) => {
+    setTitleCard(res.data)
+  }).catch((err) => {
+    console.log(err)
+  })
+
   useEffect(() => {
-    cardsPerUser(id!).then((res) => {
-      setTitleCard(res.data)
-    }).catch((err) => {
-      console.log(err)
-    })
+    getCards();
   }, [])
 
-console.log("titleCard",titleCard)
 
   return (
     <div className="main-rigth ">
@@ -35,14 +35,14 @@ console.log("titleCard",titleCard)
       {
         titleCard !== null && titleCard?.map( (card:any ) => 
         
-          <Tarjeta key={card.id_card} settables={settables} card={card}/>
+          <Tarjeta key={card.id_card}  card={card}/>
         
         )
         
       }
       
 </div>
-<ModalTarjetas settables={settables} visible={open} closeModal={closeModal}/>
+<ModalTarjetas render={getCards}  visible={open} closeModal={closeModal}/>
     </div>
   )
 }

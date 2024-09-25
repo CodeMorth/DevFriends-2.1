@@ -5,7 +5,6 @@ import { useEffect , useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { motion } from "framer-motion";
 import {useFormss} from "@/hook";
-import { SpaceWork } from "@/interface/page";
 import { createTable } from "@/services/table.service";
 
 
@@ -13,16 +12,15 @@ import { createTable } from "@/services/table.service";
 interface ModalNewBoard {
   visible: boolean;
   closeModal: () => void;
-  setspaceWorks: React.Dispatch<React.SetStateAction<SpaceWork[]>>;
   idWork:any
+  getTableWorkSpaces:any
 }
 
 export const ModalNewBoard = ({
   visible,
   closeModal,
   idWork,
- 
-  setspaceWorks,
+  getTableWorkSpaces
 }: ModalNewBoard) => {
   const [acceptedFiles, setacceptedFiles] = useState<File[] | any>([]);
 
@@ -52,7 +50,11 @@ export const ModalNewBoard = ({
   
     // Llamar al servicio y enviar los datos y el archivo
     createTable(data, file)
-      .then((res) => console.log('res', res))
+      .then((res) => {
+        if(res.data){
+          getTableWorkSpaces(idWork);
+        }
+      })
       .catch((err) => console.log(err));
   
     closeModal();

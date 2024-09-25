@@ -19,8 +19,8 @@ export const putUpdate = (id: string, data: FormData) => {
   })
 }
 
-export const getByToken = (token: string) => {
-  return axiosGlobal.get(`userData/${token}`, {
+export const getByToken = () => {
+  return axiosGlobal.get(`userData`, {
     headers: { 'Content-Type': 'application/json' }
   })
 }

@@ -1,5 +1,6 @@
 import {Modal} from '@/components/global';
 import {useFormss} from '@/hook/';
+import { createTasks } from '@/services/task.service';
 import React, { useState } from 'react';
 
 interface ModalTareas {
@@ -7,24 +8,25 @@ interface ModalTareas {
   closeModal: any;
   settables?: any;
   table?: any;
+  taskAllCard:any;
 }
 
 export const ModalTareas = ({
   visible,
   closeModal,
   table,
+  taskAllCard
 }: ModalTareas) => {
   const { capTure, datos } = useFormss();
 
-  const updateTarea = table?.datos?.titleTarjeta;
-
+  
   const handleModal = (e: any) => {
     e.preventDefault();
+    datos.id_card=table.id_card
 
-    if (updateTarea === table?.datos?.titleTarjeta) {
-      table?.tareasTablas.push(datos);
-      closeModal();
-    }
+    createTasks(datos).then( ({data}) => {
+      if(data?.message === "tarea creada exitosamente") closeModal(), taskAllCard(table)
+    }).catch(err => console.log(err))
   };
 
   return (
@@ -38,7 +40,7 @@ export const ModalTareas = ({
             onChange={capTure}
             type='text'
             placeholder='Añadir tareas'
-            name='tareasTables'
+            name='title_task'
           />
           <button type='submit' >
             Añadir

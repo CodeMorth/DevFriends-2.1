@@ -7,10 +7,10 @@ import React from 'react';
 interface ModalTarjetas {
   visible: boolean;
   closeModal: any;
-  settables?:any
+  render:any
 }
 
-export const ModalTarjetas = ({ visible, closeModal , settables }: ModalTarjetas) => {
+export const ModalTarjetas = ({ visible, closeModal , render }: ModalTarjetas) => {
 
   const searchParams = useSearchParams();
   const id= searchParams.get('id')
@@ -26,6 +26,7 @@ export const ModalTarjetas = ({ visible, closeModal , settables }: ModalTarjetas
         createCard(datos).then(({data}:any) => {
           if(data.message){
             closeModal();
+            render();
           }
         }).catch((err) => {
           console.log(err)

@@ -3,36 +3,30 @@ import Image from 'next/image'
 import { Accordion, AccordionTab } from 'primereact/accordion'
 import { useEffect, useState } from 'react'
 import { allWorkSpacesUser } from '@/services'
+import { WorkSpace, WorkSpaceUser } from '@/interface/page'
+import { userLocalStoras } from '@/hook'
 
 
-interface WorkSpace {
-  id_work_space: number
-  name_work_space: string
-}
-
-interface WorkSpaceUser {
-  id_user: number
-  work_spaces: WorkSpace[]
-}
-
-export const WorkSpaces = ({
-  setidWork
-}: {
+interface WorkSpacesProps {
+  allWorkSpaces: () => void
   setidWork: (id: number) => void
-}) => {
-  const [Work_Space_user, setWork_Space_user] = useState<
-    WorkSpaceUser[] | null
-  >(null)
+  Work_Space_user: WorkSpaceUser[] | null
+}
+
+  const {agregarLocal} = userLocalStoras()
+
+export const WorkSpaces = ({setidWork, allWorkSpaces, Work_Space_user}:WorkSpacesProps) => {
+
+
 
   const enviarId = (id: any) => {
     setidWork(id)
+    agregarLocal('work_space',id)
   }
 
   useEffect(() => {
     //trae los work_space_user
-    allWorkSpacesUser()
-      .then(({ data }) => setWork_Space_user(data.workAllUser))
-      .catch((error) => console.log(error))
+    allWorkSpaces();
   }, [])
 
   return (

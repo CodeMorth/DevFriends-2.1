@@ -1,30 +1,34 @@
 import { Inputs, Labels, TextAreas } from '@/components/atoms'
 import { Modal } from '@/components/global'
-import { postCreateRol, postCreateWorkSpace } from '@/services'
+import {  postCreateWorkSpace } from '@/services'
 import { InputToFormData } from '@/utilities'
 import Image from 'next/image'
 
 interface ModalDashboard {
   visible: boolean
   closeModal: () => void
+  allWorkSpaces: () => void
 }
 
-export const ModalDashboard = ({ visible, closeModal }: ModalDashboard) => {
-  const formCreateWorkSpace = async (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
+export const ModalDashboard = ({ visible, closeModal ,allWorkSpaces}: ModalDashboard) => {
+ 
+ 
+  const formCreateWorkSpace = async ( event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const data = InputToFormData(event)
 
-    postCreateRol({ type_rol: 'admin' })
-      .then(() => {
+  
         postCreateWorkSpace(data)
-          .then(() => closeModal())
+          .then((res) => { 
+            if(res.data){
+              closeModal()
+              allWorkSpaces()
+            }
+          })
           .catch((error) => error)
-      })
-      .catch((error) => error)
-  }
+      }
+  
 
   return (
     <div>

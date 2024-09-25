@@ -4,30 +4,25 @@ import { ModalNewBoard } from "@/components/molecules";
 import { useOpenModal } from "@/hook";
 import { ButtonsTwo } from "@/components/atoms";
 import Link from "next/link";
-import { SpaceWork } from "@/interface/page";
 import { tablasUserWorkSpace } from "@/services/table.service";
-
-interface TablesWorkSpacesProps {
-
-
-  setspaceWorks: React.Dispatch<React.SetStateAction<SpaceWork[]>>;
-  idWork: number | null;
-
-}
+import useTable_x_work_space from "@/hook/table/useTable_x_work_space";
 
 
-export const TablesWorkSpaces = ({ setspaceWorks, idWork }: TablesWorkSpacesProps) => {
+
+
+export const TablesWorkSpaces = ( { idWork}:any) => {
 
 
 
   const { open, closeModal, openModal } = useOpenModal();
 
+  const { tableWorkSpaces, getTableWorkSpaces } = useTable_x_work_space()
 
-  const [tableWorkSpaces, settableWorkSpaces] = useState<any>(null)
+ 
 
   useEffect(() => {
     if (idWork) {
-      tablasUserWorkSpace(idWork).then(res => settableWorkSpaces(res.data.tablasTheWorkSpace)).catch(err => console.log(err))
+      getTableWorkSpaces(idWork)
     }
   }, [idWork])
 
@@ -86,7 +81,7 @@ export const TablesWorkSpaces = ({ setspaceWorks, idWork }: TablesWorkSpacesProp
             </div>
           </div>
           <ModalNewBoard
-            setspaceWorks={setspaceWorks}
+           getTableWorkSpaces={getTableWorkSpaces}
             idWork={idWork}
             visible={open}
             closeModal={closeModal}

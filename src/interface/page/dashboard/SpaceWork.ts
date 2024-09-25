@@ -5,3 +5,15 @@ export interface SpaceWork {
   createdAt:              Date;
   updatedAt:              Date;
 }
+
+
+
+export interface WorkSpace {
+  id_work_space: number
+  name_work_space: string
+}
+
+export interface WorkSpaceUser {
+  id_user: number
+  work_spaces: WorkSpace[]
+}
