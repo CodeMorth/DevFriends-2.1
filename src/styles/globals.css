@@ -18,6 +18,23 @@
 
 }
 
+.visibility-select-2 {
+    @apply bg-transparent border-[#F969AA] text-[#56A3E1] border-[0.25rem] border-solid text-[1.3rem] p-[0.3rem];
+
+    @screen laptop {
+      font-size: calc(1.55rem * var(--scale));
+      padding: calc(0.4rem * var(--scale));
+    }
+  }
+
+  .visibility-option {
+    @apply bg-[#2C2A2A] text-[#56A3E1] text-[1.3rem] p-[0.3rem];
+
+    @screen laptop {
+      padding: calc(1rem * var(--scale));
+    }
+  }
+
 .container-prin {
   @apply px-[2rem] fixed w-full z-[100] ;
   @screen laptop {

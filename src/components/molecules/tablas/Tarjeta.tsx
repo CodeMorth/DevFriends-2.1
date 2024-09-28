@@ -17,6 +17,7 @@ export const  Tarjeta = ({ card, settables, index }: any) => {
   }, [])
   
 
+  console.log("task",task)
   return (
     <div
       className='card_main-box '
