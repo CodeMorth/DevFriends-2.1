@@ -92,7 +92,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           </div>
           <div className="container-slug-rigth">
             <div className="header-rigth">
-              <h1 className="title-table">{slug!}</h1>
+              <h1 className="title-table">{decodeURIComponent(slug!)}</h1>
 
               <div className='flex flex-col gap-[1rem]'>
               <button  onClick={generadorInvitation} className="button-share">
