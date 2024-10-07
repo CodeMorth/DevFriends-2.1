@@ -34,6 +34,9 @@ axiosGlobal.interceptors.response.use(
     return response
   },
   (error) => {
+
+    console.log("error?.response?.data",error?.response?.data)
+
     typeof error?.response?.data?.message === 'string'
       ? toast.error(CapitalizeString(error?.response?.data?.message), {
           duration: 3500

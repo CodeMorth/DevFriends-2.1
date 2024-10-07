@@ -5,25 +5,23 @@ import { useEffect } from 'react'
 import { WorkSpace, WorkSpaceUser } from '@/interface/page'
 import { userLocalStoras } from '@/hook'
 
-
 interface WorkSpacesProps {
   allWorkSpaces: () => void
-  setidWork: (id: number) => void
+  setidWork: (id: string) => void
   Work_Space_user: WorkSpaceUser[] | null
 }
 
-  const {agregarLocal} = userLocalStoras()
+const { agregarLocal } = userLocalStoras()
 
-export const WorkSpaces = ({setidWork, allWorkSpaces, Work_Space_user}:WorkSpacesProps) => {
-
-  const enviarId = (id: any) => {
+export const WorkSpaces = ({ setidWork, allWorkSpaces, Work_Space_user }: WorkSpacesProps) => {
+  const enviarId = (id: string) => {
     setidWork(id)
-    agregarLocal('work_space',id)
+    agregarLocal('work_space', id)
   }
 
   useEffect(() => {
     //trae los work_space_user
-    allWorkSpaces();
+    allWorkSpaces()
   }, [])
 
   return (

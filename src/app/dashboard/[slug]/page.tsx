@@ -13,38 +13,32 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   const [tokenIn, setTokenIn] = useState<string>('')
 
-  const slug = params.slug
   const { obtenerLocal } = userLocalStoras()
 
+  const slug = params.slug
+
   useEffect(() => {
-    const id: any = obtenerLocal('work_space')
-    if (id !== null) setidWork({ ...idWork, id_work_space: id })
+    const id = obtenerLocal('work_space')
+    if (id !== null) setidWork({ id_work_space: id })
 
     // Elimina el token después de 1 minuto
-    if (tokenIn) {
-      const timer = setTimeout(() => {
-        setTokenIn('')
-      }, 60000)
-
-      return () => clearTimeout(timer)
-    }
+    setTimeout(() => {
+      setTokenIn('')
+    }, 60000)
   }, [tokenIn])
 
-  const generadorInvitation = () => {
-    generateTokenInvitations(idWork)
-      .then((res: any) => setTokenIn(res.data))
-      .catch((err: any) => console.log(err))
+  const generadorInvitation = async () => {
+    await generateTokenInvitations(idWork).then((res: any) => setTokenIn(res.data)).catch
+
+     // Elimina el token después de 1 minuto
+     setTimeout(() => {
+      setTokenIn('')
+    }, 15000)
   }
 
   const handleCopy = () => {
-    navigator.clipboard
-      .writeText(tokenIn)
-      .then(() => {
-        toast.success('Codigo de Invitacion copiado ')
-      })
-      .catch((err) => {
-        console.error('Error al copiar el token: ', err)
-      })
+    navigator.clipboard.writeText(tokenIn).then(() => {toast.success('Codigo de Invitacion copiado ')}).
+    catch((err) => {console.error('Error al copiar el token: ', err)})
   }
 
   return (
@@ -85,8 +79,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           </div>
           <div className="container-slug-rigth">
             <div className="header-rigth">
-              <h1 className="title-table">{decodeURIComponent(slug!)}</h1>
-
+              <h1 className="title-table">{decodeURIComponent(slug)}</h1>
               <div className="flex flex-col gap-[1rem]">
                 <button onClick={generadorInvitation} className="button-share">
                   <div>

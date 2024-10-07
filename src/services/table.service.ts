@@ -1,7 +1,7 @@
 import { axiosGlobal } from '@/interceptor'
 
 //tablas_x_work_space
-export const tablasUserWorkSpace = (id: any) => {
+export const getTablesWorkSpaceS = (id: string) => {
   return axiosGlobal.get(`tablas_x_work_space/${id}`)
 }
 

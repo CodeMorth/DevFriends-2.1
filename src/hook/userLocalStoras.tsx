@@ -1,13 +1,5 @@
-interface datosInterface {
-  email: string;
-  image: File[];
-  password: string;
-  tableName: string;
-  visibility: string;
-}
-
 export function userLocalStoras  ()  {
-  const agregarLocal = (clave: string, datos: datosInterface) => {
+  const agregarLocal = (clave: string, datos: any) => {
 
     localStorage.setItem(clave, JSON.stringify(datos));
     

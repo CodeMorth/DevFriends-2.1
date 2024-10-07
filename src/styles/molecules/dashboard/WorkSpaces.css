@@ -16,7 +16,7 @@
 
   .boards-container,
   .members-container {
-    @apply flex justify-start items-center gap-[2rem] ;
+    @apply flex justify-start items-center gap-[2rem] cursor-pointer;
   }
 
   .boards-image,

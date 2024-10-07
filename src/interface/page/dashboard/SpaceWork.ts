@@ -9,7 +9,7 @@ export interface SpaceWork {
 
 
 export interface WorkSpace {
-  id_work_space: number
+  id_work_space: string
   name_work_space: string
 }
 
