@@ -18,7 +18,7 @@ export const TablesWorkSpaces = ( { idWork}:any) => {
 
   const { tableWorkSpaces, getTableWorkSpaces } = useTable_x_work_space()
 
- 
+  console.log("tableWorkSpaces",tableWorkSpaces)
 
   useEffect(() => {
     if (idWork) {

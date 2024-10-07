@@ -3,18 +3,12 @@ import { AccordionHorizontal } from '@/components/design'
 import { SlugTablas } from '@/components/organins'
 import { userLocalStoras } from '@/hook';
 import { generateTokenInvitations } from '@/services/generateTokenInvitation.service';
-
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
 import { FaShareAltSquare } from 'react-icons/fa'
 import { toast } from 'sonner';
 
-
-
-
-
 export default function Page({ params }: { params: { slug: string } }) {
-
 
   const [idWork, setidWork] = useState<any>({ id_work_space : null});
 

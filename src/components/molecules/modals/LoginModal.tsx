@@ -1,6 +1,5 @@
 import { Inputs, Labels } from '@/components/atoms'
 import { Modal } from '@/components/global'
-import { userLocalStoras } from '@/hook'
 import { userTypeLRU } from '@/interface/components'
 import { postLogin } from '@/services/userServices.service'
 import { InputToFormData } from '@/utilities'
@@ -9,29 +8,19 @@ import { useRouter } from 'next/navigation'
 interface ModalLogin {
   visible: boolean
   closeModal: () => void
-
 }
 
 export const LoginModal = ({ visible, closeModal }: ModalLogin) => {
-
   const router = useRouter()
 
-  const { agregarLocal } = userLocalStoras()
-
   const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
-
     event.preventDefault()
 
     const dataRegister: userTypeLRU = InputToFormData(event)
 
-    postLogin(dataRegister)
-      .then((response) => {
-        agregarLocal('token', response.data.user.token),
-          router.push('/dashboard'),
-         
-          closeModal()
-      })
-      .catch((error) => error)
+    await postLogin(dataRegister).then(() => {
+      router.push('/dashboard'), closeModal()
+    }).catch
   }
 
   return (

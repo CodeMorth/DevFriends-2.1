@@ -12,15 +12,12 @@ interface ModalRegister {
 }
 
 export const ModalRegister = ({ visible, closeModal }: ModalRegister) => {
-
   const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const dataRegister: userTypeLRU = InputToFormData(event)
 
-    postRegister(dataRegister)
-      .then(() => closeModal())
-      .catch((error) => error)
+    postRegister(dataRegister).then(() => closeModal()).catch
   }
 
   return (

@@ -18,8 +18,11 @@ export const HomeDashboard = () => {
   }
   const [idWork, setidWork] = useState<number | null>(null);
 
-  const { Work_Space_user, allWorkSpaces } = useWorkSpaceAll()
+  const { WorkSpaceUser, getAllWorkSpaces } = useWorkSpaceAll()
 
+  console.log("idWork",idWork)
+
+  console.log("WorkSpaceUser",WorkSpaceUser)
 
   return (
     <>
@@ -31,8 +34,8 @@ export const HomeDashboard = () => {
           >
             <div className="dashboard-left">
               <WorkSpaces
-              allWorkSpaces={allWorkSpaces}
-              Work_Space_user={Work_Space_user}
+              allWorkSpaces={getAllWorkSpaces}
+              Work_Space_user={WorkSpaceUser}
               setidWork={setidWork}
               />
               <button onClick={openModal} className="dashboard-left-content">
@@ -46,13 +49,13 @@ export const HomeDashboard = () => {
           />
         </main>
         <ModalDashboard
-        allWorkSpaces={allWorkSpaces}
+        allWorkSpaces={getAllWorkSpaces}
           visible={open}
           closeModal={closeModal}
         ></ModalDashboard>
         <ModalCodigoInvitation  visible={OpenModalCodigo}
           closeModal={closeModalCodigo}
-          allWorkSpaces={allWorkSpaces}/>
+          allWorkSpaces={getAllWorkSpaces}/>
       </div>
     </>
   )

@@ -3,9 +3,7 @@ import { axiosGlobal } from "@/interceptor"
 
 //getTaskTable
 export const getTaskTab = (id:string) => {
-    return axiosGlobal.get(`getTaskTable/${id}`, {
-      headers: { 'Content-Type': 'application/json' }
-    })
+    return axiosGlobal.get(`getTaskTable/${id}`)
   }
 
   //create TAsk

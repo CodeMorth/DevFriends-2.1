@@ -30,7 +30,6 @@ export const ModalTareas = ({
       if(data?.message === "tarea creada exitosamente") closeModal(), taskAllCard(table)
     }).catch(err => console.log(err))
   };
-console.log("datos",datos)
   return (
     <div>
       <Modal visible={visible} closeModal={closeModal} className='shadow-[1px_1px_4px_1px_#121625] border-[#3a9dee] border-2 rounded-[.1rem]'>

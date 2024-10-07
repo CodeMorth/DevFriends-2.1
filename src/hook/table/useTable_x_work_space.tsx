@@ -1,14 +1,14 @@
 import { tablasUserWorkSpace } from '@/services/table.service'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
-const useTable_x_work_space = ( ) => {
+const useTable_x_work_space = () => {
+  const [tableWorkSpaces, settableWorkSpaces] = useState<any>(null)
 
-    const [tableWorkSpaces, settableWorkSpaces] = useState<any>(null)
+  const getTableWorkSpaces = async (id: any) => {
+    const response = await tablasUserWorkSpace(id)
 
-    const getTableWorkSpaces = (id:any) => {
-        tablasUserWorkSpace(id).then(res => settableWorkSpaces(res.data.tablasTheWorkSpace)).catch(err => console.log(err))
-    }
-
+    settableWorkSpaces(response.data.tablasTheWorkSpace)
+  }
 
   return { tableWorkSpaces, getTableWorkSpaces }
 }

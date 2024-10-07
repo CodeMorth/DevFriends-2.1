@@ -1,37 +1,24 @@
 'use client'
-import React, { useEffect, useState } from "react";
-import { Container } from "@/components/global";
-import Image from "next/image";
-import { LoginModal } from "@/components/molecules";
-import {useOpenModal,userLocalStoras} from "@/hook";
-import {Buttonss} from "@/components/atoms/Buttonss";
-import { SideBar } from "@/components/ui";
-import { userTypeNabvar } from "@/interface/components";
+import React, { useEffect, useState } from 'react'
+import { Container } from '@/components/global'
+import Image from 'next/image'
+import { LoginModal } from '@/components/molecules'
+import { useOpenModal, userLocalStoras } from '@/hook'
+import { Buttonss } from '@/components/atoms/Buttonss'
+import { SideBar } from '@/components/ui'
+import { usePathname } from 'next/navigation'
 
 export const Navbar = () => {
-  const [visible, setvisible] = useState<boolean>(false);
-  const [users, setusers] = useState<userTypeNabvar>(
-    {
-      email:'',
-      image:[],
-      password:'',
-      tableName:'',
-    }
-  );
-
-  
-  const { open, closeModal, openModal } = useOpenModal();
-
-  const { obtenerLocal } = userLocalStoras();
-
-  const closeSideb = () => {
-    setvisible(false);
-  };
+  const [visible, setvisible] = useState<boolean>(false)
+  const [users, setusers] = useState<string | null>(null)
+  const path = usePathname()
+  const { open, closeModal, openModal } = useOpenModal()
+  const { obtenerLocal } = userLocalStoras()
 
   useEffect(() => {
-    const dts = obtenerLocal("token");
-    setusers(dts);
-  }, []);
+    const token = obtenerLocal('token')
+    setusers(token)
+  }, [path, obtenerLocal])
 
   return (
     <Container>
@@ -39,7 +26,7 @@ export const Navbar = () => {
         <div className="logo ">
           <div className="imagen-logo">
             <Image
-              src={"/logo/logo-tareas.png"}
+              src={'/logo/logo-tareas.png'}
               alt="logo"
               width={1000}
               height={1000}
@@ -62,10 +49,10 @@ export const Navbar = () => {
       </div>
       <LoginModal visible={open} closeModal={closeModal} />
       <SideBar
-        closeSideb={closeSideb}
+        closeSideb={() => setvisible(false)}
         setvisible={setvisible}
         visible={visible}
       />
     </Container>
-  );
+  )
 }

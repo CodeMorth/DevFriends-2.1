@@ -1,6 +1,5 @@
 import {
   CapitalizeString,
-  updateAuthorizationHeader,
   urlValidator
 } from '@/utilities'
 import { ulrValidatorToken } from '@/utilities/urlValidatorToken'
@@ -11,14 +10,15 @@ const url = process.env.NEXT_PUBLIC_BASIC_URL
 
 export const axiosGlobal = axios.create({
   baseURL: `${url}`,
-  timeout: 1000 | 5000
+  timeout: 1000 | 5000,
+  withCredentials: true
 })
 
 axiosGlobal.interceptors.request.use(
   (request) => {
     ulrValidatorToken(request)
 
-    return updateAuthorizationHeader(request as InternalAxiosRequestConfig)
+    return request
   },
 
   (error) => {
@@ -31,7 +31,6 @@ axiosGlobal.interceptors.request.use(
 axiosGlobal.interceptors.response.use(
   (response) => {
     urlValidator(response)
-
     return response
   },
   (error) => {

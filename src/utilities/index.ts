@@ -3,5 +3,7 @@ export * from './filterNonEmptyValues';
 export * from './getValidationError';
 export * from './InputToFormData';
 export * from './ObjectToFormData';
+export * from './setLocalStorage';
 export * from './updateAuthorizationHeader';
 export * from './urlValidator';
+export * from './urlValidatorToken';

@@ -1,8 +1,7 @@
 'use client'
 import Image from 'next/image'
 import { Accordion, AccordionTab } from 'primereact/accordion'
-import { useEffect, useState } from 'react'
-import { allWorkSpacesUser } from '@/services'
+import { useEffect } from 'react'
 import { WorkSpace, WorkSpaceUser } from '@/interface/page'
 import { userLocalStoras } from '@/hook'
 
@@ -16,8 +15,6 @@ interface WorkSpacesProps {
   const {agregarLocal} = userLocalStoras()
 
 export const WorkSpaces = ({setidWork, allWorkSpaces, Work_Space_user}:WorkSpacesProps) => {
-
-
 
   const enviarId = (id: any) => {
     setidWork(id)
