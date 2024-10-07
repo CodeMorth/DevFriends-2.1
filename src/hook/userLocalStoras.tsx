@@ -1,25 +1,21 @@
-export function userLocalStoras  ()  {
+export function userLocalStoras() {
   const agregarLocal = (clave: string, datos: any) => {
-
-    localStorage.setItem(clave, JSON.stringify(datos));
-    
-  };
-
+    localStorage.setItem(clave, JSON.stringify(datos))
+  }
 
   const obtenerLocal = (clave: string) => {
     try {
-      const item = localStorage.getItem(clave);
+      const item = localStorage.getItem(clave)
 
-      return item ? JSON.parse(item) : null;
+      return item ? JSON.parse(item) : null
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   const eliminarLocal = (clave: string) => {
-    localStorage.removeItem(clave);
-  };
+    localStorage.removeItem(clave)
+  }
 
-  return { agregarLocal, obtenerLocal, eliminarLocal };
+  return { agregarLocal, obtenerLocal, eliminarLocal }
 }
-
