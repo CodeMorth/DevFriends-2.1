@@ -63,6 +63,7 @@ export const Tarjeta = ({
         task?.map((tarea: any) => (
           <motion.div
             drag
+            dragSnapToOrigin
             dragElastic={0.4}
             dragConstraints={constrainsTask}
             onDrag={(event, info) => handleDrag(info)}
