@@ -33,7 +33,7 @@ export default function Page({ params }: { params: { slug: string } }) {
      // Elimina el token después de 1 minuto
      setTimeout(() => {
       setTokenIn('')
-    }, 15000)
+    }, 1500000000)
   }
 
   const handleCopy = () => {
@@ -80,7 +80,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           <div className="container-slug-rigth">
             <div className="header-rigth">
               <h1 className="title-table">{decodeURIComponent(slug)}</h1>
-              <div className="flex flex-col gap-[1rem]">
+              <div className="generate-token-container ">
                 <button onClick={generadorInvitation} className="button-share">
                   <div>
                     <FaShareAltSquare />

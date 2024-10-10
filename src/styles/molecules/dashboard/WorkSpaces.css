@@ -26,7 +26,12 @@
 
   .boards-text,
   .members-text {
-    @apply text-[#F969AA];
+    @apply text-[#F969AA] font-bold;
+
+    @screen laptop {
+      font-size: calc(2.1rem * var(--scale));
+    }
+
   }
 
   /* ------------------Accordion Classes------------------ */
@@ -34,6 +39,12 @@
   .p-accordion-header-link{
 
     @apply flex flex-row-reverse ;
+
+    @screen laptop {
+
+      font-size: calc(2rem * var(--scale)); 
+
+    }
 
   }
 

@@ -102,7 +102,7 @@ export const AccordionHorizontal = ({
                 ? "0rem"
                 : open
                 ? "auto"
-                : "5rem",
+                : "calc(8rem *var(--scale))",
             height: "100%",
           }}
           transition={{ duration: 0.7 }}

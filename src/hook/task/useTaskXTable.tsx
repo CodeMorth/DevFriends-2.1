@@ -1,6 +1,6 @@
 import { tittleCardInterface } from '@/interface/components/modals/SlugTablas.interface'
 import { CardRef, InfoDrag, TaskInterface } from '@/interface/components/modals/Task.interface'
-import { getTaskTab, updateTasks } from '@/services/task.service'
+import { getTaskTab, taskUpdateCard } from '@/services/task.service'
 import { useState } from 'react'
 
 const useTaskXTable = () => {
@@ -26,7 +26,7 @@ const useTaskXTable = () => {
     })?.data.id_card
 
     if (cardLocal) {
-        await updateTasks({ id_task: taskLocal, id_card: cardLocal }).then(()=>getCards()).catch
+        await taskUpdateCard({ id_task: taskLocal, id_card: cardLocal }).then(()=>getCards()).catch
     }
   }
 

@@ -18,9 +18,9 @@
   }
 
   .AccordionHorizontal {
-    @screen laptop {
+    /* @screen laptop {
       width: calc(35rem * var(--scale));
-    }
+    } */
   }
 
   .container-slug-rigth {
@@ -41,11 +41,17 @@
     }
   }
 
+  .generate-token-container{
+
+    @apply flex gap-[1rem] ;
+
+  }
+
   .button-share {
-    @apply flex  bg-[#864977] p-[0.5rem] rounded-[0.5rem] gap-[1rem] justify-between items-center text-[#57A3E1] text-[1.3rem];
+    @apply flex  bg-[#864977] p-[0.5rem] rounded-[0.5rem] gap-[1rem] justify-between items-center text-[#57A3E1] text-[1.3rem] h-auto w-auto ;
 
     @screen laptop {
-      @apply flex  bg-[#864977] p-[0.7rem] rounded-[0.5rem] gap-[1rem] justify-between items-center text-[#57A3E1] text-[1.5rem];
+      @apply flex  p-[0.7rem] rounded-[0.5rem] gap-[1rem] justify-between items-center text-[#57A3E1] text-[1.5rem];
     }
   }
 

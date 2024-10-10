@@ -10,7 +10,17 @@ export const createTasks = (data: any) => {
   return axiosGlobal.post(`createTask`, data)
 }
 
-//Update Task
-export const updateTasks = (data: any) => {
+//Update Task for card
+export const taskUpdateCard = (data: any) => {
   return axiosGlobal.put(`taskUpdateCard`, data)
+}
+
+export const updateTask = (data: any) => {
+  return axiosGlobal.put(`updateTask`, data)
+}
+
+export const deleteTaskS = (id_task: string) => {
+  return axiosGlobal.delete(
+    `deleteTask?id_task=${id_task}`
+  )
 }

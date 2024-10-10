@@ -22,7 +22,7 @@
 
   .modalDashboard-container {
 
-    @apply flex flex-col-reverse gap-[1rem] ;
+    @apply flex flex-col-reverse gap-[1rem] font-bold;
 
     @screen laptop {
       @apply flex flex-row w-full h-full;

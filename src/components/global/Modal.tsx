@@ -26,6 +26,8 @@ export const Modal = ({
       dismissableMask={true}
       style={{backgroundColor:bg,width:widthModal}}
       className={`${className}  laptop: rounded-[2rem] z-50`}
+      header={null}
+      footer={null}
     >
       {children}
     </Dialog>

@@ -4,7 +4,7 @@
 
 
   @screen laptop {
-    @apply flex flex-col gap-[2rem]  w-[70%];
+    @apply flex flex-col gap-[2rem];
   }
   .tables-title {
 
@@ -80,7 +80,7 @@
 
 
     @screen laptop {
-      @apply text-[#f969aa]  border-[#57A3E1] border-[0.28rem] text-[1.2rem] rounded-[0.3rem] h-[3rem] pl-[1rem] pr-[1rem];
+      @apply text-[#f969aa]  border-[#57A3E1] border-[0.28rem] text-[1.8rem] rounded-[0.3rem] pl-[1rem] pr-[1rem];
     }
   }
 

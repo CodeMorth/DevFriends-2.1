@@ -1,5 +1,5 @@
 .navbar{
-    @apply w-full bg-[#2B3146] h-[10rem] text-white flex items-center justify-between z-50;
+    @apply w-full bg-[#1F2937] h-[10rem] text-white flex items-center justify-between z-50;
 }
 
 .logo{

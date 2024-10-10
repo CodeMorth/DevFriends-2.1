@@ -10,11 +10,24 @@
 
   .dashboard-container {
     @apply flex gap-[15rem] p-[3rem] pt-[5rem];
+
+    @screen laptop{
+
+      gap: calc(12rem * var(--scale));
+
+    }
+
   }
 
   .dashboard-left {
     @apply pb-[10rem] flex flex-col w-full text-[2rem] pt-[4.7rem];
 
+    @screen laptop{
+
+      padding-top: calc(1rem * var(--scale));
+      padding-bottom: calc(2rem * var(--scale));
+
+    }
 
   }
 

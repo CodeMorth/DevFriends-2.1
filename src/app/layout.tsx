@@ -3,6 +3,7 @@ import { PrimeReactProvider } from 'primereact/api'
 import '@/styles/index.css'
 import { Navbar } from '@/components/ui'
 import { Toaster } from 'sonner'
+import 'primereact/resources/themes/lara-dark-purple/theme.css'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
