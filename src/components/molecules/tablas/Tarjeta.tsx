@@ -22,8 +22,6 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
   const [create, setcreate] = useState(true)
   const [idTask, setidTask] = useState<string>('')
 
-  console.log("hoverIcon",hoverIcon)
-
   const mouseOutDelay = (index: number) => {
     timeoutRef.current = setTimeout(() => {
       sethoverIcon((prev) => {
@@ -31,7 +29,7 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
         updatedHoverIcon[index] = false
         return updatedHoverIcon
       })
-    }, 500)
+    }, 1000)
   }
 
   const handleMouseEnter = (index: number) => {

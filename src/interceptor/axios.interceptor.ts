@@ -17,13 +17,11 @@ export const axiosGlobal = axios.create({
 axiosGlobal.interceptors.request.use(
   (request) => {
     ulrValidatorToken(request)
-
     return request
   },
 
   (error) => {
     toast.error('Error en la peticion', { duration: 3500 })
-
     return Promise.reject(error)
   }
 )
