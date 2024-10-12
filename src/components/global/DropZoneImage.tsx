@@ -1,14 +1,16 @@
 'use client'
 import Image from 'next/image'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 
 interface DropZoneImageProps {
-  setimageData: Dispatch<SetStateAction<File | undefined >>
+  setimageData: Dispatch<SetStateAction<File | undefined>>
+  imageUrl?: string // La imagen que recibimos del servidor
 }
 
-export const DropZoneImage = ({ setimageData }: DropZoneImageProps) => {
-  const [imageSrc, setImageSrc] = useState<string | null>(null)
+export const DropZoneImage = ({ setimageData, imageUrl }: DropZoneImageProps) => {
+  const [imageSrc, setImageSrc] = useState<string | null>(imageUrl || null) // Inicializa con la imagen que venga del servidor
+
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
       const file = acceptedFiles[0]
@@ -21,11 +23,18 @@ export const DropZoneImage = ({ setimageData }: DropZoneImageProps) => {
     }
   })
 
+  // Actualiza la imagen si se cambia externamente (cuando se recibe nueva data de la API)
+  useEffect(() => {
+    if (imageUrl) {
+      setImageSrc(imageUrl)
+    }
+  }, [imageUrl])
+
   return (
     <div {...getRootProps({ className: 'dropzone' })}>
       <input {...getInputProps()} />
       <Image
-        src={imageSrc || '/avatar.png'}
+        src={imageSrc || '/avatar.png'} // Si no hay imagen, mostramos un avatar por defecto
         alt="logo"
         width={1000}
         height={1000}

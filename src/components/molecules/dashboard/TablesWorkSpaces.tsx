@@ -1,15 +1,16 @@
 import Image from 'next/image'
 import React, { useEffect } from 'react'
 import { ModalNewBoard } from '@/components/molecules'
-import { useOpenModal } from '@/hook'
 import { ButtonsTwo } from '@/components/atoms'
 import Link from 'next/link'
 import useTableXWorkSpace from '@/hook/table/useTableXWorkSpace'
+import InvitadosModal from '../modals/tablero-modal/InvitadosModal'
+import { useMultipleModal } from '@/hook/useMultipeModal'
+
 
 export const TablesWorkSpaces = ({ idWork }: any) => {
-  const { open, closeModal, openModal } = useOpenModal()
-
-  const { tableWorkSpaces, getTableWorkSpaces } = useTableXWorkSpace()
+  const { isModalOpen,openModals , closeModals} = useMultipleModal();
+  const { tableWorkSpaces, getTableWorkSpaces } = useTableXWorkSpace();
 
   useEffect(() => {
     if (idWork) {
@@ -40,11 +41,11 @@ export const TablesWorkSpaces = ({ idWork }: any) => {
                 </span>
               </div>
               <ButtonsTwo>Tableros</ButtonsTwo>
-              <ButtonsTwo>Miembros</ButtonsTwo>
+              <ButtonsTwo onClick={() => openModals('invitados')}>Miembros</ButtonsTwo>
               <ButtonsTwo>Configuracion</ButtonsTwo>
             </div>
             <div className="container-tables">
-              <button onClick={openModal} className="content-main">
+              <button onClick={() => openModals('tablero')} className="content-main">
                 Crear tablero nuevo
               </button>
               {tableWorkSpaces.map((data: any) => {
@@ -71,9 +72,14 @@ export const TablesWorkSpaces = ({ idWork }: any) => {
           <ModalNewBoard
             getTableWorkSpaces={getTableWorkSpaces}
             idWork={idWork}
-            visible={open}
-            closeModal={closeModal}
-          ></ModalNewBoard>
+            visible={isModalOpen('tablero')}
+            closeModal={() => closeModals('tablero')}
+          />
+          <InvitadosModal
+            visible={isModalOpen('invitados')}
+            closeModal={() => closeModals('invitados')} 
+          />
+          
         </>
       )}
     </div>

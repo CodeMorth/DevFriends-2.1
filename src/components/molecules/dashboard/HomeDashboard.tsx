@@ -9,15 +9,12 @@ import { useState } from 'react'
 import { AccordionHorizontal } from '@/components/design/AccordionHorizontal'
 import useWorkSpaceAll from '@/hook/work_Space/useWorkSpaceAll'
 import { ModalCodigoInvitation } from '../modals/dashboard/ModalCodigoInvitation'
+import { useMultipleModal } from '@/hook/useMultipeModal'
 
 export const HomeDashboard = () => {
-  const { open, closeModal, openModal } = useOpenModal()
-
-  const [OpenModalCodigo, setOpenModalCodigo] = useState(false)
-
-  const [idWork, setidWork] = useState<string>("")
-
-  const { WorkSpaceUser, getAllWorkSpaces } = useWorkSpaceAll()
+  const { isModalOpen, openModals, closeModals } = useMultipleModal();
+  const [idWork, setidWork] = useState<string>("");
+  const { WorkSpaceUser, getAllWorkSpaces } = useWorkSpaceAll();
 
   return (
     <>
@@ -33,11 +30,11 @@ export const HomeDashboard = () => {
                 Work_Space_user={WorkSpaceUser}
                 setidWork={setidWork}
               />
-              <button onClick={openModal} className="dashboard-left-content">
+              <button onClick={() => openModals('spaceWork')} className="dashboard-left-content">
                 + Crear un espacio de trabajo
               </button>
               <p
-                onClick={() => {setOpenModalCodigo(true)}}
+                onClick={() => openModals('codigo')}
                 className="mt-[1rem] bg-[#F183B6] text-center text-[#2B3146] rounded-md duration-300 ease-in-out hover:bg-[#E56AA3] hover:cursor-pointer"
               >
                 Codigo de Invitacion
@@ -48,12 +45,12 @@ export const HomeDashboard = () => {
         </main>
         <ModalDashboard
           allWorkSpaces={getAllWorkSpaces}
-          visible={open}
-          closeModal={closeModal}
+          visible={isModalOpen('spaceWork')}
+          closeModal={() => closeModals('spaceWork')}
         ></ModalDashboard>
         <ModalCodigoInvitation
-          visible={OpenModalCodigo}
-          closeModal={() => {setOpenModalCodigo(false)}}
+          visible={isModalOpen('codigo')}
+          closeModal={() => closeModals('codigo')}
           allWorkSpaces={getAllWorkSpaces}
         />
       </div>

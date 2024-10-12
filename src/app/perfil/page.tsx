@@ -2,34 +2,50 @@
 import { Buttonss, Inputs, Labels } from '@/components/atoms'
 import { DropZoneImage } from '@/components/global'
 import { useFormss } from '@/hook'
-import { getByToken } from '@/services/userServices.service'
-
+import { getByToken, putUpdate } from '@/services/userServices.service'
 import React, { useEffect, useState } from 'react'
 
 export default function PagePerfil() {
+  const { capTure, datos, setdatos } = useFormss()
   const [imageData, setimageData] = useState<File | undefined>(undefined)
 
-
-  const { capTure, datos, setdatos } = useFormss();
-
-
   useEffect(() => {
-    getByToken() .then(({data}) => {
-               setdatos(data)
-           }) .catch((error) => error)
+    getByToken()
+      .then(({ data }) => {
+        setdatos(data) // Guardas todos los datos del usuario, incluyendo el avatar
+      })
+      .catch((error) => console.error(error))
   }, [])
+
+  const updatePerfil = async () => {
+    const formData = new FormData();
+    
+    // Agregar los datos de texto
+    formData.append('username', datos?.username);
+    formData.append('first_name', datos?.first_name);
+    formData.append('last_name', datos?.last_name);
+    formData.append('email', datos?.email);
   
-
-
- 
-
+    // Agregar la imagen si existe
+    if (imageData) {
+      formData.append('avatar', imageData);
+    }
+  
+    try {
+      const response = await putUpdate(formData);
+    } catch (error) {
+      console.log("Error al actualizar:", error);
+    }
+  }
+  
 
 
   return (
     <div className="perfil-box main-page">
-      <form className="data-perfil">
+      <div className="data-perfil">
         <div className="imagen-avatar">
-          <DropZoneImage setimageData={setimageData} />
+          {/* Pasamos el avatar actual como prop */}
+          <DropZoneImage setimageData={setimageData} imageUrl={datos?.avatar} />
         </div>
         <div className="box-inputs">
           <div className="flex flex-col gap-[1rem]">
@@ -73,10 +89,10 @@ export default function PagePerfil() {
             />
           </div>
           <div className="flex flex-col gap-[1rem]">
-            <Buttonss>Actualizar</Buttonss>
+            <Buttonss onClick={updatePerfil}>Actualizar</Buttonss>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   )
 }

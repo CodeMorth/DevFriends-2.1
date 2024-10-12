@@ -10,8 +10,8 @@
     }
   }
   & .task_children_cards {
-    @apply relative;
-    @apply text-[1.8rem];
+   
+    @apply relative text-[1.8rem]  border-2 border-[#534C55]  p-[.8rem] w-[80%];
     @screen laptop {
       font-size: calc(2rem * var(--scale));
     }
@@ -23,8 +23,34 @@
     }
   }
 
+  & .container_avatar_task{
+  @apply flex items-center gap-[2rem] py-[.5rem] ;
+
+  & img {
+  @apply  rounded-[100%] border-2 w-[3rem] h-[3rem] ;
+  }
+  & h4 {
+  @apply text-titleColorBlue ;
+  }
+  }
+
+  & .container_fecha_task {
+  @apply   flex items-center w-full ;
+  & .modal_fecha_entrega {
+  @apply  flex items-center gap-[1rem] w-[100%];
+  }
+  }
+
+  & .modal_tiempo_desarrollo {
+
+& input {
+@apply  px-[.5rem] w-[100%] bg-transparent border-2 border-[#F969AA] rounded-lg outline-none;
+}
+  
+  }
+
   .icon-edit-container {
-    @apply absolute text-white -top-8 -right-9 w-0 h-0;
+    @apply absolute text-white top-0 right-[3rem] w-0 h-0;
 
     transition: all 0.3s ease-in-out;
 
@@ -44,3 +70,5 @@
     transition: all 0.3s ease-in-out;
   }
 }
+
+

@@ -12,6 +12,8 @@ interface ModalDashboard {
 
 export const ModalDashboard = ({ visible, closeModal ,allWorkSpaces}: ModalDashboard) => {
  
+
+
  
   const formCreateWorkSpace = async ( event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()

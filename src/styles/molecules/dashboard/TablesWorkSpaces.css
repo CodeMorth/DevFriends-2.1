@@ -101,11 +101,12 @@
 
   .content-main {
 
-    @apply flex items-center justify-center bg-[#4E5163] text-[#f969aa] text-[1.7rem] w-full h-full;
+    @apply flex items-center font-medium justify-center bg-[#4E5163] text-[#f969aa] text-[1.7rem] w-full h-full;
 
 
     @screen laptop {
-      @apply flex items-center justify-center bg-[#4E5163] text-[#f969aa] text-[1.2rem] w-full h-full;
+      @apply flex items-center justify-center bg-[#4E5163] text-[#f969aa] w-full h-full;
+      font-size: calc(1.8rem * var(--scale));
     }
   }
 

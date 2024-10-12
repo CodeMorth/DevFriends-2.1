@@ -3,7 +3,7 @@ import {
   urlValidator
 } from '@/utilities'
 import { ulrValidatorToken } from '@/utilities/urlValidatorToken'
-import axios, { InternalAxiosRequestConfig } from 'axios'
+import axios from 'axios'
 import { toast } from 'sonner'
 
 const url = process.env.NEXT_PUBLIC_BASIC_URL
@@ -14,6 +14,7 @@ export const axiosGlobal = axios.create({
   withCredentials: true
 })
 
+// cuando suceda algun tipo de error quitarle el acceso y tiene que logearse nuevamente... jorge .I.
 axiosGlobal.interceptors.request.use(
   (request) => {
     ulrValidatorToken(request)
@@ -31,10 +32,8 @@ axiosGlobal.interceptors.response.use(
     urlValidator(response)
     return response
   },
+  //eliminar el toas  y quitar el acceso al usuario , si ocurre algun error en la peticiones o autorizaciones...  jorge .I.
   (error) => {
-
-    console.log("error?.response?.data",error?.response?.data)
-
     typeof error?.response?.data?.message === 'string'
       ? toast.error(CapitalizeString(error?.response?.data?.message), {
           duration: 3500

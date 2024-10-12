@@ -3,22 +3,23 @@ import React from 'react'
 import { ModalRegister } from '@/components/molecules'
 import Image from 'next/image'
 import { useOpenModal } from '@/hook'
+import { useMultipleModal } from '@/hook/useMultipeModal'
 
 export const HomeDev = () => {
-  const { open, closeModal, openModal } = useOpenModal()
+
+  const { isModalOpen , closeModals , openModals } = useMultipleModal();
 
   return (
     <div className="conten-last main-page">
       <div className="conten-last-info">
         <div className="content-info-dev ">
           <h4>
-            <span>Dev</span> <span>Friend</span> Unifica tus tareas, compañeros
-            de equipo y herramientas
+            <span>Dev</span> <span>Friend</span> tu compañero digital que une proyectos, conecta equipos y potencia herramientas
           </h4>
         </div>
-        <p>Manten todo en el mismo lugar , aunque tu equipo no lo esté</p>
+        <p>Colabora sin fronteras y haz que cada idea brille.</p>
         <div className="container-button">
-          <button onClick={openModal}>!Registrate , es gratis</button>
+          <button onClick={() => openModals('register')}>!Registrate , es gratis</button>
         </div>
       </div>
 
@@ -32,7 +33,7 @@ export const HomeDev = () => {
           className="w-full h-full"
         />
       </div>
-      <ModalRegister visible={open} closeModal={closeModal} />
+      <ModalRegister visible={isModalOpen('register')} closeModal={() => closeModals('register')} />
     </div>
   )
 }

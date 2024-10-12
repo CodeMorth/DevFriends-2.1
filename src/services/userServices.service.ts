@@ -9,8 +9,8 @@ export const postLogin = (data: userTypeLRU) => {
   return axiosGlobal.post('loginUser', data)
 }
 
-export const putUpdate = (id: string, data: FormData) => {
-  return axiosGlobal.put(`updateUser/${id}`, data)
+export const putUpdate = ( data: any) => {
+  return axiosGlobal.put(`updateUser`, data)
 }
 
 export const getByToken = () => {
@@ -23,4 +23,14 @@ export const getByID = (id: string) => {
 
 export const deleteById = (id: string) => {
   return axiosGlobal.get(`userDelete/${id}`)
+}
+
+
+export const logoutService = () => {
+  return  axiosGlobal.post('/logout')
+}
+
+
+export const allUserTableService= () => {
+  return axiosGlobal.get('/tablaAllUser')
 }

@@ -9,6 +9,8 @@ export function useOpenModal  () {
         setopen(true)
     }
 
-    return { open , setopen , closeModal , openModal}
+ 
+
+    return { open , setopen , closeModal , openModal , }
 }
 

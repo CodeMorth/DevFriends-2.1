@@ -1,0 +1,60 @@
+.Container_modal_mienbros {
+@apply  w-full  h-full  flex flex-col justify-center gap-[2rem];
+
+& h2 {
+@apply text-center text-[2rem] font-bold text-[#F969AA] drop-shadow-[1px_1px_5px_black] ;
+@screen tablet {
+@apply text-[3rem] ;
+}
+}
+
+& .container_modal_infor{
+@apply w-full h-auto flex  gap-[2rem]  border-2 border-[rgba(247,124,179,0.38)] p-[1rem]; 
+
+& .Icon_mienbros {
+@apply text-[10rem] text-titleColorBlue ;
+}
+
+& .Icon_status{
+    @apply text-[1.5rem]  ;
+}
+
+}
+
+
+&  .modal_mienbros_informacion {
+@apply w-full h-auto flex flex-col gap-[.5rem] justify-center ;
+
+& h3 {
+@apply text-titleColorBlue text-[2rem] font-bold ;
+}
+
+& .modal_miebros_status{
+@apply flex gap-[2rem] ;
+
+& p {
+@apply bg-[#10151d] p-[.5rem] rounded-lg text-[#F969AA] font-semibold ;
+}
+
+& .modal_status_info {
+@apply flex items-center gap-[.5rem]  justify-around w-full ;
+
+& .status_info_modal {
+@apply font-bold  text-[1.2rem]  ;
+}
+}
+
+}
+
+
+}
+
+& .container_map_invitado{
+@apply grid grid-cols-1 gap-[1rem] ;
+
+@screen laptop{
+@apply  grid grid-cols-2 ;
+}
+}
+
+}

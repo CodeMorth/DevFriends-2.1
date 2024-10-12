@@ -18,7 +18,7 @@
     gap: calc(4rem * var(--scale));
   }
   & p {
-    @apply text-[#7AA8D8] text-[1.5rem] font-semibold;
+    @apply  text-[#7AA8D8] text-[1.5rem] font-semibold drop-shadow-[0px_0px_2px#271C34];
 
     @screen tablet{
 
@@ -55,13 +55,19 @@
     @apply block ;
 
   }
+  & button {
+  @apply text-[2rem];
+    @screen laptop {
+      font-size: calc(2.5rem * var(--scale));
+    }
+  }
 
 }
 
 .content-info-dev {
   @apply w-full ;
   & h4 {
-    @apply text-[2.7rem] text-[#4E5163] font-bold drop-shadow-[1px_1px_1px_#7AA8D8];
+    @apply text-[2.7rem] text-[#4E5163] font-bold drop-shadow-[0px_0px_1px_#102F3E];
 
     @screen tablet{
 
@@ -74,7 +80,7 @@
     }
   }
   & span {
-    @apply last:text-[#58A0DE] font-bold text-[2.7rem];
+    @apply last:text-[#58A0DE] font-semibold text-[2.7rem];
 
     @screen tablet{
 
@@ -86,8 +92,8 @@
       font-size: calc(7rem * var(--scale));
     }
   }
-  & span:nth-child(+ 1) {
-    @apply text-[#E56AA3] font-bold text-[2.7rem];
+  & span:nth-child(+1) {
+    @apply !text-[#E56AA3] font-bold text-[2.7rem];
     @screen tablet{
 
       @apply text-[5rem] ;

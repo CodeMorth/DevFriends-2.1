@@ -40,4 +40,10 @@ export const ulrValidatorToken = (request: any) => {
   if (url?.includes('addGuestToWorkspace')) {
     return request
   }
+  if (url?.includes('logout')) {
+    return request
+  }
+  if (url?.includes('tablaAllUser')) {
+    return request
+  }
 }

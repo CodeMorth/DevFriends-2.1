@@ -1,22 +1,22 @@
 .logi_box {
-  @apply !bg-[#2B3146] p-[4rem] pr-[3rem] pl-[0rem] w-[90%] max-w-[30rem];
+  @apply !bg-[#1F2937] p-[4rem] pr-[3rem] pl-[0rem] w-[90%] max-w-[30rem];
 
   @screen tablet {
     @apply max-w-[40rem];
 
-    padding: calc(4rem *var(--scale));
-    padding-right: calc(3rem *var(--scale));
-    padding-left:0;
+    padding: calc(1rem *var(--scale));
+  
 
   }
 
   .p-dialog-header-icons {
     @apply text-[#F969AA] hidden;
   }
+
 }
 
 .login_modal {
-  @apply flex flex-col items-center justify-center  gap-[1rem] pl-[1.5rem] pr-[1.5rem];
+  @apply  flex flex-col items-center justify-center  gap-[1rem] pl-[1.5rem] pr-[1.5rem];
 
   @screen tablet{
 
@@ -43,7 +43,7 @@
   @screen tablet{
 
     
-  @apply bg-[#4E5163] text-[#57A3E1] text-[2rem] px-[4rem] py-[.5rem] rounded-[.5rem] border border-[#57A3E1] 
+  @apply  text-[#57A3E1] text-[2rem] px-[4rem] py-[.5rem] rounded-[.5rem] border border-[#57A3E1] 
   duration-300 ease-in-out hover:bg-[#396f9b7e];
 
   }

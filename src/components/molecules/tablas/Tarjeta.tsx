@@ -5,7 +5,14 @@ import useTaskXTable from '@/hook/task/useTaskXTable'
 import { motion } from 'framer-motion'
 import { TarjetaProps } from '@/interface/components/modals/Tarjeta.interface'
 import { TaskInterface } from '@/interface/components/modals/Task.interface'
-import { VscEdit } from 'react-icons/vsc'
+import { formatFecha } from '@/utilities/formatFecha'
+import { BsThreeDots } from 'react-icons/bs'
+import { FaRegCalendarAlt } from 'react-icons/fa'
+import { PanelMenu } from 'primereact/panelmenu'
+import AgregarTiempo from '../modals/tasks/AgregarTiempo'
+import { useMultipleModal } from '@/hook/useMultipeModal'
+
+
 
 export const Tarjeta: React.FC<TarjetaProps> = ({
   card,
@@ -14,30 +21,23 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
   cardRefs,
   getCards
 }) => {
-  const { open, closeModal, openModal } = useOpenModal()
+
+
+  const { closeModals, isModalOpen, openModals } = useMultipleModal();
   const { task, getTaskTabH, updateTaskH } = useTaskXTable()
-  const [hoverIcon, sethoverIcon] = useState<boolean[]>([])
+  const [menuTaskOpen, setMenuTaskOpen] = useState<{ [id_task: string]: boolean }>({})
   const cardRef = useRef<HTMLDivElement>(null)
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const [create, setcreate] = useState(true)
   const [idTask, setidTask] = useState<string>('')
+  const [select, setSelect] = useState<any>('')
 
-  const mouseOutDelay = (index: number) => {
-    timeoutRef.current = setTimeout(() => {
-      sethoverIcon((prev) => {
-        const updatedHoverIcon = [...prev]
-        updatedHoverIcon[index] = false
-        return updatedHoverIcon
-      })
-    }, 1000)
-  }
 
-  const handleMouseEnter = (index: number) => {
-    sethoverIcon((prev) => {
-      const updatedHoverIcon = [...prev]
-      updatedHoverIcon[index] = true
-      return updatedHoverIcon
-    })
+
+  const toggleMenu = (id_task: string) => {
+    setMenuTaskOpen((prevState) => ({
+      ...prevState,
+      [id_task]: !prevState[id_task],
+    }))
   }
 
   useEffect(() => {
@@ -52,51 +52,76 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
   }, [card, cardRefs, index])
 
   return (
-    <div className="card_main-box" ref={cardRef}>
-      <h1 className="title_cards-">{card?.title_card}</h1>
+    <div className="card_main-box " ref={cardRef}>
+      <h1 className="title_cards- ">{card?.title_card}</h1>
       {task?.map(
-        ({ id_task, title_task, prioridad }: TaskInterface, index: number) => (
+        (task: TaskInterface,) => (
+
           <motion.div
-            key={id_task}
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={() => mouseOutDelay(index)}
+            key={task?.id_task}
+
             drag
             dragSnapToOrigin
             dragElastic={0.4}
             dragConstraints={constrainsTask}
             onDragEnd={(event, info) =>
-              updateTaskH(id_task, info, cardRefs, getCards)
+              updateTaskH(task?.id_task, info, cardRefs, getCards)
             }
-            className={`task_children_cards ${
-              prioridad === 'alta'
-                ? 'text-[#ff3a3a]'
-                : prioridad === 'normal'
+            className={`task_children_cards    ${task?.prioridad === 'alta'
+              ? 'text-[#ff3a3a]'
+              : task?.prioridad === 'normal'
                 ? 'text-[#1b75ff]'
                 : 'text-[#62ff46]'
-            }`}
-          >
-            {title_task}
-            <div
-              onClick={() => {
-                setcreate(false), setidTask(id_task), openModal()
-              }}
-              className={`icon-edit-container ${
-                hoverIcon[index] ? 'hover-icon' : ''
               }`}
-            >
-              <VscEdit
-                width={1000}
-                height={1000}
-                className={`edit-icon ${hoverIcon[index] ? 'hover-icon' : ''}`}
-              />
-            </div>
+          >
+            {task?.title_task}
+
+
+
+            <BsThreeDots onClick={() => toggleMenu(task?.id_task)} className='hover:cursor-pointer absolute top-3 right-3     z-[99] text-[2.5rem] ' />
+
+            {
+              <div
+                className={`rounded-lg duration-500 ease-in-out absolute right-0 w-auto bg-[#202433] p-[1rem] h-auto flex flex-col gap-[1rem] transform z-[0] ${menuTaskOpen[task?.id_task] ? "translate-y-[-1rem] opacity-100" : "-translate-y-[-10rem] opacity-0"
+                  }`}
+              >
+                <h5 className='ease-in-out duration-300 hover:bg-[#2b3144] p-[.3rem] cursor-pointer'>Iniciar Tarea</h5>
+                <h5 onClick={() => {
+                  openModals('agregaTiempo'),
+                    setSelect(task)
+                  toggleMenu(task?.id_task)
+                }} className='ease-in-out duration-300 hover:bg-[#2b3144] p-[.3rem] cursor-pointer'>Agregar Tiempo</h5>
+              </div>
+            }
+
+
+
+
+            {
+              task?.user_working && <section className='container_avatar_task '>
+                <img className=' ' src={"https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector-PNG-File.png"} alt="avatar" />
+                <h4 className=' '>{task?.user_working || ""}</h4>
+              </section>
+            }
+            <section className='container_fecha_task '>
+              <article className='modal_fecha_entrega '>
+                <FaRegCalendarAlt />
+                <p className='text-[1.5rem]'>{formatFecha(task?.fecha_de_entrega)}</p>
+              </article>
+              <article className='modal_tiempo_desarrollo'>
+                <input type="time" name="time" id="time" />
+              </article>
+            </section>
           </motion.div>
+
+
         )
       )}
+
       {task && (
         <button
           onClick={() => {
-            setcreate(true), openModal()
+            setcreate(true), openModals('tareasModal')
           }}
           className="btn_cards_add_task"
         >
@@ -106,11 +131,13 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
       <ModalTareas
         taskAllCard={getTaskTabH}
         table={card}
-        visible={open}
-        closeModal={closeModal}
+        visible={isModalOpen('tareasModal')}
+        closeModal={() => closeModals('tareasModal')}
         create={create}
         idTask={idTask}
       />
+      <AgregarTiempo select={select} visible={isModalOpen('agregaTiempo')}
+        closeModal={() => closeModals('agregaTiempo')} />
     </div>
   )
 }

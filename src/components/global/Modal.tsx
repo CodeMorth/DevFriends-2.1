@@ -15,7 +15,7 @@ export const Modal = ({
   closeModal,
   children,
   widthModal = "w-[auto] laptop:w-[auto]",
-  bg = "bg-[#F0EFEB]",
+  bg = "!bg-[#2B3146] ",
   className,
 }: Modal) => {
 

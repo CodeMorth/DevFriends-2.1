@@ -1,5 +1,6 @@
 import { useRouter } from 'next/navigation'
 import { userLocalStoras } from '@/hook'
+import { logoutService } from '@/services'
 
 interface SidebarLink {
   info: string
@@ -34,6 +35,8 @@ export function useSidebar(setclose: () => void): SidebarHook {
     if (ruta === '/') {
       router.push(ruta)
       eliminarLocal('token')
+      eliminarLocal('work_space')
+      logoutService()
       setclose()
     } else {
       router.push(ruta)
