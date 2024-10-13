@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import { Buttonss, Inputs, Labels } from '@/components/atoms'
 import { DropZoneImage } from '@/components/global'

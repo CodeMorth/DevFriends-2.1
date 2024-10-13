@@ -3,6 +3,7 @@ import { allUserTableService } from "@/services"
 import { useEffect, useState } from "react"
 import { FaUserClock } from "react-icons/fa"
 import { GrUserAdmin } from "react-icons/gr"
+import { MdOutlineSignalWifiStatusbar4Bar, MdSignalWifiStatusbarConnectedNoInternet } from "react-icons/md"
 
 
 
@@ -24,7 +25,7 @@ const InvitadosModal = ({ visible, closeModal }: ModalInvitados) => {
 
 
 
-
+console.log("stado",estado)
 
   return (
     <div>
@@ -56,8 +57,10 @@ const InvitadosModal = ({ visible, closeModal }: ModalInvitados) => {
                     <div className="modal_miebros_status">
                       <p className=" ">{user?.rols[0].type_rol}</p>
                       <div className="modal_status_info ">
-                        <i className={`fa-solid fa-circle-notch Icon_status ${!user?.status ? "text-[red]" : "text-[green]"}`}></i>
-                        <h4 className={`status_info_modal ${!user?.status ? "text-[red]" : "text-[green]"}`}>{user?.status || 'Inactivo'}</h4>
+                        {
+                          user?.status ? <MdOutlineSignalWifiStatusbar4Bar className={`Icon_status ${user?.status &&  "text-[green]"}`} /> : <MdSignalWifiStatusbarConnectedNoInternet className={`Icon_status ${user?.status && "text-[red]" }`} />
+                        }
+                        <h4 className={`status_info_modal ${!user?.status ? "text-[red]" : "text-[green]"}`}>{user?.status}</h4>
                       </div>
                       {/* <i class="fa-regular fa-circle-user"></i> */}
                     </div>

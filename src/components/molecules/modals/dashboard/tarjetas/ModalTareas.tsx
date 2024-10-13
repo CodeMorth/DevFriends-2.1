@@ -21,8 +21,9 @@ export const ModalTareas = ({
   create,
   idTask
 }: ModalTareas) => {
-  const { capTure, datos, setdatos } = useFormss()
 
+  
+  const { capTure, datos, setdatos } = useFormss();
   const handleModal = async (e: any) => {
     e.preventDefault()
 

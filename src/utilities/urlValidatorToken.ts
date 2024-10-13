@@ -46,4 +46,7 @@ export const ulrValidatorToken = (request: any) => {
   if (url?.includes('tablaAllUser')) {
     return request
   }
+  if (url?.includes('taskUpdate')) {
+    return request
+  }
 }

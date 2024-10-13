@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Image from 'next/image'
 import React, { useEffect } from 'react'
 import { ModalNewBoard } from '@/components/molecules'

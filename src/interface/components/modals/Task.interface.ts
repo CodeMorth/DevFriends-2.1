@@ -14,6 +14,8 @@ export interface TaskInterface {
   fecha_de_entrega: string
   prioridad: string
   user_working: string
+  user_avatar_working?:string
+  homework_time?:any
 }
 
 export interface InfoDrag {

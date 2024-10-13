@@ -24,3 +24,6 @@ export const deleteTaskS = (id_task: string) => {
     `deleteTask?id_task=${id_task}`
   )
 }
+export const taskUpdateServicio = (datas:any) => {
+  return axiosGlobal.put(`taskUpdate`,datas)
+}

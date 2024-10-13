@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef, useState } from 'react'
 import { ModalTareas } from '@/components/molecules'
-import { useOpenModal } from '@/hook'
 import useTaskXTable from '@/hook/task/useTaskXTable'
 import { motion } from 'framer-motion'
 import { TarjetaProps } from '@/interface/components/modals/Tarjeta.interface'
@@ -8,9 +8,11 @@ import { TaskInterface } from '@/interface/components/modals/Task.interface'
 import { formatFecha } from '@/utilities/formatFecha'
 import { BsThreeDots } from 'react-icons/bs'
 import { FaRegCalendarAlt } from 'react-icons/fa'
-import { PanelMenu } from 'primereact/panelmenu'
-import AgregarTiempo from '../modals/tasks/AgregarTiempo'
+
 import { useMultipleModal } from '@/hook/useMultipeModal'
+import { taskUpdateCard, taskUpdateServicio } from '@/services/task.service'
+import { toast } from 'sonner'
+
 
 
 
@@ -23,15 +25,16 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
 }) => {
 
 
+  const timeInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({});
+
   const { closeModals, isModalOpen, openModals } = useMultipleModal();
   const { task, getTaskTabH, updateTaskH } = useTaskXTable()
   const [menuTaskOpen, setMenuTaskOpen] = useState<{ [id_task: string]: boolean }>({})
   const cardRef = useRef<HTMLDivElement>(null)
   const [create, setcreate] = useState(true)
-  const [idTask, setidTask] = useState<string>('')
-  const [select, setSelect] = useState<any>('')
+  const [idTask, setidTask] = useState<string>('');
 
-
+  const [timeValues, setTimeValues] = useState<{ [id_task: string]: string }>({});
 
   const toggleMenu = (id_task: string) => {
     setMenuTaskOpen((prevState) => ({
@@ -40,16 +43,94 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
     }))
   }
 
+
+
+  const handleTimeChange = (taskId: string, value: string) => {
+   
+    setTimeValues((prevState) => ({
+      ...prevState,
+      [taskId]: value,
+    }));
+
+    const inputElement = timeInputRefs.current[taskId];
+
+    // Validar el valor del tiempo
+    if (value === "" || value === "00:00" || value < "01:00") {
+      if (inputElement) {
+        inputElement.classList.add("!border-red-500", "border-2"); // Agregar borde rojo
+      }
+      toast('Añade un Tiempo válido');
+    } else {
+      if (inputElement) {
+        inputElement.classList.remove("!border-red-500", "border-2"); // Quitar borde rojo
+        taskUpdateServicio({ id_task: taskId, homework_time: value }).then(res => {
+          if (res.data) {
+            getTaskTabH(card);
+            toast('Tiempo Añadido');
+          }
+        });
+
+      }
+
+
+
+    }
+  };
+
   useEffect(() => {
-    getTaskTabH(card)
+
     if (cardRef.current) {
       cardRefs.current[index] = {
         ref: cardRef.current,
         data: card
       }
     }
+    getTaskTabH(card)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [card, cardRefs, index])
+
+  const initialTask = async (datos: any) => {
+
+
+    const { task, card } = datos;
+
+    // Asigna el valor del tiempo, asegurándote de que nunca sea null
+    const timeValue = task?.homework_time || ""; // Cambia a "" en caso de ser null
+    setTimeValues((prevState) => ({
+      ...prevState,
+      [task?.id_task]: timeValue,
+    }));
+
+    // Verifica el input de tiempo
+    const inputElement = timeInputRefs.current[task?.id_task];
+    if (timeValue === '' || timeValue === '00:00:00' || timeValue < "01:00") {
+      if (inputElement) {
+        inputElement.classList.add("!border-red-500", "border-2");
+        toast('Añade un Tiempo válido');
+      }
+      toggleMenu(task?.id_task);
+    } else {
+      if (inputElement) {
+        inputElement.classList.remove("!border-none", "border-2");
+      }
+      await taskUpdateCard({ id_task: task?.id_task, id_card: card?.id_card + 1 })
+      await getTaskTabH(card);
+      toggleMenu(task?.id_task);
+    }
+  };
+
+  useEffect(() => {
+
+
+    if (!timeInputRefs.current) {
+      getTaskTabH(card);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [task])
+
+
 
   return (
     <div className="card_main-box " ref={cardRef}>
@@ -85,12 +166,8 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
                 className={`rounded-lg duration-500 ease-in-out absolute right-0 w-auto bg-[#202433] p-[1rem] h-auto flex flex-col gap-[1rem] transform z-[0] ${menuTaskOpen[task?.id_task] ? "translate-y-[-1rem] opacity-100" : "-translate-y-[-10rem] opacity-0"
                   }`}
               >
-                <h5 className='ease-in-out duration-300 hover:bg-[#2b3144] p-[.3rem] cursor-pointer'>Iniciar Tarea</h5>
-                <h5 onClick={() => {
-                  openModals('agregaTiempo'),
-                    setSelect(task)
-                  toggleMenu(task?.id_task)
-                }} className='ease-in-out duration-300 hover:bg-[#2b3144] p-[.3rem] cursor-pointer'>Agregar Tiempo</h5>
+                <h5 onClick={() => initialTask({ task, card })} className='ease-in-out duration-300 hover:bg-[#2b3144] p-[.3rem] cursor-pointer'>Iniciar Tarea</h5>
+                <h5 className='ease-in-out duration-300 hover:bg-[#2b3144] p-[.3rem] cursor-pointer'>Editar Tarea</h5>
               </div>
             }
 
@@ -99,7 +176,7 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
 
             {
               task?.user_working && <section className='container_avatar_task '>
-                <img className=' ' src={"https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector-PNG-File.png"} alt="avatar" />
+                <img className=' ' src={task?.user_avatar_working} alt="avatar" />
                 <h4 className=' '>{task?.user_working || ""}</h4>
               </section>
             }
@@ -109,7 +186,14 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
                 <p className='text-[1.5rem]'>{formatFecha(task?.fecha_de_entrega)}</p>
               </article>
               <article className='modal_tiempo_desarrollo'>
-                <input type="time" name="time" id="time" />
+                <input
+                  ref={(el) => { timeInputRefs.current[task?.id_task] = el; }}
+                  onChange={(e) => handleTimeChange(task?.id_task, e.target.value)}
+                  value={timeValues[task?.id_task] || task?.homework_time || ""}
+                  type="time"
+                  name="time"
+
+                />
               </article>
             </section>
           </motion.div>
@@ -136,8 +220,7 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
         create={create}
         idTask={idTask}
       />
-      <AgregarTiempo select={select} visible={isModalOpen('agregaTiempo')}
-        closeModal={() => closeModals('agregaTiempo')} />
+
     </div>
   )
 }

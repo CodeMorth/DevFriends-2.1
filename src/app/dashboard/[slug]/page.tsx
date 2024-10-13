@@ -25,6 +25,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     setTimeout(() => {
       setTokenIn('')
     }, 60000)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tokenIn])
 
   const generadorInvitation = async () => {
