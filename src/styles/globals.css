@@ -1,24 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 body {
-  
-  @apply font-bold;
-
-  font-family: "Bebas Neue", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 500;
   font-style: normal;
 
-  background:#0f2c4491;
-}
-
-.bebas-neue-regular {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+  /* background:#0f2c4491; */
 }
 
 html {
   font-size: 62.5%;
-  background-color:#2C2A2A;
+  background: rgb(50,56,82);
+  background: -moz-linear-gradient(135deg, rgba(50,56,82,1) 0%, rgba(71,68,95,1) 47%, rgba(71,107,148,1) 86%, rgba(83,145,202,1) 100%);
+  background: -webkit-linear-gradient(135deg, rgba(50,56,82,1) 0%, rgba(71,68,95,1) 47%, rgba(71,107,148,1) 86%, rgba(83,145,202,1) 100%);
+  background: linear-gradient(135deg, rgba(50,56,82,1) 0%, rgba(71,68,95,1) 47%, rgba(71,107,148,1) 86%, rgba(83,145,202,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#323852",endColorstr="#5391ca",GradientType=1);
+
+  /* background-color: #363B4E; */
+
+
 }
 
 select,
@@ -34,61 +33,50 @@ textarea {
   resize: none;
 }
 
-.p-dialog-content{
-
-  @apply p-7 rounded-xl ;
-
+.p-dialog-content {
+  @apply p-7 rounded-xl;
 }
 
-.p-dialog-header{
-
-  @apply hidden ;
-
+.p-dialog-header {
+  @apply hidden;
 }
 
-.classTest{
+.classTest {
+  @apply bg-red-400;
 
-  @apply  bg-red-400 ;
-
-  @screen tablet{
-
-    @apply bg-amber-500 ;
-
+  @screen tablet {
+    @apply bg-amber-500;
   }
 
-  @screen laptop{
-
-    @apply  bg-emerald-400 ;
+  @screen laptop {
+    @apply bg-emerald-400;
   }
-
 }
 
 .visibility-select-2 {
-    @apply bg-transparent border-[#F969AA] text-[#56A3E1] border-[0.25rem] border-solid text-[1.3rem] p-[0.3rem];
+  @apply bg-transparent border-[#F969AA] text-[#56A3E1] border-[0.25rem] border-solid text-[1.3rem] p-[0.3rem];
 
-    @screen laptop {
-      font-size: calc(1.55rem * var(--scale));
-      padding: calc(0.4rem * var(--scale));
-    }
+  @screen laptop {
+    font-size: calc(1.55rem * var(--scale));
+    padding: calc(0.4rem * var(--scale));
   }
+}
 
-  .visibility-option {
-    @apply bg-[#2C2A2A] text-[#56A3E1] text-[1.3rem] p-[0.3rem];
+.visibility-option {
+  @apply bg-[#2C2A2A] text-[#56A3E1] text-[1.3rem] p-[0.3rem];
 
-    @screen laptop {
-      padding: calc(1rem * var(--scale));
-    }
+  @screen laptop {
+    padding: calc(1rem * var(--scale));
   }
+}
 
 .container-prin {
-  @apply px-[2rem] fixed w-full z-[150] ;
+  @apply px-[2rem] fixed w-full z-[150];
   @screen laptop {
     padding-right: calc(10rem * var(--scale));
     padding-left: calc(10rem * var(--scale));
   }
 }
-
-
 
 .main-page {
   animation-name: fadeIn;
@@ -109,23 +97,18 @@ textarea {
 .input-modal {
   @apply bg-transparent border-b border-[#F969AA]   w-full outline-none  text-[#57A3E1] text-[1.7rem] px-[1rem];
 
-  @screen tablet{
-
-    @apply text-[2rem] px-[1rem]  ;
-
+  @screen tablet {
+    @apply text-[2rem] px-[1rem];
   }
-
 }
 
-
-  .p-toast-message-content {
-  @apply w-[40rem] !border-[#F969AA] border text-[#57A3E1] bg-[#2D2B40] text-[1.7rem] ;
-  font-family: "Black Ops One", system-ui;
-  .p-toast-icon-close{
+.p-toast-message-content {
+  @apply w-[40rem] !border-[#F969AA] border text-[#57A3E1] bg-[#2D2B40] text-[1.7rem];
+  font-family: 'Black Ops One', system-ui;
+  .p-toast-icon-close {
     @apply hidden;
   }
 }
-
 
 .textArea-modal {
   @apply bg-transparent rounded-md w-full min-h-60 outline-none text-blue-500 text-2xl px-4 py-2;
@@ -145,23 +128,20 @@ textarea {
   border-radius: 5px; /* Radio de borde del pulgar de la barra */
 }
 
-
-.sidebar-perfil{
-  @apply w-[30rem] p-[1rem] bg-[#4E5163] gap-[2rem] justify-center ;
-  .info-sidebar{
+.sidebar-perfil {
+  @apply w-[30rem] p-[1rem] bg-primaryColor gap-[2rem] justify-center;
+  .info-sidebar {
     @apply flex flex-col gap-[2rem] font-bold items-center h-[50%] justify-center;
     h4 {
       @apply cursor-pointer text-[#F969AA] text-[3rem] duration-300 ease-in-out 
       hover:text-[#57A3E1];
-      
     }
   }
 
-  svg{
-    @apply w-[2.5rem] h-[2.5rem]  text-[#F969AA]
+  svg {
+    @apply w-[2.5rem] h-[2.5rem]  text-[#F969AA];
   }
 }
-
 
 /*Animation SVG MiduDev*/
 
@@ -196,7 +176,6 @@ textarea {
 
 /*Animation SVG MiduDev*/
 
-
 /*Animation SVG MiduDev And ChatGPT */
 
 #imageInfinite {
@@ -225,13 +204,7 @@ textarea {
     fill-opacity: 100%;
     stroke-dashoffset: 0;
     stroke-width: 1;
-  }  
-  
+  }
 }
-
-
-
-
-
 
 /*Animation SVG MiduDev And ChatGPT */

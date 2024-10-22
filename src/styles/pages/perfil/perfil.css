@@ -1,12 +1,56 @@
-.perfil-box{
-    @apply  bg-[#1E1E1E] w-full h-screen  pt-[13rem] flex flex-col 
-    gap-[3rem] items-center;
-}
+.perfil-box {
+  @apply w-full h-screen  pt-[13rem] flex flex-col  gap-[3rem] justify-center items-center;
 
-.data-perfil{
-    @apply w-[90%] h-[100%] flex  items-center justify-evenly ;
-}
+  form {
+    @apply flex flex-col gap-4 justify-center items-center w-[40rem] backdrop-blur-2xl h-fit p-5 rounded-xl border border-[#757575] shadow-2xl;
+  }
 
-.box-inputs{
-    @apply flex flex-wrap justify-between gap-[15rem] w-[40%] ;
+  .imagen-avatar {
+    @apply flex justify-center items-center w-52 h-52 rounded-full;
+
+    position: relative;
+
+    border-radius: 50%; /* Hacer el contenedor circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1), 0 0 30px rgba(0, 0, 0, 0.05); /* Sombras suaves */
+  }
+
+  .imagen-avatar::before {
+    @apply w-[13.5rem] h-[13.5rem];
+
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgb(183,137,170);
+    background: -moz-linear-gradient(135deg, rgba(183,137,170,1) 20%, rgba(139,159,192,1) 80%);
+    background: -webkit-linear-gradient(135deg, rgba(183,137,170,1) 20%, rgba(139,159,192,1) 80%);
+    background: linear-gradient(135deg, rgba(183,137,170,1) 20%, rgba(139,159,192,1) 80%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b789aa",endColorstr="#8b9fc0",GradientType=1);
+    z-index: -1; /* Para colocar detrás del avatar */
+  }
+
+  .input-perfil {
+    @apply flex items-center bg-transparent px-1 w-fit text-3xl;
+  }
+
+  .jobs-container {
+    @apply flex gap-4 justify-center items-center;
+  }
+
+  .statistics-container {
+    @apply flex justify-center items-center gap-6;
+  }
+
+  .data-container {
+    @apply flex flex-col gap-2;
+
+    h4 {
+      @apply text-2xl font-bold;
+    }
+    p {
+      @apply text-xl font-bold;
+    }
+  }
 }

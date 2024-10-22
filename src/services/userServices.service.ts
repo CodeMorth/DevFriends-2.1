@@ -1,36 +1,65 @@
 import { axiosGlobal } from '@/interceptor'
 import { userTypeLRU } from '@/interface/components'
+import { compositeServices } from '@/utilities/compositeServices'
 
 export const postRegister = (data: userTypeLRU) => {
-  return axiosGlobal.post('register', data)
+  return compositeServices({
+    url: 'register',
+    method: 'POST',
+    data
+  })
 }
 
 export const postLogin = (data: userTypeLRU) => {
-  return axiosGlobal.post('loginUser', data)
+  return compositeServices({
+    url: 'loginUser',
+    method: 'POST',
+    data
+  })
 }
 
-export const putUpdate = ( data: any) => {
-  return axiosGlobal.put(`updateUser`, data)
+export const putUpdateS = (data: any) => {
+  return compositeServices({
+    url: 'updateUser',
+    method: 'PUT',
+    data,
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
 }
 
 export const getByToken = () => {
-  return axiosGlobal.get(`userData`)
+  return compositeServices({
+    url: 'userData',
+    method: 'GET'
+  })
 }
 
-export const getByID = (id: string) => {
-  return axiosGlobal.get(`userId/${id}`)
+export const getByIdS = (id: string) => {
+  return compositeServices({
+    url: `userId/${id}`,
+    method: 'GET'
+  })
 }
 
 export const deleteById = (id: string) => {
-  return axiosGlobal.get(`userDelete/${id}`)
+  return compositeServices({
+    url: `userDelete/${id}`,
+    method: 'DELETE'
+  })
 }
-
 
 export const logoutService = () => {
-  return  axiosGlobal.post('/logout')
+  compositeServices({
+    url: 'logout',
+    method: 'POST'
+  })
 }
 
-
-export const allUserTableService= () => {
-  return axiosGlobal.get('/tablaAllUser')
+export const allUserTableService = () => {
+  return compositeServices({
+    url: 'tablaAllUser',
+    method: 'GET'
+  })
 }

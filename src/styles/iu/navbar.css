@@ -1,53 +1,52 @@
-.navbar{
-    @apply w-full bg-[#1F2937] h-[10rem] text-white flex items-center justify-between z-50;
-}
+.navbar {
+  @apply w-full bg-[#2D3248] h-[10rem] text-white flex items-center justify-between z-50;
 
-.logo{
-@apply flex gap-[1rem] items-center ;
-}
+  .logo {
+    @apply flex gap-[1rem] items-center;
+  }
 
-.imagen-logo {
+  .imagen-logo {
     @apply w-[6rem] h-auto;
-    @screen laptop{
-        width: calc(11rem * var(--scale));
-        height: calc(7.5rem * var(--scale));
+    @screen laptop {
+      width: calc(11rem * var(--scale));
+      height: calc(7.5rem * var(--scale));
     }
-}
+  }
 
-.imagen-avatar{
+  .imagen-avatar {
     @apply w-[7rem] h-[6rem] drop-shadow-[1px_1px_3px_#58A0DE];
-    @screen laptop{
-        margin-top: calc(-10rem *var(--scale));
-        width: calc(40rem * var(--scale));
-        height: calc(40rem * var(--scale));
+    @screen laptop {
+      margin-top: calc(-10rem * var(--scale));
+      width: calc(40rem * var(--scale));
+      height: calc(40rem * var(--scale));
     }
-}
+  }
 
-.logo-name{
-    @apply flex items-center gap-[.5rem] text-[1.8rem] ;
+  .logo-name {
+    @apply flex items-center gap-[.5rem] text-[1.8rem];
     & h3 {
-        @apply text-[#E56AA3]  font-bold;
-        @screen tablet{
-            font-size: calc(3.5rem * var(--scale));
-        }
+      @apply text-[#E56AA3]  font-bold;
+      @screen tablet {
+        font-size: calc(3.5rem * var(--scale));
+      }
     }
     & h2 {
-        @apply text-[#58A0DE]  font-bold;
-        @screen tablet{
-            font-size: calc(3.5rem * var(--scale));
-        }
+      @apply text-[#58A0DE]  font-bold;
+      @screen tablet {
+        font-size: calc(3.5rem * var(--scale));
+      }
     }
-}
+  }
 
-
-.btn-login{
+  .btn-login {
     @apply border border-[#E56AA3] px-[1.5rem] py-[.4rem] rounded-[.5rem] 
-    text-[#58A0DE] text-[1.5rem] font-bold duration-300 ease-in-out hover:bg-[#4E51] hover:border-[#58A0DE]; 
-    @screen laptop{
-        padding-left: calc(4rem * var(--scale));
-        padding-right: calc(4rem * var(--scale));
-        padding-top: calc(.5rem * var(--scale));
-        padding-bottom: calc(.5rem * var(--scale));
-        font-size: calc(2rem * var(--scale));
+    text-[#58A0DE] text-[1.5rem] font-bold duration-300 ease-in-out hover:bg-[#4E51] hover:border-[#58A0DE];
+    @screen laptop {
+      padding-left: calc(4rem * var(--scale));
+      padding-right: calc(4rem * var(--scale));
+      padding-top: calc(0.5rem * var(--scale));
+      padding-bottom: calc(0.5rem * var(--scale));
+      font-size: calc(2rem * var(--scale));
     }
+  }
 }

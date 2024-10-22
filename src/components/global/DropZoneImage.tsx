@@ -5,11 +5,11 @@ import { useDropzone } from 'react-dropzone'
 
 interface DropZoneImageProps {
   setimageData: Dispatch<SetStateAction<File | undefined>>
-  imageUrl?: string // La imagen que recibimos del servidor
+  imageUrl: string // La imagen que recibimos del servidor
 }
 
 export const DropZoneImage = ({ setimageData, imageUrl }: DropZoneImageProps) => {
-  const [imageSrc, setImageSrc] = useState<string | null>(imageUrl || null) // Inicializa con la imagen que venga del servidor
+  const [imageSrc, setImageSrc] = useState<string>(imageUrl) // Inicializa con la imagen que venga del servidor
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
@@ -34,7 +34,7 @@ export const DropZoneImage = ({ setimageData, imageUrl }: DropZoneImageProps) =>
     <div {...getRootProps({ className: 'dropzone' })}>
       <input {...getInputProps()} />
       <Image
-        src={imageSrc || '/avatar.png'} // Si no hay imagen, mostramos un avatar por defecto
+        src={imageSrc} // Si no hay imagen, mostramos un avatar por defecto
         alt="logo"
         width={1000}
         height={1000}

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "axios": "^1.7.2",
     "flubber": "^0.4.2",
     "framer-motion": "^11.2.12",
@@ -17,9 +18,11 @@
     "react": "^18",
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",
+    "react-hook-form": "^7.53.1",
     "react-icons": "^5.2.1",
     "react-spring": "^9.7.3",
-    "sonner": "^1.5.0"
+    "sonner": "^1.5.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",
