@@ -16,7 +16,7 @@
   }
 
   .container-accordion {
-    @apply h-auto bg-[#2c2a2ac7] w-[35rem] max-w-[29rem] pl-[1rem] border-t-[#57A3E1] border-t-[0.2rem] border-b-[#57A3E1] border-b-[0.2rem] ;
+    @apply h-auto w-[35rem] max-w-[29rem] pl-[1rem] border-t-primaryBlue border-b-primaryBlue border-l-primaryPink border-r-primaryPink border-[0.2rem] ;
 
     backdrop-filter: blur(3px);
 
@@ -24,7 +24,7 @@
 
     @screen laptop {
 
-        @apply bg-[#4E5163] pl-0 max-w-[100rem];
+        @apply pl-0 max-w-[100rem];
 
       width: calc(35rem * var(--scale));
       padding-left: calc(1.5rem * var(--scale));

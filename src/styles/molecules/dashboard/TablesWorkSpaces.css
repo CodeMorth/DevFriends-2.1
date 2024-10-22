@@ -8,11 +8,11 @@
   }
   .tables-title {
 
-    @apply text-[#94849C] text-[2.7rem] w-full;
+    @apply text-white text-[2.7rem] w-full;
 
 
     @screen laptop {
-      @apply text-[#94849C] text-[4rem];
+      @apply text-[4rem];
     }
   }
 
@@ -76,11 +76,11 @@
   .content-top-members,
   .content-top-configuration {
 
-    @apply text-[#f969aa]  border-[#57A3E1] border-[0.28rem] text-[1.8rem] rounded-[0.3rem] p-[0.4rem] pl-[1rem] pr-[1rem];
+    @apply text-primaryPink  border-primaryBlue border-[0.28rem] text-[1.8rem] rounded-[0.3rem] p-[0.4rem] pl-[1rem] pr-[1rem];
 
 
     @screen laptop {
-      @apply text-[#f969aa]  border-[#57A3E1] border-[0.28rem] text-[1.8rem] rounded-[0.3rem] pl-[1rem] pr-[1rem];
+      @apply text-primaryPink border-primaryBlue border-[0.28rem] text-[1.8rem] rounded-[0.3rem] pl-[1rem] pr-[1rem];
     }
   }
 

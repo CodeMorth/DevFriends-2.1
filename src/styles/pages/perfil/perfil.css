@@ -1,42 +1,169 @@
 .perfil-box {
-  @apply w-full h-screen  pt-[13rem] flex flex-col  gap-[3rem] justify-center items-center;
+  @apply w-full h-screen  pt-[13rem] flex flex-col  gap-[3rem] justify-center items-center p-8;
 
   form {
-    @apply flex flex-col gap-4 justify-center items-center w-[40rem] backdrop-blur-2xl h-fit p-5 rounded-xl border border-[#757575] shadow-2xl;
+    @apply flex flex-col gap-8 p-5 py-12 justify-center items-center w-full max-w-[50rem] backdrop-blur-2xl h-fit  rounded-xl border border-[#5c6281] shadow-2xl;
+
+    @screen laptop {
+      @apply max-w-max;
+
+      width: calc(75rem * var(--scale));
+      padding: calc(4rem * var(--scale));
+      gap: calc(3rem * var(--scale));
+    }
+  }
+
+  .page-perfil{
+
+    @screen laptop{
+
+      width: calc(18rem * var(--scale));
+      height: calc(18rem * var(--scale));
+
+    }
+
   }
 
   .imagen-avatar {
-    @apply flex justify-center items-center w-52 h-52 rounded-full;
+    @apply relative flex justify-center items-center w-52 h-52 rounded-full;
 
-    position: relative;
+    @screen laptop{
 
-    border-radius: 50%; /* Hacer el contenedor circular */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1), 0 0 30px rgba(0, 0, 0, 0.05); /* Sombras suaves */
+      width: calc(18rem * var(--scale));
+      height: calc(18rem * var(--scale));
+
+    }
+
   }
 
   .imagen-avatar::before {
-    @apply w-[13.5rem] h-[13.5rem];
+    @apply w-[16rem] h-[16rem] absolute rounded-full z-[-1];
 
     content: '';
-    position: absolute;
-    border-radius: 50%;
-    background: rgb(183,137,170);
-    background: -moz-linear-gradient(135deg, rgba(183,137,170,1) 20%, rgba(139,159,192,1) 80%);
-    background: -webkit-linear-gradient(135deg, rgba(183,137,170,1) 20%, rgba(139,159,192,1) 80%);
-    background: linear-gradient(135deg, rgba(183,137,170,1) 20%, rgba(139,159,192,1) 80%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b789aa",endColorstr="#8b9fc0",GradientType=1);
-    z-index: -1; /* Para colocar detrás del avatar */
+    background: rgb(255, 152, 226);
+    background: -moz-linear-gradient(
+      90deg,
+      rgba(255, 152, 226, 1) 20%,
+      rgba(56, 109, 198, 1) 80%
+    );
+    background: -webkit-linear-gradient(
+      90deg,
+      rgba(255, 152, 226, 1) 20%,
+      rgba(56, 109, 198, 1) 80%
+    );
+    background: linear-gradient(
+      90deg,
+      rgba(255, 152, 226, 1) 20%,
+      rgba(56, 109, 198, 1) 80%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff98e2",endColorstr="#386dc6",GradientType=1);
+    filter: blur(20px);
+
+    @screen laptop{
+
+      width: calc(18rem * var(--scale));
+      height: calc(18rem * var(--scale));
+
+    }
+
+  }
+
+  .imagen-avatar::after {
+    @apply w-[13.8rem] h-[13.8rem] absolute rounded-full z-[-1];
+
+    content: '';
+
+    background: rgb(255, 170, 231);
+    background: -moz-linear-gradient(
+      90deg,
+      rgba(255, 170, 231, 1) 20%,
+      rgba(117, 169, 255, 1) 80%
+    );
+    background: -webkit-linear-gradient(
+      90deg,
+      rgba(255, 170, 231, 1) 20%,
+      rgba(117, 169, 255, 1) 80%
+    );
+    background: linear-gradient(
+      90deg,
+      rgba(255, 170, 231, 1) 20%,
+      rgba(117, 169, 255, 1) 80%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffaae7",endColorstr="#75a9ff",GradientType=1);
+
+    @screen laptop{
+
+      width: calc(19rem * var(--scale));
+      height: calc(19rem * var(--scale));
+
+    }
+
   }
 
   .input-perfil {
-    @apply flex items-center bg-transparent px-1 w-fit text-3xl;
+    @apply flex items-center bg-transparent px-1;
+    @screen laptop {
+      font-size: calc(4rem * var(--scale));
+    }
+  }
+
+  .input_first_name {
+    @apply flex items-center bg-transparent px-1 justify-items-end font-extrabold text-5xl w-48;
+
+    @screen laptop {
+      font-size: calc(4rem * var(--scale));
+      width: calc(25rem * var(--scale));
+    }
+  }
+
+  .input_last_name {
+    @apply flex items-center bg-transparent px-1 font-extrabold text-5xl w-48;
+    @screen laptop {
+      font-size: calc(4rem * var(--scale));
+      width: calc(25rem * var(--scale));
+    }
+  }
+
+  .input_username {
+    @apply flex items-center bg-transparent px-1 justify-items-center font-bold text-3xl !bg-[#5c6281]  py-2  rounded-2xl text-primaryPink w-72;
+
+    @screen laptop {
+      font-size: calc(2.2rem * var(--scale));
+      width: calc(25rem * var(--scale));
+    }
+  }
+
+  .input_email {
+    @apply flex items-center bg-transparent px-1 justify-items-center font-bold text-3xl text-primaryBlue;
+    @screen laptop {
+      font-size: calc(2.7rem * var(--scale));
+      width: auto;
+    }
+  }
+
+  h3 {
+    @apply text-2xl font-bold text-center text-[#e1dce6];
+    @screen laptop {
+      font-size: calc(1.9rem * var(--scale));
+    }
   }
 
   .jobs-container {
-    @apply flex gap-4 justify-center items-center;
+    @apply bg-[#5c6281] p-2 px-4 rounded-2xl flex gap-4 justify-center items-center text-xl;
+
+    @screen laptop {
+      gap: calc(1.2rem * var(--scale));
+      padding: calc(1rem * var(--scale));
+      font-size: calc(1.8rem * var(--scale));
+    }
+
+    h3 {
+      @apply text-white;
+
+      @screen laptop {
+        font-size: calc(1.8rem * var(--scale));
+      }
+    }
   }
 
   .statistics-container {
@@ -44,13 +171,24 @@
   }
 
   .data-container {
-    @apply flex flex-col gap-2;
+    @apply flex flex-col justify-center items-center gap-2;
 
     h4 {
-      @apply text-2xl font-bold;
+      @apply text-5xl font-bold;
+
+      @screen laptop {
+        font-size: calc(4.3rem * var(--scale));
+      }
+
     }
     p {
-      @apply text-xl font-bold;
+      @apply text-xl font-bold text-[#e1dce6];
+      @screen laptop {
+        font-size: calc(1.5rem * var(--scale));
+      }
+
     }
   }
+
+
 }

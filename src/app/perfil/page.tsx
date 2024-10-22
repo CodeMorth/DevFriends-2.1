@@ -6,37 +6,55 @@ import { LoaderComponent } from '@/components/global/LoaderComponent'
 import useProfileService from '@/hook/services/profile/useProfileService'
 import { perfilValidador } from '@/validators/perfilValidador'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { CgBriefcase } from 'react-icons/cg'
+import { FaLocationDot } from 'react-icons/fa6'
 
 export default function PagePerfil() {
-  const { data, loading, putUpdateH } = useProfileService('1')
+  const { data, loading, putUpdateH } = useProfileService('1');
+  const [edit, setEdit] = useState(false);
+  const [initialValues, setInitialValues] = useState(null);
 
   const {
     control,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
+    watch,
   } = useForm({
-    resolver: zodResolver(perfilValidador)
-  })
+    resolver: zodResolver(perfilValidador),
+  });
 
-  const updatePerfil = async (data: any) => {
-    putUpdateH(data)
-  }
+  const watchedData = watch();
+
+  const handleProfileUpdate = async (formData: any) => {
+    await putUpdateH(formData);
+    setEdit(false);
+  };
 
   useEffect(() => {
-    reset(data?.getById)
-  }, [data, reset])
+    if (data?.getById) {
+      reset(data.getById);
+      setInitialValues(data.getById);
+    }
+  }, [data, reset]);
+
+  useEffect(() => {
+    if (initialValues) {
+      const hasChanged = JSON.stringify(initialValues) !== JSON.stringify(watchedData);
+      setEdit(hasChanged);
+    }
+  }, [watchedData, initialValues]);
 
   return (
     <>
-      {<LoaderComponent loading={loading?.propiertyData} />}
+      <LoaderComponent loading={loading?.propiertyData} />
       {data && (
         <article className="perfil-box main-page">
-          <form onSubmit={handleSubmit(updatePerfil)}>
+          <form onSubmit={handleSubmit(handleProfileUpdate)}>
             <div className="imagen-avatar">
-              <InputFileForm control={control} name="avatar" errors={errors} />
+              <InputFileForm control={control} name="avatar" errors={errors} hidden />
             </div>
             <div className="w-full flex justify-center items-center">
               <InputForm
@@ -44,60 +62,68 @@ export default function PagePerfil() {
                 name="first_name"
                 errors={errors}
                 placeholder="Kevin"
-                className="input-perfil justify-items-end font-extrabold"
+                className="input_first_name"
               />
               <InputForm
                 control={control}
                 name="last_name"
                 errors={errors}
                 placeholder="Ramirez"
-                className="input-perfil font-extrabold"
+                className="input_last_name"
               />
             </div>
-            <div className="w-full flex justify-center items-center">
+            <div className="w-full flex flex-col gap-3 justify-center items-center laptop:gap-8">
               <InputForm
                 control={control}
                 name="username"
                 errors={errors}
                 placeholder="CodeMorth"
-                className="input-perfil justify-items-end"
+                className="input_username"
               />
               <InputForm
                 control={control}
                 name="email"
                 errors={errors}
                 placeholder="email@gmail.com"
-                className="input-perfil"
+                className="input_email"
               />
             </div>
-            <h4>
+            <h3>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
               Laudantium illum veritatis.
-            </h4>
-            <div className="jobs-container">
-              <div>Diseñador UX/UI Senior</div>
-              <div>Madrid, España</div>
+            </h3>
+            <div className="flex gap-4 laptop:gap-10">
+              <div className="jobs-container">
+                <CgBriefcase className="text-primaryPink" />
+                <h3>Diseñador UX/UI Senior</h3>
+              </div>
+              <div className="jobs-container">
+                <FaLocationDot className="text-primaryPink" />
+                <h3>Madrid, España</h3>
+              </div>
             </div>
             <div className="statistics-container">
               <div className="data-container">
                 <h4 className="text-primaryPink">152</h4>
                 <p>Projects</p>
               </div>
-              <div className="data-container ">
-                <h4 className="text-primaryBlue">10.500</h4>
+              <div className="data-container">
+                <h4 className="text-primaryBlue">10,500</h4>
                 <p>Followers</p>
               </div>
               <div className="data-container">
-                <h4 className=" text-primaryPink">3200</h4>
-                <p>following</p>
+                <h4 className="text-primaryPink">3,200</h4>
+                <p>Following</p>
               </div>
             </div>
-            <div className="button-container">
-              <Buttonss type="submit">Actualizar</Buttonss>
-            </div>
+            {edit && (
+              <div className="button-container">
+                <Buttonss type="submit">Actualizar</Buttonss>
+              </div>
+            )}
           </form>
         </article>
       )}
     </>
-  )
+  );
 }
