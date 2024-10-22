@@ -11,7 +11,7 @@
   }
   & .task_children_cards {
    
-    @apply relative text-[1.8rem]  border-2 border-[#534C55]  p-[.8rem] w-[80%];
+    @apply relative text-[1.8rem]    p-[.8rem] w-[80%];
     @screen laptop {
       font-size: calc(2rem * var(--scale));
     }
