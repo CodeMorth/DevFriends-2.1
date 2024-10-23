@@ -5,15 +5,17 @@ import { SlugTablas } from '@/components/organins'
 import { userLocalStoras } from '@/hook'
 import { generateTokenInvitations } from '@/services/generateTokenInvitation.service'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FaShareAltSquare } from 'react-icons/fa'
+import { FaRegCirclePause, FaRegCirclePlay } from 'react-icons/fa6'
 import { toast } from 'sonner'
 
 export default function Page({ params }: { params: { slug: string } }) {
   const [idWork, setidWork] = useState<any>({ id_work_space: null })
-  const [Musica, setMusica] = useState<any>('');
- 
-  
+  //estado del link de la musica
+  const [Musica, setMusica] = useState<any>('')
+  //estado de referencia del play o pause
+  const audioPlayerRef = useRef<any>(null)
 
   const [tokenIn, setTokenIn] = useState<string>('')
 
@@ -29,23 +31,38 @@ export default function Page({ params }: { params: { slug: string } }) {
     setTimeout(() => {
       setTokenIn('')
     }, 60000)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tokenIn])
 
   const generadorInvitation = async () => {
-    await generateTokenInvitations(idWork).then((res: any) => setTokenIn(res.data)).catch
+    await generateTokenInvitations(idWork).then((res: any) =>
+      setTokenIn(res.data)
+    ).catch
 
-     // Elimina el token después de 1 minuto
-     setTimeout(() => {
+    // Elimina el token después de 1 minuto
+    setTimeout(() => {
       setTokenIn('')
     }, 1500000000)
   }
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(tokenIn).then(() => {toast.success('Codigo de Invitacion copiado ')}) 
+    navigator.clipboard.writeText(tokenIn).then(() => {
+      toast.success('Codigo de Invitacion copiado ')
+    })
   }
-
-
+  // funcion para darle play  usando el estado de referencia
+  const handlePlay = () => {
+    audioPlayerRef.current.play()
+  }
+  // funcion para darle pause  usando el estado de referencia
+  const handlePause = () => {
+    audioPlayerRef.current.pause()
+  }
+  // funcion para manejar volumen
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const volume = parseInt(e.target.value, 10)
+    audioPlayerRef.current?.setVolume(volume)
+  }
 
   return (
     <>
@@ -87,15 +104,32 @@ export default function Page({ params }: { params: { slug: string } }) {
             <div className="header-rigth">
               <h1 className="title-table">{decodeURIComponent(slug)}</h1>
 
-              <div className='container_input_link_musica '>
-              <input placeholder='Coloca link de tu musica '  type="text" name='musicaElegir' onChange={(e) => setMusica(e.target.value) } />
-             
+              <div className="container_input_link_musica ">
+                {Musica !== '' && (
+                  <div className="content_input_play_pause">
+                    <FaRegCirclePlay onClick={handlePlay} className='cursor-pointer' />
+
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      defaultValue="100"
+                      onChange={handleVolumeChange}
+                    />
+
+                    <FaRegCirclePause onClick={handlePause} className='cursor-pointer' />
+                  </div>
+                )}
+
+                <input
+                  placeholder="Coloca link de tu musica "
+                  type="text"
+                  name="musicaElegir"
+                  onChange={(e) => setMusica(e.target.value)}
+                />
               </div>
-              
-              <AudioPlayer videoUrl={Musica} />
-              
 
-
+              <AudioPlayer videoUrl={Musica} ref={audioPlayerRef} />
 
               <div className="generate-token-container ">
                 <button onClick={generadorInvitation} className="button-share">
