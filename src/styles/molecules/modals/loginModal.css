@@ -4,26 +4,20 @@
   @screen tablet {
     @apply max-w-[40rem];
 
-    padding: calc(1rem *var(--scale));
-  
-
+    padding: calc(1rem * var(--scale));
   }
 
   .p-dialog-header-icons {
     @apply text-[#F969AA] hidden;
   }
-
 }
 
 .login_modal {
-  @apply  flex flex-col items-center justify-center  gap-[1rem] pl-[1.5rem] pr-[1.5rem];
+  @apply flex flex-col items-center justify-center  gap-[1rem] pl-[1.5rem] pr-[1.5rem];
 
-  @screen tablet{
-
-    gap: calc(4rem *var(--scale));
-
+  @screen tablet {
+    gap: calc(4rem * var(--scale));
   }
-
 }
 
 .imagen-logo-tw {
@@ -35,19 +29,13 @@
 }
 
 .btn_login_box_ingreso {
-
-    
-  @apply bg-[#4E5163] text-[#57A3E1] text-[1.5rem] px-[2rem] py-[.5rem] rounded-[.5rem] border border-[#57A3E1] 
+  @apply bg-[#5C6281] text-white text-[1.5rem] px-[2rem] py-[.5rem] rounded-[.5rem] border border-[#5c6281] 
   duration-300 ease-in-out hover:bg-[#396f9b7e];
 
-  @screen tablet{
-
-    
-  @apply  text-[#57A3E1] text-[2rem] px-[4rem] py-[.5rem] rounded-[.5rem] border border-[#57A3E1] 
+  @screen tablet {
+    @apply text-[2.5rem] font-extrabold px-[4rem] py-[.5rem] rounded-[.5rem] 
   duration-300 ease-in-out hover:bg-[#396f9b7e];
-
   }
-
 }
 
 .box_inputs {

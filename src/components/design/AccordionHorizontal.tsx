@@ -38,7 +38,7 @@ export const AccordionHorizontal = ({
       : 'auto'
     : movile || tablet
     ? '0rem'
-    : 'calc(8rem * var(--scale))'
+    : '0rem'
 
   const viewBoxArrow = movile ? '700 700' : tablet ? '600 600' : '500 500'
 

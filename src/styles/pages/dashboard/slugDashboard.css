@@ -1,5 +1,5 @@
 .SlugDashboard {
-  @apply bg-[#2C2A2A] w-full h-full min-h-[100vh];
+  @apply  w-full h-full min-h-[100vh];
 
   .container-slug-dashboard {
     @apply w-full pt-[10rem] flex h-full min-h-[100vh];
@@ -36,7 +36,7 @@
   
 
   .header-rigth {
-    @apply flex justify-between items-center bg-[#534C55] w-full h-full p-[1rem];
+    @apply flex justify-between items-center border-b-[#F969AA] border-b-[0.2rem] w-full h-full p-[1rem];
   }
 
   .title-table {
@@ -66,7 +66,7 @@
   /*AccordionHorizontal Classes*/
 
   .container-accordion {
-    @apply !border-t-[0rem] !border-b-[#F969AA];
+    @apply !border-r-0 border !border-t-[#F969AA] !border-b-[#F969AA] !border-l-[#F969AA];
   }
 
   /*AccordionHorizontal Classes*/
