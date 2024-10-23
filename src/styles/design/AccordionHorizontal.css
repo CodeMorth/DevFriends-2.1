@@ -1,6 +1,6 @@
 .AccordionHorizontal {
 
-    @apply absolute left-0 w-auto rounded-r-[1rem];
+    @apply absolute left-0 w-auto rounded-r-[1rem] z-50;
 
   @screen laptop {
     @apply h-auto static ;
@@ -16,7 +16,7 @@
   }
 
   .container-accordion {
-    @apply h-auto w-[35rem] max-w-[29rem] pl-[1rem] border-t-primaryBlue border-b-primaryBlue border-l-primaryPink border-r-primaryPink border-[0.2rem] ;
+    @apply h-auto w-[35rem] max-w-[29rem] pl-[1.5rem] pr-[1.5rem] border-t-primaryBlue border-b-primaryBlue border-t-[0.2rem] border-b-[0.2rem];
 
     backdrop-filter: blur(3px);
 
@@ -24,7 +24,7 @@
 
     @screen laptop {
 
-        @apply pl-0 max-w-[100rem];
+        @apply max-w-[100rem] border-l-primaryPink border-r-primaryPink border-[0.2rem];
 
       width: calc(35rem * var(--scale));
       padding-left: calc(1.5rem * var(--scale));
