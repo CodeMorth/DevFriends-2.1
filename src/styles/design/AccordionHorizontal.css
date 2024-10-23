@@ -3,7 +3,7 @@
     @apply absolute left-0 w-auto rounded-r-[1rem];
 
   @screen laptop {
-    @apply h-auto static;
+    @apply h-auto static ;
 
     /* width: calc(52rem * var(--scale)); */
   }

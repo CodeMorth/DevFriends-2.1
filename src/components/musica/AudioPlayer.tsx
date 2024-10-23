@@ -1,5 +1,4 @@
 import React from 'react';
-import { toast } from 'sonner';
 
 export const AudioPlayer = ({ videoUrl }: any) => {
     
