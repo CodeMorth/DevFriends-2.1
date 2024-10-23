@@ -1,6 +1,6 @@
    /* slugTablas main principal*/
 .main-rigth{
-    @apply min-h-screen max-h-screen w-full  flex flex-col gap-10 z-[2] backdrop-blur-[.5rem];
+    @apply max-h-full w-full h-full  flex flex-col gap-10 z-[2] bg-[#2c2a2ada] backdrop-blur-[.5rem];
 
     & .buton_add_cards {
         @apply  w-[25rem] py-2 px-4 text-[2rem] mx-[10%]  text-[#57A3E1] mt-[5rem]  bg-[#2B3146];
