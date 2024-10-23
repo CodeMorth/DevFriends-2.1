@@ -13,7 +13,6 @@ import { useMultipleModal } from '@/hook/useMultipeModal'
 import { taskUpdateCard, taskUpdateServicio } from '@/services/task.service'
 import { toast } from 'sonner'
 import { Cronometro } from './Cronometro'
-import useTimeTaskValidate from '@/hook/task/useTimeTaskValidate'
 
 export const Tarjeta: React.FC<TarjetaProps> = ({
   card,
@@ -55,7 +54,7 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
     const inputElement = timeInputRefs.current[id_task]
 
     // Validar el valor del tiempo
-    if (value === '' || value === '00:00' || value < '01:00') {
+    if (value === '' || value === '00:00' ) {
       if (inputElement) {
         inputElement.classList.add('!border-red-500', 'border-2') // Agregar borde rojo
       }
@@ -99,7 +98,7 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
 
     // Verifica el input de tiempo
     const inputElement = timeInputRefs.current[task?.id_task]
-    if (timeValue === '' || timeValue === '00:00:00' || timeValue < '01:00') {
+    if (timeValue === '' || timeValue === '00:00:00') {
       if (inputElement) {
         inputElement.classList.add('!border-red-500', 'border-2')
         toast('Añade un Tiempo válido')
@@ -151,7 +150,7 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
             const timeValue = timeValues[task?.id_task] || task?.homework_time || '';
         
             // Validar si el tiempo es válido
-            if (timeValue === '' || timeValue === '00:00' || timeValue < '01:00') {
+            if (timeValue === '' || timeValue === '00:00' ) {
               if (inputElement) {
                 inputElement.classList.add('!border-red-500', 'border-2'); // Agregar borde rojo
               }
@@ -180,6 +179,7 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
             <Cronometro
               time={task.homework_time}
               validate={task?.user_working}
+              // audioUrl="https://www.example.com/alert-sound.mp3" // URL del sonido de alerta
             />
           )}
 

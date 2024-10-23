@@ -24,8 +24,16 @@
   }
 
   .container-slug-rigth {
-    @apply flex flex-col  w-full h-full;
+    @apply flex flex-col  w-full h-full !relative  ;
+    
+    .container_input_link_musica{
+      @apply flex flex-col gap-[1rem];
+      & input {
+        @apply outline-none border-[#57A3E1] border-2 p-[.7rem] rounded-md bg-transparent  text-[1.2rem] ;
+      }
+    }
   }
+  
 
   .header-rigth {
     @apply flex justify-between items-center bg-[#534C55] w-full h-full p-[1rem];
@@ -93,4 +101,22 @@
   }
 
   /*-----------------------Work space copy classes------------------------------*/
+}
+
+
+.content_video_music {
+  @apply  w-[98%] h-full absolute top-[7rem]  z-[1];
+  @screen laptop{
+    height: 90%;
+    width: 99%;
+  }
+}
+
+.content_video_music_two{
+  @apply bg-[url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWhWu1RrK84mJ-N9ZHMC2Bp4XSrbzFqepjdnkfZEVRCrF7IDpljlAi9tGxJ3HuNOhLQyU&usqp=CAU")]
+  bg-cover bg-center w-[98%] h-full absolute top-[7rem]  z-[1];
+  @screen laptop{
+    height: 90%;
+    width: 99%;
+  }
 }

@@ -1,5 +1,6 @@
 'use client'
 import { AccordionHorizontal } from '@/components/design'
+import { AudioPlayer } from '@/components/musica/AudioPlayer'
 import { SlugTablas } from '@/components/organins'
 import { userLocalStoras } from '@/hook'
 import { generateTokenInvitations } from '@/services/generateTokenInvitation.service'
@@ -10,6 +11,9 @@ import { toast } from 'sonner'
 
 export default function Page({ params }: { params: { slug: string } }) {
   const [idWork, setidWork] = useState<any>({ id_work_space: null })
+  const [Musica, setMusica] = useState<any>('');
+ 
+  
 
   const [tokenIn, setTokenIn] = useState<string>('')
 
@@ -38,14 +42,15 @@ export default function Page({ params }: { params: { slug: string } }) {
   }
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(tokenIn).then(() => {toast.success('Codigo de Invitacion copiado ')}).
-    catch((err) => {console.error('Error al copiar el token: ', err)})
+    navigator.clipboard.writeText(tokenIn).then(() => {toast.success('Codigo de Invitacion copiado ')}) 
   }
+
+
 
   return (
     <>
-      <div className="SlugDashboard">
-        <div className="container-slug-dashboard">
+      <div className="SlugDashboard ">
+        <div className="container-slug-dashboard ">
           <div className="container-slug-left">
             <div className="menu-slug">
               <AccordionHorizontal title={'Dev Friend'} titleColor="#f969aa">
@@ -81,6 +86,17 @@ export default function Page({ params }: { params: { slug: string } }) {
           <div className="container-slug-rigth">
             <div className="header-rigth">
               <h1 className="title-table">{decodeURIComponent(slug)}</h1>
+
+              <div className='container_input_link_musica '>
+              <input placeholder='Coloca link de tu musica '  type="text" name='musicaElegir' onChange={(e) => setMusica(e.target.value) } />
+             
+              </div>
+              
+              <AudioPlayer videoUrl={Musica} />
+              
+
+
+
               <div className="generate-token-container ">
                 <button onClick={generadorInvitation} className="button-share">
                   <div>
