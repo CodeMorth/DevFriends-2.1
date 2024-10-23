@@ -2,7 +2,7 @@
   @apply  w-full h-full max-h-[100vh];
 
   .container-slug-dashboard {
-    @apply w-full pt-[10rem] flex h-full min-h-[100vh];
+    @apply w-full pt-[10rem] flex h-full min-h-[100vh] overflow-hidden;
   }
 
   .container-slug-left {
@@ -36,7 +36,7 @@
   
 
   .header-rigth {
-    @apply  flex flex-col items-center gap-[1rem] border-b-[#F969AA] border-b-[0.2rem] w-full h-full p-[1rem] overflow-hidden;
+    @apply  flex flex-col items-center gap-[1rem] border-b-[#F969AA] border-b-[0.2rem] w-full  p-[1rem] overflow-hidden;
 
     @screen tablet{
       @apply flex-row justify-between items-center
