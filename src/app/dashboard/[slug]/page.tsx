@@ -12,8 +12,14 @@ import { FaShareAltSquare } from 'react-icons/fa'
 import { FaRegCirclePause, FaRegCirclePlay } from 'react-icons/fa6'
 import { toast } from 'sonner'
 import { useSearchParams} from 'next/navigation';
+import { useSocket } from '@/hook/useSocket'
 
 export default function Page({ params }: any) {
+
+  //hook de socketIo
+  const socket = useSocket();
+
+ 
 
   const searchParams = useSearchParams();
   //estado para mostrar la musica local o global
@@ -66,18 +72,14 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
       toast.success('Codigo de Invitacion copiado ')
     })
   }
-  // funcion para darle play  usando el estado de referencia
-  const handlePlay = () => {
-    audioPlayerRef.current.play()
-  }
-  // funcion para darle pause  usando el estado de referencia
-  const handlePause = () => {
-    audioPlayerRef.current.pause()
-  }
+
+  const handlePlay = (ref: any) => ref.current.play()
+  const handlePause = (ref: any) => ref.current.pause()
+
   // funcion para manejar volumen
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>,ref:any) => {
     const volume = parseInt(e.target.value, 10)
-    audioPlayerRef.current?.setVolume(volume)
+    ref.current?.setVolume(volume)
   }
 
   const changeMusica = (e: any) => {
@@ -90,20 +92,7 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
    
   }
 
-  // funcion para darle play  usando el estado de referencia
-  const handlePlayGlobal = () => {
-    audioPlayerGlobalRef.current.play()
-  }
-  // funcion para darle pause  usando el estado de referencia
-  const handlePauseGlobal = () => {
-    audioPlayerGlobalRef.current.pause()
-  }
 
-  // funcion para manejar volumen
-  const handleVolumeChangeGlobal = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const volume = parseInt(e.target.value, 10)
-    audioPlayerGlobalRef.current?.setVolume(volume)
-  }
 
   //funcion para llamar link de la base de dato
 
@@ -191,8 +180,6 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
                   <option value="global">Musica Global</option>
                 </select>
 
-               
-
                 {TipoMusica === 'local' && (
                   <input
                     placeholder="Coloca link de tu musica "
@@ -203,28 +190,67 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
                 )}
                 {Musica !== ' ' && (
                   <div className="content_input_play_pause">
-                    <FaRegCirclePlay onClick={handlePlay} className='cursor-pointer' />
+                    <FaRegCirclePlay
+                      onClick={() => handlePlay(audioPlayerRef)}
+                      className="cursor-pointer"
+                    />
                     <input
                       type="range"
                       min="0"
                       max="100"
                       defaultValue="100"
-                      onChange={handleVolumeChange}
+                      onChange={(e) =>handleVolumeChange(e,audioPlayerRef)}
                     />
 
-                    <FaRegCirclePause onClick={handlePause} className='cursor-pointer' />
+                    <FaRegCirclePause
+                      onClick={() => handlePause(audioPlayerRef)}
+                      className="cursor-pointer"
+                    />
                   </div>
                 )}
-
-                <input
-                  placeholder="Coloca link de tu musica "
-                  type="text"
-                  name="musicaElegir"
-                  onChange={(e) => setMusica(e.target.value)}
-                />
+                 {/* musica global */}
+                 {TipoMusica === "global" && (
+                  <input
+                    placeholder="Link musica Global"
+                    type="text"
+                    name="musicaElegir"
+                    value={MusicaGlobal}
+                    onChange={(e) => setMusicaGlobal(e.target.value)}
+                  />
+                )}
+                {MusicaGlobal !== ' ' && (
+                  <div className="content_input_play_pause">
+                    <FaRegCirclePlay
+                      onClick={() => handlePlay(audioPlayerGlobalRef)}
+                      className="cursor-pointer"
+                    />
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      defaultValue="100"
+                      onChange={(e) =>handleVolumeChange(e,audioPlayerGlobalRef)}
+                    />
+                    <FaRegCirclePause
+                      onClick={() => handlePause(audioPlayerGlobalRef)}
+                      className="cursor-pointer"
+                    />
+                  </div>
+                )}
               </div>
 
-              <AudioPlayer videoUrl={Musica} ref={audioPlayerRef} />
+              {Musica !== ' ' ? (
+                <AudioPlayer videoUrl={Musica} ref={audioPlayerRef} />
+              ) : (
+                <p className="content_video_music_two "></p>
+              )}
+
+              {MusicaGlobal !== ' ' && (
+                <AudioPlayerGlobal
+                  videoUrlGlobal={MusicaGlobal}
+                  ref={audioPlayerGlobalRef}
+                />
+              )}
 
               <div className="generate-token-container ">
                 <button onClick={generadorInvitation} className="button-share">

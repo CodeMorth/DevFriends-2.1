@@ -29,10 +29,10 @@
     .container_input_link_musica{
       @apply flex gap-[1rem];
       & input {
-        @apply outline-none border-primaryBlue border-2 p-[.7rem] rounded-md bg-transparent  text-[1.2rem] ;
+        @apply outline-none border-primaryBlue border-2  rounded-md bg-transparent  text-[1.2rem] ;
       }
       & select {
-        @apply bg-[#2D3248] text-[1.5rem] px-[1.5rem] py-[1rem] ;
+        @apply text-[#F969AA] font-bold bg-[#2D3248] text-[1.5rem] px-[1rem] py-[1rem] ;
       }
       & option {
         @apply   rounded-md bg-[#2D3248] text-[1.3rem] text-[#F969AA] font-bold  ;
