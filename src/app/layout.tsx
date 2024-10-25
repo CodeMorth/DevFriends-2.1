@@ -18,9 +18,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <PrimeReactProvider>
-      <html lang="en">
-        <body>
+    <html lang="en">
+      <body>
+        <PrimeReactProvider>
           <Navbar />
           {children}
           <Toaster
@@ -29,8 +29,8 @@ export default function RootLayout({
               className: 'p-toast-message-content'
             }}
           />
-        </body>
-      </html>
-    </PrimeReactProvider>
+        </PrimeReactProvider>
+      </body>
+    </html>
   )
 }

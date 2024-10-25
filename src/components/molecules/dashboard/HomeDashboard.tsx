@@ -35,7 +35,7 @@ export const HomeDashboard = () => {
               </button>
               <p
                 onClick={() => openModals('codigo')}
-                className="mt-[1rem] bg-[#F183B6] text-center text-[#2B3146] rounded-md duration-300 ease-in-out hover:bg-[#E56AA3] hover:cursor-pointer"
+                className="mt-[1rem] bg-[#F183B6] text-center font-bold text-[#2B3146] rounded-md duration-300 ease-in-out hover:bg-primaryPink hover:cursor-pointer"
               >
                 Codigo de Invitacion
               </p>

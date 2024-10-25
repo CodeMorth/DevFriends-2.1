@@ -1,5 +1,5 @@
 .navbar {
-  @apply w-full bg-[#2D3248] h-[10rem] text-white flex items-center justify-between z-50;
+  @apply w-full bg-[#2D3248] h-[6.5rem] text-white flex items-center justify-between z-50;
 
   .logo {
     @apply flex gap-[1rem] items-center;
@@ -8,8 +8,8 @@
   .imagen-logo {
     @apply w-[6rem] h-auto;
     @screen laptop {
-      width: calc(11rem * var(--scale));
-      height: calc(7.5rem * var(--scale));
+      width: calc(6rem * var(--scale));
+      height: calc(4.5rem * var(--scale));
     }
   }
 
@@ -23,24 +23,18 @@
   }
 
   .logo-name {
-    @apply flex items-center gap-[.5rem] text-[1.8rem];
-    & h3 {
-      @apply text-[#E56AA3]  font-bold;
-      @screen tablet {
-        font-size: calc(3.5rem * var(--scale));
-      }
-    }
-    & h2 {
-      @apply text-[#58A0DE]  font-bold;
-      @screen tablet {
-        font-size: calc(3.5rem * var(--scale));
-      }
+    @apply flex items-center gap-[.5rem] text-[1.8rem] font-extrabold;
+
+    @screen tablet {
+      font-size: calc(3.5rem * var(--scale));
     }
   }
 
+
+
   .btn-login {
-    @apply border border-[#E56AA3] px-[1.5rem] py-[.4rem] rounded-[.5rem] 
-    text-[#58A0DE] text-[1.5rem] font-bold duration-300 ease-in-out hover:bg-[#4E51] hover:border-[#58A0DE];
+    @apply border border-primaryPink px-[1.5rem] py-[.4rem] rounded-[.5rem] 
+    text-primaryBlue text-[1.5rem] font-bold duration-300 ease-in-out hover:bg-[#4E51] hover:border-primaryBlue;
     @screen laptop {
       padding-left: calc(4rem * var(--scale));
       padding-right: calc(4rem * var(--scale));

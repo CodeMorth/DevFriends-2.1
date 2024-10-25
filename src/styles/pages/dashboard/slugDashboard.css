@@ -2,12 +2,12 @@
   @apply  w-full h-full max-h-[100vh];
 
   .container-slug-dashboard {
-    @apply w-full pt-[10rem] flex h-full min-h-[100vh] overflow-hidden;
+    @apply w-full pt-[6.5rem] flex h-full min-h-[100vh] overflow-hidden;
   }
 
   .container-slug-left {
     @screen laptop {
-      @apply border-r-[#F969AA] border-r-[0.2rem];
+      @apply border-r-primaryPink border-r-[0.2rem];
     }
   }
 
@@ -29,7 +29,7 @@
     .container_input_link_musica{
       @apply flex gap-[1rem];
       & input {
-        @apply outline-none border-[#57A3E1] border-2 p-[.7rem] rounded-md bg-transparent  text-[1.2rem] ;
+        @apply outline-none border-primaryBlue border-2 p-[.7rem] rounded-md bg-transparent  text-[1.2rem] ;
       }
       & select {
         @apply bg-[#2D3248] text-[1.5rem] px-[1.5rem] py-[1rem] ;
@@ -42,7 +42,7 @@
   
 
   .header-rigth {
-    @apply  flex flex-col items-center gap-[1rem] border-b-[#F969AA] border-b-[0.2rem] w-full  p-[1rem] overflow-hidden;
+    @apply  flex flex-col items-center gap-[1rem] border-b-primaryPink border-b-[0.2rem] w-full  p-[1rem] overflow-hidden;
 
     @screen tablet{
       @apply flex-row justify-between items-center
@@ -66,21 +66,21 @@
   }
 
   .button-share {
-    @apply flex  bg-[#864977] p-[0.5rem] rounded-[0.5rem] gap-[1rem] justify-between items-center text-[#57A3E1] text-[1.3rem] h-auto w-auto ;
+    @apply flex  bg-[#864977] p-[0.5rem] rounded-[0.5rem] gap-[1rem] justify-between items-center text-primaryBlue text-[1.3rem] h-auto w-auto ;
 
     @screen laptop {
-      @apply flex  p-[0.7rem] rounded-[0.5rem] gap-[1rem] justify-between items-center text-[#57A3E1] text-[1.5rem];
+      @apply flex  p-[0.7rem] rounded-[0.5rem] gap-[1rem] justify-between items-center text-primaryBlue text-[1.5rem];
     }
   }
 
   /*AccordionHorizontal Classes*/
 
   .container-accordion {
-    @apply !border-r-0 border !border-t-[#F969AA] !border-l-transparent !border-b-[#F969AA] ;
+    @apply !border-r-0 border !border-t-primaryPink !border-l-transparent !border-b-primaryPink ;
 
     @screen laptop{
 
-      @apply !border-l-[#F969AA] ;
+      @apply !border-l-primaryPink ;
 
     }
 
@@ -95,7 +95,7 @@
   }
 
   .dev-friends {
-    @apply text-[#57A3E1];
+    @apply text-primaryBlue;
   }
 
   .boards-container,
@@ -110,7 +110,7 @@
 
   .boards-text,
   .members-text {
-    @apply text-[#F969AA] text-[1.8rem];
+    @apply text-primaryPink text-[1.8rem];
 
     @screen laptop {
       font-size: calc(2rem * var(--scale));
@@ -139,5 +139,5 @@
 }
 
 .content_input_play_pause{
-  @apply  flex items-center text-[3rem] text-[#F969AA] gap-[1rem];
+  @apply  flex items-center text-[3rem] text-primaryPink gap-[1rem];
 }

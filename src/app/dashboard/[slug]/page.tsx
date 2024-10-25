@@ -203,11 +203,7 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
                 )}
                 {Musica !== ' ' && (
                   <div className="content_input_play_pause">
-                    <FaRegCirclePlay
-                      onClick={handlePlay}
-                      className="cursor-pointer"
-                    />
-
+                    <FaRegCirclePlay onClick={handlePlay} className='cursor-pointer' />
                     <input
                       type="range"
                       min="0"
@@ -216,56 +212,19 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
                       onChange={handleVolumeChange}
                     />
 
-                    <FaRegCirclePause
-                      onClick={handlePause}
-                      className="cursor-pointer"
-                    />
+                    <FaRegCirclePause onClick={handlePause} className='cursor-pointer' />
                   </div>
                 )}
 
-                {/* musica global */}
-                {TipoMusica === 'global' && (
-                  <input
-                    placeholder="Link musica Global"
-                    type="text"
-                    name="musicaElegir"
-                    value={MusicaGlobal}
-                    onChange={(e) => setMusicaGlobal(e.target.value)}
-                  />
-                )}
-                {MusicaGlobal !== ' ' && (
-                  <div className="content_input_play_pause">
-                    <FaRegCirclePlay
-                      onClick={handlePlayGlobal}
-                      className="cursor-pointer"
-                    />
-
-                    <input
-                      type="range"
-                      min="0"
-                      max="100"
-                      defaultValue="100"
-                      onChange={handleVolumeChangeGlobal}
-                    />
-
-                    <FaRegCirclePause
-                      onClick={handlePauseGlobal}
-                      className="cursor-pointer"
-                    />
-                  </div>
-                )}
-               
-              </div>
-              {Musica !== ' ' ? 
-                <AudioPlayer videoUrl={Musica} ref={audioPlayerRef} /> : <p className="content_video_music_two "></p>
-              }
-
-              {MusicaGlobal !== ' ' && (
-                <AudioPlayerGlobal
-                  videoUrlGlobal={MusicaGlobal}
-                  ref={audioPlayerGlobalRef}
+                <input
+                  placeholder="Coloca link de tu musica "
+                  type="text"
+                  name="musicaElegir"
+                  onChange={(e) => setMusica(e.target.value)}
                 />
-              )}
+              </div>
+
+              <AudioPlayer videoUrl={Musica} ref={audioPlayerRef} />
 
               <div className="generate-token-container ">
                 <button onClick={generadorInvitation} className="button-share">

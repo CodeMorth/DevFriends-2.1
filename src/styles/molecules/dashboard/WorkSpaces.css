@@ -1,9 +1,6 @@
 .WorkSpaces {
-
-  .accordion-container{
-
-    @apply flex flex-col gap-[2.5rem] pt-[2.5rem] pb-[2.5rem] ;
-
+  .accordion-container {
+    @apply flex flex-col gap-[2.5rem] pt-[2.5rem] pb-[2.5rem];
   }
 
   .container {
@@ -11,7 +8,7 @@
   }
 
   .dev-friends {
-    @apply text-[#57A3E1];
+    @apply text-primaryBlue text-[1.9rem];
   }
 
   .boards-container,
@@ -26,32 +23,24 @@
 
   .boards-text,
   .members-text {
-    @apply text-[#F969AA] font-bold;
+    @apply text-primaryPink font-bold text-[1.9rem];
 
     @screen laptop {
       font-size: calc(2.1rem * var(--scale));
     }
-
   }
 
   /* ------------------Accordion Classes------------------ */
 
-  .p-accordion-header-link{
-
-    @apply flex flex-row-reverse ;
+  .p-accordion-header-link {
+    @apply flex flex-row-reverse;
 
     @screen laptop {
-
-      font-size: calc(2rem * var(--scale)); 
-
+      font-size: calc(2rem * var(--scale));
     }
-
   }
 
-  .p-icon.p-accordion-toggle-icon{
-
-    @apply rotate-90 ; 
-
+  .p-icon.p-accordion-toggle-icon {
+    @apply rotate-90;
   }
-
 }

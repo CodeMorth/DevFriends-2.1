@@ -24,6 +24,7 @@ const useProfileService = (id: string) => {
     } catch (error) {
     } finally {
       setloading((prev: any) => ({ ...prev, putUpdate: false }))
+      getByIdH()
     }
   }
   useEffect(() => {

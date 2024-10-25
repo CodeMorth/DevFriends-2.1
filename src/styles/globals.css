@@ -9,15 +9,31 @@ body {
 
 html {
   font-size: 62.5%;
-  background: rgb(50,56,82);
-  background: -moz-linear-gradient(135deg, rgba(50,56,82,1) 0%, rgba(71,68,95,1) 47%, rgba(71,107,148,1) 86%, rgba(83,145,202,1) 100%);
-  background: -webkit-linear-gradient(135deg, rgba(50,56,82,1) 0%, rgba(71,68,95,1) 47%, rgba(71,107,148,1) 86%, rgba(83,145,202,1) 100%);
-  background: linear-gradient(135deg, rgba(50,56,82,1) 0%, rgba(71,68,95,1) 47%, rgba(71,107,148,1) 86%, rgba(83,145,202,1) 100%);
+  background: rgb(50, 56, 82);
+  background: -moz-linear-gradient(
+    135deg,
+    rgba(50, 56, 82, 1) 0%,
+    rgba(71, 68, 95, 1) 47%,
+    rgba(71, 107, 148, 1) 86%,
+    rgba(83, 145, 202, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    135deg,
+    rgba(50, 56, 82, 1) 0%,
+    rgba(71, 68, 95, 1) 47%,
+    rgba(71, 107, 148, 1) 86%,
+    rgba(83, 145, 202, 1) 100%
+  );
+  background: linear-gradient(
+    135deg,
+    rgba(50, 56, 82, 1) 0%,
+    rgba(71, 68, 95, 1) 47%,
+    rgba(71, 107, 148, 1) 86%,
+    rgba(83, 145, 202, 1) 100%
+  );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#323852",endColorstr="#5391ca",GradientType=1);
 
   /* background-color: #363B4E; */
-
-
 }
 
 select,
@@ -34,7 +50,9 @@ textarea {
 }
 
 .p-dialog-content {
-  @apply p-7 rounded-xl;
+  @apply p-7 rounded-xl bg-primaryBlack;
+
+  backdrop-filter: blur(100px); /* Aplica el efecto borroso */
 }
 
 .p-dialog-header {
@@ -54,7 +72,7 @@ textarea {
 }
 
 .visibility-select-2 {
-  @apply bg-transparent border-[#F969AA] text-[#56A3E1] border-[0.25rem] border-solid text-[1.3rem] p-[0.3rem];
+  @apply bg-transparent border-primaryPink text-[#56A3E1] border-[0.25rem] border-solid text-[1.3rem] p-[0.3rem];
 
   @screen laptop {
     font-size: calc(1.55rem * var(--scale));
@@ -95,7 +113,8 @@ textarea {
 }
 
 .input-modal {
-  @apply bg-transparent border-b border-[#F969AA]   w-full outline-none  text-[#57A3E1] text-[1.7rem] px-[1rem];
+  @apply bg-transparent border-b border-primaryPink w-full 
+  font-bold outline-none text-primaryBlue text-[1.7rem] px-[1rem];
 
   @screen tablet {
     @apply text-[2rem] px-[1rem];
@@ -103,8 +122,7 @@ textarea {
 }
 
 .p-toast-message-content {
-  @apply w-[40rem] !border-[#F969AA] border text-[#57A3E1] bg-[#2D2B40] text-[1.7rem];
-  font-family: 'Black Ops One', system-ui;
+  @apply w-[40rem] !border-primaryPink border text-primaryBlue bg-[#2D2B40] text-[1.7rem];
   .p-toast-icon-close {
     @apply hidden;
   }
@@ -113,7 +131,7 @@ textarea {
 .textArea-modal {
   @apply bg-transparent rounded-md w-full min-h-60 outline-none text-blue-500 text-2xl px-4 py-2;
 
-  border: 1px solid #57a3e1;
+  border: 1px solid #427eff;
 }
 
 ::-webkit-scrollbar {
@@ -124,22 +142,45 @@ textarea {
   background-color: #2c2a2a; /* Color de fondo de la pista */
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #57a3e1; /* Color del pulgar de la barra */
+  background-color: #427eff; /* Color del pulgar de la barra */
   border-radius: 5px; /* Radio de borde del pulgar de la barra */
 }
 
 .sidebar-perfil {
-  @apply w-[30rem] p-[1rem] bg-primaryColor gap-[2rem] justify-center;
+  @apply w-[30rem] p-[1rem] bg-primaryBlack gap-[2rem] justify-center;
   .info-sidebar {
     @apply flex flex-col gap-[2rem] font-bold items-center h-[50%] justify-center;
     h4 {
-      @apply cursor-pointer text-[#F969AA] text-[3rem] duration-300 ease-in-out 
-      hover:text-[#57A3E1];
+      @apply cursor-pointer text-primaryPink text-[3rem] duration-300 ease-in-out 
+      hover:text-primaryBlue;
     }
   }
 
   svg {
-    @apply w-[2.5rem] h-[2.5rem]  text-[#F969AA];
+    @apply w-[2.5rem] h-[2.5rem]  text-primaryPink;
+  }
+}
+
+.DevFriend_Logo {
+  background: rgb(251, 121, 183);
+  background: linear-gradient(
+    90deg,
+    rgba(251, 121, 183, 1) 10%,
+    rgba(66, 126, 255, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent; /* Ocultar el color del texto por defecto */
+  -webkit-text-fill-color: transparent; /* Para navegadores WebKit */
+}
+
+.btn_login_box_ingreso {
+  @apply bg-primaryLead text-white text-[1.5rem] px-[2rem] py-[.5rem] rounded-[.5rem] border border-[#5c6281] 
+  duration-300 ease-in-out hover:bg-[#64b9ff7e];
+
+  @screen tablet {
+    @apply text-[1.7rem] font-extrabold px-[2rem] py-[.5rem] rounded-[.5rem] 
+  duration-300 ease-in-out;
   }
 }
 

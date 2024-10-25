@@ -1,15 +1,11 @@
 .TablesWorkSpaces {
-
-  @apply flex flex-col gap-[2rem] w-full h-full ;
-
+  @apply flex flex-col gap-[2rem] w-full h-full;
 
   @screen laptop {
     @apply flex flex-col gap-[2rem];
   }
   .tables-title {
-
-    @apply text-white text-[2.7rem] w-full;
-
+    @apply text-white text-[2.7rem] w-full font-semibold;
 
     @screen laptop {
       @apply text-[4rem];
@@ -17,9 +13,7 @@
   }
 
   .tables-content {
-
-    @apply flex flex-col gap-[2.5rem] w-full h-full justify-center items-center ;
-
+    @apply flex flex-col gap-[2.5rem] w-full h-full justify-center items-center;
 
     @screen laptop {
       @apply flex flex-col gap-[2.5rem] w-full h-full justify-start items-start;
@@ -27,35 +21,27 @@
   }
 
   .content-top {
-
     @apply flex items-center w-full  flex-wrap justify-around gap-[1.5rem];
 
-
-    @screen tablet{
-
-      @apply w-[70%]  ;
-
+    @screen tablet {
+      @apply w-[70%];
     }
 
     @screen laptop {
-      @apply flex flex-nowrap gap-[8rem] items-center w-[20%] ;
+      @apply flex flex-nowrap gap-[8rem] items-center w-[20%];
     }
   }
 
   .content-top-name {
-
     @apply flex w-full justify-center items-center gap-[1rem];
 
-    
     @screen laptop {
       @apply flex w-full items-center gap-[1rem];
     }
   }
 
   .content-top-name-image {
-
     @apply w-[6rem] h-auto;
-
 
     @screen laptop {
       @apply w-[6rem] h-auto;
@@ -63,21 +49,17 @@
   }
 
   .content-top-name-text {
-
-    @apply text-[#57A3E1] text-[2.5rem];
-
+    @apply text-primaryBlue text-[2.5rem];
 
     @screen laptop {
-      @apply text-[#57A3E1] text-[1.2rem];
+      @apply text-primaryBlue text-[1.2rem];
     }
   }
 
   .content-top-boards,
   .content-top-members,
   .content-top-configuration {
-
-    @apply text-primaryPink  border-primaryBlue border-[0.28rem] text-[1.8rem] rounded-[0.3rem] p-[0.4rem] pl-[1rem] pr-[1rem];
-
+    @apply text-primaryPink border-primaryBlue border-[0.28rem] text-[1.8rem] rounded-[0.3rem] p-[0.4rem] pl-[1rem] pr-[1rem] font-bold;
 
     @screen laptop {
       @apply text-primaryPink border-primaryBlue border-[0.28rem] text-[1.8rem] rounded-[0.3rem] pl-[1rem] pr-[1rem];
@@ -85,8 +67,7 @@
   }
 
   .container-tables {
-
-    @apply items-center w-[90%] grid gap-[2rem] h-full;
+    @apply items-center w-[90%] grid gap-[2rem] h-full font-bold;
 
     grid-auto-rows: 13rem;
     grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
@@ -100,23 +81,31 @@
   }
 
   .content-main {
-
-    @apply flex items-center font-medium justify-center bg-[#4E5163] text-[#f969aa] text-[1.7rem] w-full h-full;
-
+    @apply flex items-center font-bold justify-center bg-[#4E5163] text-primaryPink text-[1.7rem] w-full h-full;
 
     @screen laptop {
-      @apply flex items-center justify-center bg-[#4E5163] text-[#f969aa] w-full h-full;
+      @apply flex items-center justify-center bg-[#4E5163] text-primaryPink w-full h-full;
       font-size: calc(1.8rem * var(--scale));
     }
   }
 
   .tables-map {
-
-    @apply w-full h-full  flex items-center justify-center text-[2rem] text-[white];
-
+    @apply relative w-full h-full flex  items-center justify-center text-[2rem] text-[white];
+    isolation: isolate;
 
     @screen laptop {
       @apply w-full h-full  flex items-center justify-center text-[2rem] text-[white];
     }
+  }
+
+  .tables-map::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: -1;
   }
 }

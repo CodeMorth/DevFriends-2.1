@@ -1,10 +1,10 @@
 .moda-cards-box-tasks- {
   @apply w-[100%] h-auto px-6 py-10 bg-[#2B3146]  flex flex-col items-center gap-8 text-[1.5rem] !rounded-[1rem];
   & input {
-    @apply w-[70%]  py-2 px-[4rem] outline-none border-[#F468A8] border-2 !text-[#57A3E1] bg-transparent;
+    @apply w-[70%]  py-2 px-[4rem] outline-none border-[#F468A8] border-2 !text-primaryBlue bg-transparent;
   }
   & button {
-    @apply w-[35%] py-2  rounded-[.5rem]  bg-[#57A3E1] text-[#2B3146];
+    @apply w-[35%] py-2  rounded-[.5rem]  bg-primaryBlue text-[#2B3146];
   }
 }
 

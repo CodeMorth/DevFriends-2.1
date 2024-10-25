@@ -1,6 +1,7 @@
 import { Inputs, Labels, TextAreas } from '@/components/atoms'
 import { Modal } from '@/components/global'
-import {  postCreateWorkSpace } from '@/services'
+import { DevFriendLogo } from '@/components/global/DevFriendLogo'
+import { postCreateWorkSpace } from '@/services'
 import { InputToFormData } from '@/utilities'
 import Image from 'next/image'
 
@@ -10,27 +11,27 @@ interface ModalDashboard {
   allWorkSpaces: () => void
 }
 
-export const ModalDashboard = ({ visible, closeModal ,allWorkSpaces}: ModalDashboard) => {
- 
-
-
- 
-  const formCreateWorkSpace = async ( event: React.FormEvent<HTMLFormElement>) => {
+export const ModalDashboard = ({
+  visible,
+  closeModal,
+  allWorkSpaces
+}: ModalDashboard) => {
+  const formCreateWorkSpace = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault()
 
     const data = InputToFormData(event)
 
-  
-        postCreateWorkSpace(data)
-          .then((res) => { 
-            if(res.data){
-              closeModal()
-              allWorkSpaces()
-            }
-          })
-          .catch((error) => error)
-      }
-  
+    postCreateWorkSpace(data)
+      .then((res) => {
+        if (res.data) {
+          closeModal()
+          allWorkSpaces()
+        }
+      })
+      .catch((error) => error)
+  }
 
   return (
     <div>
@@ -38,9 +39,15 @@ export const ModalDashboard = ({ visible, closeModal ,allWorkSpaces}: ModalDashb
         visible={visible}
         closeModal={closeModal}
         className="modalDashboard main-page"
-        bg="#2B3146"
+        // bg="#2B3146"
       >
         <main className="modalDashboard-container">
+          <div className="container-right">
+            <h2 className="DevFriend_Logo_Modal">
+              <span className="opening_tag">{'<'}</span>Dev-Friend
+              <span className="close_tag">{'/>'}</span>
+            </h2>
+          </div>
           <form onSubmit={formCreateWorkSpace} className="container-left">
             <h1 className="container-left-tittle">
               Vamos a crear un Espacio de trabajo
@@ -74,22 +81,6 @@ export const ModalDashboard = ({ visible, closeModal ,allWorkSpaces}: ModalDashb
               <button>Crear</button>
             </div>
           </form>
-          <div className="container-right">
-            <div className="container-right-image">
-              <Image
-                src={'/logo/logo-tareas.png'}
-                alt="logo"
-                width={1000}
-                height={1000}
-                priority
-                className="w-full h-full"
-              />
-            </div>
-            <h1 className="container-right-text">
-              <span className="DEV">Dev</span>
-              <span className="FRIEND">Friend</span>
-            </h1>
-          </div>
         </main>
       </Modal>
     </div>

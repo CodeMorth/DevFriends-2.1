@@ -1,42 +1,49 @@
 .modalDashboard {
+  @apply bg-transparent !p-5 h-auto w-[90%] pt-[1.6rem] shadow-xl;
 
-  @apply bg-[#2B3146] h-auto w-[90%] pt-[1.6rem] ;
-
-  @screen tablet{
-
+  @screen tablet {
     @apply w-[60%] p-[3rem] pb-[1rem];
-
   }
 
   @screen laptop {
-    
-    width: calc(110rem * var(--scale));
+    width: calc(60rem * var(--scale));
     padding: calc(1rem * var(--scale));
   }
-
- 
 
   .p-dialog-header {
     @apply hidden;
   }
 
   .modalDashboard-container {
-
-    @apply flex flex-col-reverse gap-[1rem] font-bold;
+    @apply flex flex-col gap-[1rem] font-bold;
 
     @screen laptop {
-      @apply flex flex-row w-full h-full;
+      @apply w-fit  h-full;
 
       gap: calc(1rem * var(--scale));
+    }
+
+    .DevFriend_Logo_Modal {
+      @apply !text-[4rem];
+
+      background: rgb(251, 121, 183);
+      background: linear-gradient(
+        90deg,
+        rgba(251, 121, 183, 1) 10%,
+        rgba(66, 126, 255, 1) 100%
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent; /* Ocultar el color del texto por defecto */
+      -webkit-text-fill-color: transparent; /* Para navegadores WebKit */
     }
   }
 
   .container-left {
-
     @apply flex flex-col justify-center w-[100%] pt-[1rem] p-[3rem] gap-[1rem];
 
     @screen laptop {
-      @apply flex flex-col justify-center w-[50%];
+      @apply flex flex-col justify-center w-[100%];
 
       padding: calc(2rem * var(--scale));
       gap: calc(2.5rem * var(--scale));
@@ -44,28 +51,22 @@
   }
 
   .container-left-tittle {
+    @apply text-primaryPink text-[2rem];
 
-    @apply text-[#F969AA] text-[2rem] ;
-
-    
     @screen laptop {
-
       font-size: calc(2.7rem * var(--scale));
     }
   }
 
   .container-left-description {
-
-    @apply text-[#57A3E1] text-[1.3rem];
+    @apply text-primaryBlue text-[1.3rem];
 
     @screen laptop {
-
       font-size: calc(2rem * var(--scale));
     }
   }
   #spaceWork-Name-Label {
-
-    @apply text-[1.8rem] ;
+    @apply text-[1.8rem];
 
     @screen laptop {
       font-size: calc(2.4rem * var(--scale));
@@ -73,11 +74,10 @@
   }
 
   #spaceWork-Name {
-
-    @apply border border-[#57A3E1] rounded-[0.3rem] text-[1.3rem] p-[0.3rem];
+    @apply border border-primaryBlue rounded-[0.3rem] text-[1.3rem] p-[0.3rem];
 
     @screen laptop {
-      @apply  w-[74%];
+      @apply w-[74%];
 
       min-width: calc(10rem * var(--scale));
       font-size: calc(2rem * var(--scale));
@@ -85,8 +85,7 @@
   }
 
   #spaceWork-Description-Label {
-
-    @apply text-[1.4rem] ;
+    @apply text-[1.4rem];
 
     @screen laptop {
       font-size: calc(2.4rem * var(--scale));
@@ -94,8 +93,7 @@
   }
 
   #spaceWork-Description {
-
-    @apply text-[1.3rem] p-[0.3rem] ;
+    @apply text-[1.3rem] p-[0.3rem];
 
     @screen laptop {
       @apply w-[74%];
@@ -118,45 +116,47 @@
   }
 
   .container-left-button {
-
     @apply flex items-center justify-center w-[100%];
 
-
     @screen laptop {
-      @apply flex items-center justify-center w-[74%];
+      @apply flex items-center justify-center w-full;
     }
 
     button {
-
-      @apply w-auto m-auto border border-[#57A3E1] p-[0.5rem] text-[#F969AA] rounded-[0.3rem];
+      @apply bg-primaryLead text-white text-[1.5rem] px-[2rem] py-[.5rem] rounded-[.5rem];
 
       padding-left: calc(2rem * var(--scale));
       padding-right: calc(2rem * var(--scale));
       font-size: calc(2rem * var(--scale));
       @screen laptop {
-        @apply w-auto m-auto border border-[#57A3E1] p-[0.5rem] text-[#F969AA] rounded-[0.3rem];
-
-        padding-left: calc(2rem * var(--scale));
-        padding-right: calc(2rem * var(--scale));
+        padding-left: calc(4rem * var(--scale));
+        padding-right: calc(4rem * var(--scale));
         font-size: calc(2rem * var(--scale));
       }
+    }
+
+    button:hover {
+      background: rgb(251, 121, 183);
+      background: linear-gradient(
+        90deg,
+        rgba(251, 121, 183, 1) 10%,
+        rgba(66, 126, 255, 1) 100%
+      );
     }
   }
 
   .container-right {
-
-    @apply flex flex-row-reverse justify-center items-center ;
+    @apply flex flex-row-reverse justify-center items-center;
 
     @screen laptop {
-      @apply flex flex-col justify-center items-center w-[50%];
+      @apply flex flex-col justify-center items-center w-[100%];
 
       gap: calc(2rem * var(--scale));
     }
   }
 
   .container-right-image {
-
-    @apply w-[30%] ;
+    @apply w-[30%];
 
     @screen laptop {
       @apply w-[60%] drop-shadow-[1px_1px_10px_#58A0DE];
@@ -164,68 +164,45 @@
   }
 
   .container-right-text {
-
-    @apply text-[3.5rem] text-center ;
+    @apply text-[3.5rem] text-center;
 
     @screen laptop {
       font-size: calc(8rem * var(--scale));
     }
 
     .DEV {
-      @apply text-[#F969AA];
+      @apply text-primaryPink;
     }
 
     .FRIEND {
-      @apply text-[#57A3E1];
+      @apply text-primaryBlue;
     }
   }
 }
 
+.token_modal {
+  @apply !bg-transparent h-auto w-[70%] pt-[1.6rem];
 
-
-.token_modal{
-
-  @apply bg-[#2B3146] h-auto w-[70%] pt-[1.6rem] ;
-
-  @screen tablet{
-
+  @screen tablet {
     @apply w-[70%] p-[3rem] pb-[1rem];
-
   }
 
   @screen laptop {
-    
-    width: calc(80rem * var(--scale));
+    width: calc(45rem * var(--scale));
     padding: calc(1rem * var(--scale));
   }
-
- 
 
   .p-dialog-header {
     @apply hidden;
   }
 
-  
-
-
-
   .container-left-tittle {
+    @apply text-primaryBlue text-[2rem] text-center font-bold;
 
-    @apply text-[#58A0DE] text-[2rem] text-center;
-
-    
     @screen laptop {
-
       font-size: calc(2.7rem * var(--scale));
     }
   }
-
-
-
-
-
-
-
 
   #spacreWork-Description::-webkit-scrollbar {
     width: 2px; /* Ancho de la barra lateral */
@@ -240,29 +217,20 @@
     border-radius: 5px; /* Radio de borde del pulgar de la barra */
   }
 
-  .container-left-button {
-
-    
-
+  /* .container-left-button {
     button {
-
-      @apply w-auto m-auto border border-[#57A3E1] p-[0.5rem] text-[#F969AA] rounded-[0.3rem];
+      @apply w-auto m-auto border border-primaryBlue p-[0.5rem] text-primaryPink rounded-[0.3rem];
 
       padding-left: calc(2rem * var(--scale));
       padding-right: calc(2rem * var(--scale));
       font-size: calc(2rem * var(--scale));
       @screen laptop {
-        @apply w-auto m-auto border border-[#57A3E1] p-[0.5rem] text-[#F969AA] rounded-[0.3rem];
+        @apply w-auto m-auto border border-primaryBlue p-[0.5rem] text-primaryPink rounded-[0.3rem];
 
         padding-left: calc(2rem * var(--scale));
         padding-right: calc(2rem * var(--scale));
         font-size: calc(2rem * var(--scale));
       }
     }
-  }
-
- 
-
-
-
+  } */
 }

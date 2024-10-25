@@ -4,6 +4,6 @@ interface Props extends React.LabelHTMLAttributes<HTMLLabelElement> {}
 
 export const Labels = ({children, ...props}: Props) => {
   
-  return <label className='sm:px-[1rem] text-[1.8rem] lg:text-[2rem] text-[#F969AA]' {...props}>{children}</label>; 
+  return <label className='font-bold sm:px-[1rem] text-[1.8rem] lg:text-[2rem] text-primaryPink' {...props}>{children}</label>; 
 }
 

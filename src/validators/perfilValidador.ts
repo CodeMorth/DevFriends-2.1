@@ -1,11 +1,11 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
 export const perfilValidador = z.object({
   username: z
     .string({ message: 'El nombre de usuario es requerido' })
     .min(1, { message: 'El nombre de usuario es requerido' })
     .max(30, {
-      message: 'El nombre de usuario debe tener como máximo 30 caracteres'
+      message: 'El nombre de usuario debe tener como máximo 30 caracteres',
     }),
   first_name: z
     .string({ message: 'El primer nombre es requerido' })
@@ -21,11 +21,14 @@ export const perfilValidador = z.object({
     .max(30, { message: 'Email máximo 30 caracteres' }),
   avatar: z
     .any()
-    .refine((file) => file instanceof File, {
-      message: 'Debe seleccionar una imagen válida'
+    .optional() // Permite que el avatar no siempre esté presente
+    .refine((file) => !file || typeof file === 'string' || file instanceof File, {
+      message: 'Debe seleccionar una imagen válida',
     })
-    .refine((file) => file.size <= 5 * 1024 * 1024, {
-      // 5MB máximo
-      message: 'La imagen no debe superar los 5MB'
-    })
-})
+    .refine(
+      (file) => !file || typeof file === 'string' || file.size <= 5 * 1024 * 1024, // Valida tamaño solo si es un nuevo archivo
+      {
+        message: 'La imagen no debe superar los 5MB',
+      }
+    ),
+});

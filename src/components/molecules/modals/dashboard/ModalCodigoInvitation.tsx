@@ -1,36 +1,39 @@
 import { Inputs, Labels } from '@/components/atoms'
 import { Modal } from '@/components/global'
-import { useFormss } from '@/hook';
-import { addGuestToWork } from '@/services/generateTokenInvitation.service';
-import { toast } from 'sonner';
-
+import { useFormss } from '@/hook'
+import { addGuestToWork } from '@/services/generateTokenInvitation.service'
+import { toast } from 'sonner'
 
 interface ModalCodigoInvitation {
   visible: boolean
   closeModal: () => void
-  allWorkSpaces: any;
+  allWorkSpaces: any
 }
 
-export const ModalCodigoInvitation = ({ visible, closeModal, allWorkSpaces }: ModalCodigoInvitation) => {
-
+export const ModalCodigoInvitation = ({
+  visible,
+  closeModal,
+  allWorkSpaces
+}: ModalCodigoInvitation) => {
   const { capTure, datos } = useFormss()
 
   const createAddGuestToWork = () => {
-    addGuestToWork(datos).then(({ data }) => {
-      if (data.message === "Ya te has unido a este espacio de trabajo") {
-        toast.success(data.message)
-        closeModal();
-      }
-      if (data.message === "Usuario agregado exitosamente al espacio de trabajo") {
-        toast.success(data.message)
-        closeModal();
-        allWorkSpaces()
-
-      }
-    }).catch(err => console.log(err))
+    addGuestToWork(datos)
+      .then(({ data }) => {
+        if (data.message === 'Ya te has unido a este espacio de trabajo') {
+          toast.success(data.message)
+          closeModal()
+        }
+        if (
+          data.message === 'Usuario agregado exitosamente al espacio de trabajo'
+        ) {
+          toast.success(data.message)
+          closeModal()
+          allWorkSpaces()
+        }
+      })
+      .catch((err) => console.log(err))
   }
-
-
 
   return (
     <div>
@@ -41,7 +44,7 @@ export const ModalCodigoInvitation = ({ visible, closeModal, allWorkSpaces }: Mo
         bg="#2B3146"
       >
         <main className="w-full flex justify-center">
-          <div className="w-[50%] flex flex-col items-center gap-[5rem]">
+          <div className="w-full flex flex-col items-center gap-[3rem]">
             <h1 className="container-left-tittle">
               Unirme a un espacio de trabajo
             </h1>
@@ -58,7 +61,7 @@ export const ModalCodigoInvitation = ({ visible, closeModal, allWorkSpaces }: Mo
             ></Inputs>
 
             <div className="container-left-button">
-              <button onClick={createAddGuestToWork}>Crear</button>
+              <button className='btn_login_box_ingreso' onClick={createAddGuestToWork}>Crear</button>
             </div>
           </div>
         </main>

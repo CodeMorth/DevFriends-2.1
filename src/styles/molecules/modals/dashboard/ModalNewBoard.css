@@ -13,7 +13,7 @@
   .create-board,
   .title-board,
   .visibility {
-    @apply text-[#F969AA] text-[1.7rem];
+    @apply text-primaryPink text-[1.7rem];
 
     @screen laptop {
       font-size: calc(2.5rem * var(--scale));
@@ -29,7 +29,7 @@
   }
 
   .description {
-    @apply self-start text-[#F969AA];
+    @apply self-start text-primaryPink;
 
     @screen laptop {
       font-size: calc(1.8rem * var(--scale));
@@ -37,7 +37,7 @@
   }
 
   .title-board {
-    @apply self-start text-[#F969AA];
+    @apply self-start text-primaryPink;
 
     @screen laptop {
       font-size: calc(2.1rem * var(--scale));
@@ -55,7 +55,7 @@
   }
 
   .visibility-label {
-    @apply self-start place-self-center text-[#F969AA] text-[1.65rem];
+    @apply self-start place-self-center text-primaryPink text-[1.65rem];
 
     @screen laptop {
       font-size: calc(2.1rem * var(--scale));
@@ -63,7 +63,7 @@
   }
 
   .visibility-select {
-    @apply bg-transparent border-[#56A3E1] text-[#F969AA] border-[0.25rem] border-solid text-[1.3rem] p-[0.3rem];
+    @apply bg-transparent border-[#56A3E1] text-primaryPink border-[0.25rem] border-solid text-[1.3rem] p-[0.3rem];
 
     @screen laptop {
       font-size: calc(1.55rem * var(--scale));
@@ -80,7 +80,7 @@
   }
 
   .button-create {
-    @apply w-full border-[#56A3E1] text-[#F969AA] border-[0.25rem] rounded-[0.5rem] text-[1.3rem] p-[0.3rem];
+    @apply w-full border-[#56A3E1] text-primaryPink border-[0.25rem] rounded-[0.5rem] text-[1.3rem] p-[0.3rem];
 
     @screen laptop {
       font-size: calc(1.6rem * var(--scale));

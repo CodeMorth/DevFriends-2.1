@@ -24,7 +24,7 @@
 
     @screen laptop {
 
-        @apply max-w-[100rem] border-l-primaryPink border-r-primaryPink border-[0.2rem];
+        @apply max-w-[100rem];
 
       width: calc(35rem * var(--scale));
       padding-left: calc(1.5rem * var(--scale));

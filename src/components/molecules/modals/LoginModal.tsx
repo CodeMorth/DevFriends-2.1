@@ -1,5 +1,6 @@
 import { Inputs, Labels } from '@/components/atoms'
 import { Modal } from '@/components/global'
+import { DevFriendLogo } from '@/components/global/DevFriendLogo'
 import { userTypeLRU } from '@/interface/components'
 import { postLogin } from '@/services/userServices.service'
 import { InputToFormData } from '@/utilities'
@@ -33,20 +34,10 @@ export const LoginModal = ({ visible, closeModal }: ModalLogin) => {
       >
         <form onSubmit={handleRegister} className="login_modal">
           <div className="logo">
-            <div className="imagen-logo-tw">
-              <Image
-                src={'/logo/logo-tareas.png'}
-                alt="logo"
-                width={1000}
-                height={1000}
-                priority
-                className="w-full h-full drop-shadow-[0px_1px_2px_#4C6E9E]"
-              />
-            </div>
+          
 
             <div className="logo-name_two">
-              <h3>Dev</h3>
-              <h2>Friend</h2>
+            <DevFriendLogo/>
             </div>
           </div>
 
