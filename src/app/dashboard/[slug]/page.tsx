@@ -162,7 +162,7 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
                         className="w-full h-full"
                       ></Image>
                     </div>
-                    <h1 className="boards-text">Tableros</h1>
+                    <button className="boards-text">Tableros</button>
                   </div>
                   <div className="members-container">
                     <div className="members-image">
@@ -174,7 +174,7 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
                         className="w-full h-full"
                       ></Image>
                     </div>
-                    <div className="members-text">Miembros +</div>
+                    <button className="members-text">Miembros +</button>
                   </div>
                 </div>
               </AccordionHorizontal>

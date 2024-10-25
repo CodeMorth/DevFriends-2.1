@@ -1,0 +1,21 @@
+.sidebar-perfil {
+  @apply w-[30rem] p-[1rem] bg-primaryBlack gap-[2rem] justify-center;
+  .info-sidebar {
+    @apply flex flex-col gap-[2rem] font-semibold items-start h-[50%] justify-start;
+  }
+
+  .icon_container {
+    @apply w-14 h-14 text-primaryBlue duration-300 ease-in-out;
+  }
+  .direction_container {
+    @apply flex items-center justify-center gap-6 cursor-pointer text-primaryPink text-[3.1rem] duration-300 ease-in-out;
+  }
+
+  .direction_container:hover {
+    @apply text-primaryBlue;
+
+    .icon_container {
+      @apply text-primaryPink;
+    }
+  }
+}

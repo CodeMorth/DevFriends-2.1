@@ -146,21 +146,6 @@ textarea {
   border-radius: 5px; /* Radio de borde del pulgar de la barra */
 }
 
-.sidebar-perfil {
-  @apply w-[30rem] p-[1rem] bg-primaryBlack gap-[2rem] justify-center;
-  .info-sidebar {
-    @apply flex flex-col gap-[2rem] font-bold items-center h-[50%] justify-center;
-    h4 {
-      @apply cursor-pointer text-primaryPink text-[3rem] duration-300 ease-in-out 
-      hover:text-primaryBlue;
-    }
-  }
-
-  svg {
-    @apply w-[2.5rem] h-[2.5rem]  text-primaryPink;
-  }
-}
-
 .DevFriend_Logo {
   background: rgb(251, 121, 183);
   background: linear-gradient(
