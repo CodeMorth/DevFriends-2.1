@@ -1,4 +1,4 @@
-import { axiosGlobal } from '@/interceptor'
+
 import { userTypeLRU } from '@/interface/components'
 import { compositeServices } from '@/utilities/compositeServices'
 

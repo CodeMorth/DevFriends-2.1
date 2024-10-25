@@ -49,4 +49,10 @@ export const ulrValidatorToken = (request: any) => {
   if (url?.includes('taskUpdate')) {
     return request
   }
+  if (url?.includes('musica')) {
+    return request
+  }
+  if (url?.includes('all_musica_table')) {
+    return request
+  }
 }
