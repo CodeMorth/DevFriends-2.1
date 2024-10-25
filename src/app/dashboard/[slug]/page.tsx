@@ -108,7 +108,6 @@ export default function Page({ params }: { params: { slug: string } }) {
                 {Musica !== '' && (
                   <div className="content_input_play_pause">
                     <FaRegCirclePlay onClick={handlePlay} className='cursor-pointer' />
-
                     <input
                       type="range"
                       min="0"
@@ -116,11 +115,9 @@ export default function Page({ params }: { params: { slug: string } }) {
                       defaultValue="100"
                       onChange={handleVolumeChange}
                     />
-
                     <FaRegCirclePause onClick={handlePause} className='cursor-pointer' />
                   </div>
                 )}
-
                 <input
                   placeholder="Coloca link de tu musica "
                   type="text"
@@ -128,9 +125,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                   onChange={(e) => setMusica(e.target.value)}
                 />
               </div>
-
               <AudioPlayer videoUrl={Musica} ref={audioPlayerRef} />
-
               <div className="generate-token-container ">
                 <button onClick={generadorInvitation} className="button-share">
                   <div>

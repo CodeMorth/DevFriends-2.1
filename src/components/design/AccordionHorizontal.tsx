@@ -75,7 +75,7 @@ export const AccordionHorizontal = ({
           preserveAspectRatio="xMidYMid meet"
           initial={false}
           animate={{
-            fill: open ? '#F969AA' : '#57A3E1',
+            fill: open ? '#F969AA' : '#427eff',
             filter: `drop-shadow(${
               open ? '0px 0px 4px #F969AA' : '0px 0px 4px #58A0DE'
             })`
@@ -85,7 +85,7 @@ export const AccordionHorizontal = ({
         >
           <animated.path
             d={t.to(interpolator)}
-            stroke={`${open ? '#F969AA' : '#57A3E1'}`}
+            stroke={`${open ? '#F969AA' : '#427eff'}`}
           />
         </motion.svg>
       </motion.button>

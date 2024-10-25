@@ -3,7 +3,7 @@
     @apply max-h-full w-full h-full  flex flex-col gap-10 z-[2] bg-[#2c2a2ada] backdrop-blur-[1rem];
 
     & .buton_add_cards {
-        @apply  w-[25rem] py-2 px-4 text-[2rem] mx-[10%]  text-[#57A3E1] mt-[5rem]  bg-[#2B3146];
+        @apply  w-[25rem] py-2 px-4 text-[2rem] mx-[10%]  text-primaryBlue mt-[5rem]  bg-[#2B3146];
         @screen laptop{
             font-size: calc(2rem * var(--scale));
         }

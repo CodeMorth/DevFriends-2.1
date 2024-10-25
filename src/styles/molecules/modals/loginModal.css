@@ -1,5 +1,5 @@
 .logi_box {
-  @apply !bg-[#1F2937] p-[4rem] pr-[3rem] pl-[0rem] w-[90%] max-w-[30rem];
+  @apply !bg-transparent p-[1rem] w-[90%] max-w-[35rem];
 
   @screen tablet {
     @apply max-w-[40rem];
@@ -8,8 +8,10 @@
   }
 
   .p-dialog-header-icons {
-    @apply text-[#F969AA] hidden;
+    @apply text-primaryPink hidden;
   }
+
+  backdrop-filter: blur(5px); /* Aplica el efecto borroso */
 }
 
 .login_modal {
@@ -29,12 +31,12 @@
 }
 
 .btn_login_box_ingreso {
-  @apply bg-[#5C6281] text-white text-[1.5rem] px-[2rem] py-[.5rem] rounded-[.5rem] border border-[#5c6281] 
-  duration-300 ease-in-out hover:bg-[#396f9b7e];
+  @apply bg-primaryLead text-white text-[1.5rem] px-[2rem] py-[.5rem] rounded-[.5rem] border border-[#5c6281] 
+  duration-300 ease-in-out hover:bg-[#64b9ff7e];
 
   @screen tablet {
-    @apply text-[2.5rem] font-extrabold px-[4rem] py-[.5rem] rounded-[.5rem] 
-  duration-300 ease-in-out hover:bg-[#396f9b7e];
+    @apply text-[1.7rem] font-extrabold px-[2rem] py-[.5rem] rounded-[.5rem] 
+  duration-300 ease-in-out;
   }
 }
 
@@ -43,20 +45,20 @@
 }
 
 .input_option {
-  @apply flex flex-col  gap-[1.5rem];
+  @apply flex flex-col  gap-[1.5rem] font-semibold;
 }
 
 .logo-name_two {
   @apply flex items-center text-[2.4rem] gap-[.5rem];
   & h3 {
-    @apply text-[#E56AA3] font-bold;
+    @apply text-primaryPink font-bold;
 
     @screen tablet {
       @apply text-[3.5rem];
     }
   }
   & h2 {
-    @apply text-[#58A0DE]  font-bold;
+    @apply text-primaryBlue  font-bold;
 
     @screen tablet {
       @apply text-[3.5rem];

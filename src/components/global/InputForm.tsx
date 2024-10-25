@@ -23,7 +23,7 @@ export const InputForm = ({
       {labelText && (
         <label
           // className="mb-3 block text-body-sm font-medium text-dark dark:text-white"
-          className="sm:px-[1rem] text-[1.8rem] lg:text-[2rem] text-[#F969AA]"
+          className="sm:px-[1rem] text-[1.8rem] lg:text-[2rem] text-primaryPink"
           htmlFor={name}
         >
           {labelText}

@@ -15,9 +15,10 @@ const config: Config = {
       },
       colors: {
         titleColorBlue: '#58A0DE',
-        primaryColor: '#2D3248',
-        primaryPink: '#E56AA3',
-        primaryBlue: '#58A0DE'
+        primaryBlack: '#2D3248',
+        primaryPink: '#fb79b7',
+        primaryBlue: '#427eff',
+        primaryLead : "#606582"
       },
       screens: {
         phone: '414px',

@@ -52,7 +52,7 @@ export const InputFileForm = ({
                   height={1000}
                   className="w-full h-auto object-cover rounded-[0.5rem]"
                 />
-              ) : (
+              ) : field.value ? (
                 <Image
                   src={field.value}
                   alt="imagen"
@@ -60,7 +60,7 @@ export const InputFileForm = ({
                   height={1000}
                   className="w-full h-auto object-cover rounded-[0.5rem] "
                 />
-              )}
+              ) : null}
             </div>
             <input
               ref={inputRef}

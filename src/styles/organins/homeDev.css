@@ -1,125 +1,152 @@
-.conten-last {
-  @apply px-[2rem] h-full flex flex-col pt-[12rem] items-center justify-center gap-[3rem] py-[1rem] md:flex-row min-h-[100vh] h-full;
+.home_dev_page {
+  @apply h-full w-full flex flex-col gap-7 p-8 justify-center items-center pt-[6.5rem];
 
-  @screen tablet{
-
-    @apply pl-[5rem] pt-[10rem] ;
-
-  }
-
-}
-
-
-
-.conten-last-info {
-  @apply w-full  h-full flex flex-col justify-center gap-[2rem];
-  @screen laptop {
-    width: 50%;
-    gap: calc(4rem * var(--scale));
-  }
-  & p {
-    @apply  text-[#7AA8D8] text-[1.5rem] font-semibold drop-shadow-[0px_0px_2px#271C34];
-
-    @screen tablet{
-
-      @apply text-[2rem] ;
-
-    }
-
-    @screen laptop {
-      font-size: calc(2.5rem * var(--scale));
-    }
-  }
-  & button {
-    @apply border-2 border-[#E56AA3] text-[#E56AA3] 
-    px-[2rem] py-[.5rem] rounded-[.5rem] font-semibold text-[1.2rem] duration-300
-    ease-in-out hover:bg-[#2B3146] ;
-
-    @screen tablet{
-
-      @apply border-2 border-[#E56AA3] text-[#E56AA3] 
-    px-[4rem] py-[.7rem] rounded-[.5rem] font-bold text-[1.5rem] duration-300
-    ease-in-out hover:bg-[#2B3146];
-
-    }
-
-  }
-}
-
-.container-button{
-
-  @apply flex justify-center  ;
-
-  @screen tablet{
-
-    @apply block ;
-
-  }
-  & button {
-  @apply text-[2rem];
-    @screen laptop {
-      font-size: calc(2.5rem * var(--scale));
-    }
-  }
-
-}
-
-.content-info-dev {
-  @apply w-full ;
-  & h4 {
-    @apply text-[2.7rem] text-[#4E5163] font-bold drop-shadow-[0px_0px_1px_#102F3E];
-
-    @screen tablet{
-
-      @apply text-[4.5rem] ;
-
-    }
-
-    @screen laptop {
-      font-size: calc(6rem * var(--scale));
-    }
-  }
-  & span {
-    @apply last:text-[#58A0DE] font-semibold text-[2.7rem];
-
-    @screen tablet{
-
-      @apply text-[5rem] ;
-
-    }
-
-    @screen laptop {
-      font-size: calc(7rem * var(--scale));
-    }
-  }
-  & span:nth-child(+1) {
-    @apply !text-[#E56AA3] font-bold text-[2.7rem];
-    @screen tablet{
-
-      @apply text-[5rem] ;
-
-    }
-    @screen laptop {
-      font-size: calc(7rem * var(--scale));
-    }
-  }
-
-}
-
-.conten-last-logo {
-  @apply w-auto  h-[45%] drop-shadow-[1px_1px_10px_#58A0DE] flex justify-center items-center ;
-  
-  @screen tablet{
-
-    @apply h-auto ;
-
+  @screen tablet {
+    @apply max-w-6xl pt-[10rem] mx-auto gap-12;
   }
 
   @screen laptop {
-    height: 48rem;
-    width: 55rem;
+    max-width: calc(100rem * var(--scale));
+    padding: calc(4rem * var(--scale));
+    padding-top: calc(6.5rem * var(--scale));
+    gap: calc(3rem * var(--scale));
+  }
+
+  @screen laptop {
+    gap: calc(6rem * var(--scale));
+  }
+
+  .title_home {
+    @apply text-[4.5rem] leading-[4.8rem] font-extrabold text-center text-white;
+
+    @screen tablet {
+      @apply text-[7rem] leading-[7rem];
+    }
+
+    @screen laptop {
+      font-size: calc(10rem * var(--scale));
+      line-height: calc(9.5rem * var(--scale));
+    }
+
+    span {
+      background: rgb(251, 121, 183);
+      background: linear-gradient(
+        90deg,
+        rgba(251, 121, 183, 1) 10%,
+        rgba(66, 126, 255, 1) 100%
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent; /* Ocultar el color del texto por defecto */
+      -webkit-text-fill-color: transparent; /* Para navegadores WebKit */
+    }
+  }
+
+  h3 {
+    @apply text-[1.5rem] font-bold text-center text-[#e1dce6];
+
+    @screen tablet {
+      @apply text-[1.8rem];
+    }
+
+
+    @screen laptop {
+      font-size: calc(2.4rem * var(--scale));
+    }
+  }
+
+  p {
+    @apply text-[1rem] font-bold text-center;
+
+    @screen laptop {
+      font-size: calc(1.5rem * var(--scale));
+    }
+  }
+
+  .buttons_container {
+    @apply flex gap-4;
+
+
+    @screen laptop {
+      gap: calc(1.7rem * var(--scale));
+    }
+
+    p,
+    a {
+      @apply p-2 px-4 rounded-3xl text-lg font-bold;
+
+      @screen tablet {
+        @apply text-[1.6rem] p-3 px-6;
+      }
+
+      @screen laptop {
+        font-size: calc(2rem * var(--scale));
+        padding: calc(1.1rem * var(--scale));
+        padding-right: calc(2.8rem * var(--scale));
+        padding-left: calc(2.8rem * var(--scale));
+      }
+    }
+  }
+
+  .data_container {
+    @apply flex gap-10 w-full justify-between;
+
+    @screen laptop {
+      margin-top: calc(3rem * var(--scale));
+      gap: calc(3rem * var(--scale));
+      padding-right: calc(5rem * var(--scale));
+      padding-left: calc(5rem * var(--scale));
+    }
+
+
+  }
+
+  .box_container {
+    @apply flex flex-col flex-1 gap-3 p-5 rounded-lg bg-primaryLead;
+
+    @screen tablet{
+      @apply gap-5;
+    }
+
+    @screen laptop {
+      gap: calc(1.5rem * var(--scale));
+      padding: calc(2rem * var(--scale));
+    }
+
+    h2 {
+      @apply font-bold text-xl;
+
+      @screen tablet {
+        @apply text-[1.9rem];
+      }
+
+      @screen laptop {
+        font-size: calc(2.1rem * var(--scale));
+      }
+    }
+
+    p {
+      @apply text-[#e1dce6] text-start;
+
+      @screen tablet{
+        @apply text-[1.3rem];
+      }
+
+      @screen laptop{
+
+      font-size: calc(1.7rem * var(--scale));
+
+
+      }
+
+    }
+  }
+
+  .svg_container {
+    @apply w-9 h-auto text-primaryPink;
+
+    @screen laptop {
+      width: calc(3rem * var(--scale));
+    }
   }
 }
-
-
-

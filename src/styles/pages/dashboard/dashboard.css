@@ -1,5 +1,5 @@
 .dashboard {
-  @apply h-full pt-[9rem]  min-h-[100vh];
+  @apply h-full pt-[6.5rem]   min-h-[100vh];
 
 
   @screen laptop{
@@ -20,7 +20,7 @@
   }
 
   .dashboard-left {
-    @apply pb-[10rem] flex flex-col w-full text-[2rem] pt-[4.7rem];
+    @apply pb-[2rem] flex flex-col w-full text-[2rem];
 
     @screen laptop{
 
@@ -32,12 +32,12 @@
   }
 
   .dashboard-left-tittle {
-    @apply text-[#f969aa];
+    @apply text-primaryPink;
   }
 
   .dashboard-left-content {
 
-    @apply text-[#57A3E1] text-[1.5rem] text-start  ;
+    @apply text-primaryBlue text-[1.9rem] text-start  font-bold;
 
 
     @screen laptop{
