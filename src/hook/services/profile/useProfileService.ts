@@ -1,18 +1,18 @@
-import { getByIdS, putUpdateS } from '@/services'
+import { getByToken, putUpdateS } from '@/services'
 import { useEffect, useState } from 'react'
 
-const useProfileService = (id: string) => {
+const useProfileService = () => {
   const [data, setdata] = useState<any>({})
   const [loading, setloading] = useState<any>({})
 
   const getByIdH = async () => {
     try {
-      setloading((prev: any) => ({ ...prev, getById: true }))
-      const response = await getByIdS(id)
-      setdata((prev: any) => ({ ...prev, getById: response.data.user }))
+      setloading((prev: any) => ({ ...prev, getByToken: true }))
+      const response = await getByToken()
+      setdata((prev: any) => ({ ...prev, getByToken: response.data }))
     } catch (error) {
     } finally {
-      setloading((prev: any) => ({ ...prev, getById: false }))
+      setloading((prev: any) => ({ ...prev, getByToken: false }))
     }
   }
 

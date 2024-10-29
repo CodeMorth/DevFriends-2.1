@@ -2,10 +2,12 @@ import { Inputs, Labels } from '@/components/atoms'
 import { Modal } from '@/components/global'
 import { DevFriendLogo } from '@/components/global/DevFriendLogo'
 import { userTypeLRU } from '@/interface/components'
+import { onUsuariosConectado, socket } from '@/lib/socket'
 import { postLogin } from '@/services/userServices.service'
 import { InputToFormData } from '@/utilities'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+import { toast } from 'sonner'
 interface ModalLogin {
   visible: boolean
   closeModal: () => void
@@ -14,12 +16,31 @@ interface ModalLogin {
 export const LoginModal = ({ visible, closeModal }: ModalLogin) => {
   const router = useRouter()
 
+  useEffect(() => {
+    //funcion para que escuche el evento
+    const handleUsuarioConectado = (data: { username: string }) => {
+      toast.success(`Usuario conectado: ${data.username}`, { duration: 1500 })
+    }
+
+    // Escuchar el evento 'usuariosConectado' desde el servidor
+    onUsuariosConectado(handleUsuarioConectado)
+
+    // Limpiar el evento para evitar múltiples escuchas
+    return () => {
+      socket.off('usuariosConectado')
+    }
+  }, [])
+
   const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const dataRegister: userTypeLRU = InputToFormData(event)
 
-    await postLogin(dataRegister).then(() => {
+    await postLogin(dataRegister).then((res) => {
+      if (res.data.username) {
+        // Emitir el evento de inicio de sesión al servidor
+        socket.emit('joinWorkspace', res.data.id_work_space)
+      }
       router.push('/dashboard'), closeModal()
     }).catch
   }
@@ -34,10 +55,8 @@ export const LoginModal = ({ visible, closeModal }: ModalLogin) => {
       >
         <form onSubmit={handleRegister} className="login_modal">
           <div className="logo">
-          
-
             <div className="logo-name_two">
-            <DevFriendLogo/>
+              <DevFriendLogo />
             </div>
           </div>
 

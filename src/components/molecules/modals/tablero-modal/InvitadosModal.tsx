@@ -8,7 +8,7 @@ import { MdOutlineSignalWifiStatusbar4Bar, MdSignalWifiStatusbarConnectedNoInter
 
 
 interface ModalInvitados {
-  visible: boolean
+  visible: any
   closeModal: any
 }
 
@@ -18,14 +18,13 @@ const InvitadosModal = ({ visible, closeModal }: ModalInvitados) => {
 
   useEffect(() => {
 
-    if (visible === true) {
-      allUserTableService().then(res => setEstado(res.data))
-    }
+   if(visible !== false){
+
+     allUserTableService().then(res => setEstado(res.data)).catch(error => console.log(error))
+   }
+    
   }, [visible])
 
-
-
-console.log("stado",estado)
 
   return (
     <div>
@@ -46,7 +45,7 @@ console.log("stado",estado)
               estado && estado.map((user: any) =>
                 <div key={user.id_user} className=" container_modal_infor">
                   {
-                   user?.rols[0].type_rol === "admin" ? <GrUserAdmin className="Icon_mienbros" /> : <FaUserClock  className="Icon_mienbros"/>
+                   user?.rols && user.rols[0]?.type_rol === "admin" ? <GrUserAdmin className="Icon_mienbros" /> : <FaUserClock  className="Icon_mienbros"/>
                   }
                   
                   <div className="modal_mienbros_informacion">
@@ -55,7 +54,7 @@ console.log("stado",estado)
 
 
                     <div className="modal_miebros_status">
-                      <p className=" ">{user?.rols[0].type_rol}</p>
+                      <p className=" ">{user?.rols && user.rols[0]?.type_rol}</p>
                       <div className="modal_status_info ">
                         {
                           user?.status ? <MdOutlineSignalWifiStatusbar4Bar className={`Icon_status ${user?.status &&  "text-[green]"}`} /> : <MdSignalWifiStatusbarConnectedNoInternet className={`Icon_status ${user?.status && "text-[red]" }`} />
