@@ -12,7 +12,7 @@ import { CgBriefcase } from 'react-icons/cg'
 import { FaLocationDot } from 'react-icons/fa6'
 
 export default function PagePerfil() {
-  const { data, loading, putUpdateH } = useProfileService('1');
+  const { data, loading, putUpdateH } = useProfileService();
   const [edit, setEdit] = useState(false);
   const [initialValues, setInitialValues] = useState(null);
 
@@ -34,9 +34,9 @@ export default function PagePerfil() {
   };
 
   useEffect(() => {
-    if (data?.getById) {
-      reset(data.getById);
-      setInitialValues(data.getById);
+    if (data?.getByToken) {
+      reset(data.getByToken);
+      setInitialValues(data.getByToken);
     }
   }, [data, reset]);
 
@@ -50,7 +50,7 @@ export default function PagePerfil() {
   return (
     <>
       <LoaderComponent loading={loading?.propiertyData} />
-      {data && (
+      {data.getByToken&& (
         <article className="perfil-box main-page">
           <form onSubmit={handleSubmit(handleProfileUpdate)}>
             <div className="imagen-avatar">

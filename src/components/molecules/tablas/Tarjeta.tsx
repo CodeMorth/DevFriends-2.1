@@ -13,6 +13,7 @@ import { useMultipleModal } from '@/hook/useMultipeModal'
 import { taskUpdateCard, taskUpdateServicio } from '@/services/task.service'
 import { toast } from 'sonner'
 import { Cronometro } from './Cronometro'
+import { socket } from '@/lib/socket'
 
 export const Tarjeta: React.FC<TarjetaProps> = ({
   card,
@@ -35,6 +36,23 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
   const [timeValues, setTimeValues] = useState<{ [id_task: string]: string }>(
     {}
   );
+
+  useEffect(() => {
+    // Unirse a la sala específica de la tarjeta cuando el componente se monta
+    const cardRoom = `card_${card.id_card}`;
+    socket.emit('joinTask', card.id_card);
+
+    // Escuchar el evento `newTask`
+    socket.on('newTask', (newTask) => {
+      // Actualiza el estado de las tareas
+      getTaskTabH(card);  // Podrías simplemente agregar la nueva tarea a `task`
+    });
+
+    // Limpia el evento cuando el componente se desmonte
+    return () => {
+      socket.off('newTask');
+    };
+  }, [card.id_card, getTaskTabH]);
 
   const toggleMenu = (id_task: string) => {
     setMenuTaskOpen((prevState) => ({

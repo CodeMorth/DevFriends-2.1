@@ -22,7 +22,7 @@ axiosGlobal.interceptors.request.use(
   },
 
   (error) => {
-    toast.error('Error en la peticion', { duration: 3500 })
+    toast.error('Error en la peticion', { duration: 1500 })
     return Promise.reject(error)
   }
 )

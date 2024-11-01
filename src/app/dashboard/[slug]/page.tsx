@@ -12,12 +12,10 @@ import { FaShareAltSquare } from 'react-icons/fa'
 import { FaRegCirclePause, FaRegCirclePlay } from 'react-icons/fa6'
 import { toast } from 'sonner'
 import { useSearchParams} from 'next/navigation';
-import { useSocket } from '@/hook/useSocket'
 
 export default function Page({ params }: any) {
 
-  //hook de socketIo
-  const socket = useSocket();
+
 
  
 
