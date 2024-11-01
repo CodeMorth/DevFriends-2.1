@@ -7,6 +7,11 @@
     padding: calc(1rem * var(--scale));
   }
 
+  @screen laptop {
+    max-width: calc(45rem * var(--scale));
+
+  }
+
   .p-dialog-header-icons {
     @apply text-primaryPink hidden;
   }
@@ -35,13 +40,20 @@
   duration-300 ease-in-out hover:bg-[#64b9ff7e];
 
   @screen tablet {
-    @apply text-[1.7rem] font-extrabold px-[2rem] py-[.5rem] rounded-[.5rem] 
+    @apply text-[1.7rem] font-bold px-[2rem] py-[.5rem] rounded-[.5rem] 
   duration-300 ease-in-out;
   }
+
+  @screen laptop {
+   
+    font-size: calc(2.1rem * var(--scale));
+
+  } 
+
 }
 
 .box_inputs {
-  @apply flex flex-col gap-[2.5rem] p-[1rem];
+  @apply w-full flex flex-col gap-[2.5rem] p-[1rem];
 }
 
 .input_option {

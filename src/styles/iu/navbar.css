@@ -1,5 +1,5 @@
 .navbar {
-  @apply w-full bg-[#2D3248] h-[6.5rem] text-white flex items-center justify-between z-50;
+  @apply w-full bg-primaryBlack h-[6.5rem] text-white flex items-center justify-between z-50;
 
   .logo {
     @apply flex gap-[1rem] items-center;
@@ -8,7 +8,7 @@
   .imagen-logo {
     @apply w-[6rem] h-auto;
     @screen laptop {
-      width: calc(6rem * var(--scale));
+      width: calc(6rem * var(--scale)); 
       height: calc(4.5rem * var(--scale));
     }
   }

@@ -160,8 +160,15 @@ textarea {
 }
 
 .btn_login_box_ingreso {
-  @apply bg-primaryLead text-white text-[1.5rem] px-[2rem] py-[.5rem] rounded-[.5rem] border border-[#5c6281] 
+  @apply flex justify-center items-center gap-3 text-white text-[1.5rem] px-[2rem] py-[.5rem] rounded-[.5rem] border border-[#5c6281] 
   duration-300 ease-in-out hover:bg-[#64b9ff7e];
+
+  background: rgb(251, 121, 183);
+  background: linear-gradient(
+    90deg,
+    rgba(251, 121, 183, 1) 10%,
+    rgba(66, 126, 255, 1) 100%
+  );
 
   @screen tablet {
     @apply text-[1.7rem] font-extrabold px-[2rem] py-[.5rem] rounded-[.5rem] 

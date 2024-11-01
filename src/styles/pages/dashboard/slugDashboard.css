@@ -32,17 +32,17 @@
         @apply outline-none border-primaryBlue border-2  rounded-md bg-transparent  text-[1.2rem] ;
       }
       & select {
-        @apply text-[#F969AA] font-bold bg-[#2D3248] text-[1.5rem] px-[1rem] py-[1rem] ;
+        @apply text-[#F969AA] font-bold bg-primaryBlack text-[1.5rem] px-[1rem] py-[1rem] ;
       }
       & option {
-        @apply   rounded-md bg-[#2D3248] text-[1.3rem] text-[#F969AA] font-bold  ;
+        @apply   rounded-md bg-primaryBlack text-[1.3rem] text-[#F969AA] font-bold  ;
       }
     }
   }
   
 
   .header-rigth {
-    @apply  flex flex-col items-center gap-[1rem] border-b-primaryPink border-b-[0.2rem] w-full  p-[1rem] overflow-hidden;
+    @apply  flex flex-col items-center gap-[1rem] border-b-primaryPink border-b-[0.2rem] w-full  p-[1rem] ;
 
     @screen tablet{
       @apply flex-row justify-between items-center

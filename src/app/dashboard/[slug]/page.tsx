@@ -253,14 +253,14 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
               )}
 
               <div className="generate-token-container ">
-                <button onClick={generadorInvitation} className="button-share">
+                <button onClick={generadorInvitation} className=" btn_login_box_ingreso ">
                   <div>
                     <FaShareAltSquare />
                   </div>
                   <p>Generar Codigo Invitation</p>
                 </button>
                 {tokenIn !== '' && (
-                  <div className="flex justify-between items-center w-full button-share">
+                  <div className="flex justify-between items-center  btn_login_box_ingreso !text-[1rem] ">
                     <h3 className="!text-[1.3rem]">
                       {tokenIn.slice(0, 10)}...{tokenIn.slice(-10)}
                     </h3>

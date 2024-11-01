@@ -47,9 +47,9 @@ export const HomeDev = () => {
           Dev-Friend tu compañero digital que une proyectos, conecta equipos y
           potencia herramientas
         </h3>
-        <div className="buttons_container">
-          <p onClick={() => openModals('register')} className="bg-primaryPink cursor-pointer">Comienza gratis</p>
-          <Link href="https://github.com/CodeMorth/DevFriends-2.1" target='_blank'  className="bg-white text-primaryBlack"> Codigo</Link>
+        <div className="buttons_container ">
+          <button onClick={() => openModals('register')} className="animate-bounce bg-primaryPink cursor-pointer">Comienza gratis</button>
+          <Link href="https://github.com/CodeMorth/DevFriends-2.1" target='_blank'  className=" bg-white text-primaryBlack"> Codigo</Link>
         </div>
         <div className="data_container">
           <div className="box_container">

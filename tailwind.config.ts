@@ -15,7 +15,7 @@ const config: Config = {
       },
       colors: {
         titleColorBlue: '#58A0DE',
-        primaryBlack: '#2D3248',
+        primaryBlack: '#1D2735',
         primaryPink: '#fb79b7',
         primaryBlue: '#427eff',
         primaryLead : "#606582"

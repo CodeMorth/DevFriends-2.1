@@ -71,9 +71,9 @@
       gap: calc(1.7rem * var(--scale));
     }
 
-    p,
+    button,
     a {
-      @apply p-2 px-4 rounded-3xl text-lg font-bold;
+      @apply p-2 px-4 rounded-2xl text-lg font-bold;
 
       @screen tablet {
         @apply text-[1.6rem] p-3 px-6;
