@@ -6,6 +6,7 @@ import { Tarjeta } from '@/components/molecules'
 import { cardsPerUser } from '@/services/card.service'
 import { useSearchParams } from 'next/navigation'
 import { tittleCardInterface } from '@/interface/components/modals/SlugTablas.interface'
+import { socket } from '@/lib/socket'
 
 export const SlugTablas = () => {
   const searchParams = useSearchParams()
@@ -19,9 +20,21 @@ export const SlugTablas = () => {
 
   useEffect(() => {
     getCards()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
+    if (idTable) {
+      socket.emit('joinTable', idTable)
+
+      socket.on('newCard', (newCard) => {
+        setTitleCard((prevCards) => [...prevCards, newCard.card])
+      })
+
+      return () => {
+        socket.off('newCard')
+        socket.emit('leaveTable', idTable)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idTable])
   const constrainTask = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<HTMLDivElement[]>([])
 
