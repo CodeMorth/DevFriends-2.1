@@ -2,7 +2,9 @@
 import {
   ModalDashboard,
   TablesWorkSpaces,
-  WorkSpaces
+  WorkSpaces,
+  MembersWorkSpaces,
+  ConfigurationWorkSpaces
 } from '@/components/molecules'
 import { useState } from 'react'
 import { AccordionHorizontal } from '@/components/design/AccordionHorizontal'
@@ -11,9 +13,12 @@ import { ModalCodigoInvitation } from '../modals/dashboard/ModalCodigoInvitation
 import { useMultipleModal } from '@/hook/useMultipeModal'
 
 export const HomeDashboard = () => {
-  const { isModalOpen, openModals, closeModals } = useMultipleModal();
-  const [idWork, setidWork] = useState<string>("");
-  const { WorkSpaceUser, getAllWorkSpaces } = useWorkSpaceAll();
+  const { isModalOpen, openModals, closeModals } = useMultipleModal()
+  const [idWork, setIdWork] = useState<string>('')
+  const { WorkSpaceUser, getAllWorkSpaces } = useWorkSpaceAll()
+  const [dataSelected, setdataSelected] = useState("")
+
+  console.log("dataSelected",dataSelected)
 
   return (
     <>
@@ -27,20 +32,32 @@ export const HomeDashboard = () => {
               <WorkSpaces
                 allWorkSpaces={getAllWorkSpaces}
                 Work_Space_user={WorkSpaceUser}
-                setidWork={setidWork}
+                setIdWork={setIdWork}
+                setdataSelected={setdataSelected}
               />
-              <button onClick={() => openModals('spaceWork')} className="dashboard-left-content">
+              <button
+                onClick={() => openModals('spaceWork')}
+                className="dashboard-left-content"
+              >
                 + Crear un espacio de trabajo
               </button>
               <p
                 onClick={() => openModals('codigo')}
                 className="mt-[1rem] bg-[#F183B6] text-center font-bold text-[#2B3146] rounded-md duration-300 ease-in-out hover:bg-primaryPink hover:cursor-pointer"
               >
-                Codigo de Invitacion
+                Código de Invitación
               </p>
             </div>
           </AccordionHorizontal>
-          <TablesWorkSpaces idWork={idWork} />
+          {dataSelected === "tablesWorks" && (
+            <TablesWorkSpaces idWork={idWork} />
+          )}
+          {dataSelected === "membersWorks" && (
+            <MembersWorkSpaces />
+          )}
+          {dataSelected === "configurationWorks" && (
+            <ConfigurationWorkSpaces />
+          )}
         </main>
         <ModalDashboard
           allWorkSpaces={getAllWorkSpaces}

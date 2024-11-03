@@ -8,10 +8,9 @@ import useTableXWorkSpace from '@/hook/table/useTableXWorkSpace'
 import InvitadosModal from '../modals/tablero-modal/InvitadosModal'
 import { useMultipleModal } from '@/hook/useMultipeModal'
 
-
 export const TablesWorkSpaces = ({ idWork }: any) => {
-  const { isModalOpen,openModals , closeModals} = useMultipleModal();
-  const { tableWorkSpaces, getTableWorkSpaces } = useTableXWorkSpace();
+  const { isModalOpen, openModals, closeModals } = useMultipleModal()
+  const { tableWorkSpaces, getTableWorkSpaces } = useTableXWorkSpace()
 
   useEffect(() => {
     if (idWork) {
@@ -25,28 +24,11 @@ export const TablesWorkSpaces = ({ idWork }: any) => {
       {tableWorkSpaces && (
         <>
           <div className="tables-content">
-            <div className="content-top">
-              <div className="content-top-name">
-                <div className="content-top-name-image">
-                  <Image
-                    src={'/logo/logo-tareas.png'}
-                    alt="logo"
-                    width={1000}
-                    height={1000}
-                    priority
-                    className="w-full h-full"
-                  />
-                </div>
-                <span className="content-top-name-text">
-                  {/* {spaceWorksSpecific?.datos?.titleSpaceWork} */}
-                </span>
-              </div>
-              <ButtonsTwo>Tableros</ButtonsTwo>
-              <ButtonsTwo onClick={() => openModals('invitados')}>Miembros</ButtonsTwo>
-              <ButtonsTwo>Configuracion</ButtonsTwo>
-            </div>
             <div className="container-tables">
-              <button onClick={() => openModals('tablero')} className="content-main">
+              <button
+                onClick={() => openModals('tablero')}
+                className="content-main"
+              >
                 Crear tablero nuevo
               </button>
               {tableWorkSpaces.map((data: any) => {
@@ -78,9 +60,8 @@ export const TablesWorkSpaces = ({ idWork }: any) => {
           />
           <InvitadosModal
             visible={isModalOpen('invitados')}
-            closeModal={() => closeModals('invitados')} 
+            closeModal={() => closeModals('invitados')}
           />
-          
         </>
       )}
     </div>

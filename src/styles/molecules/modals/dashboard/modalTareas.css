@@ -6,6 +6,10 @@
   & button {
     @apply w-[35%] py-2  rounded-[.5rem]  bg-primaryBlue text-[#2B3146];
   }
+
+  .p-inputtext {
+    @apply text-2xl !px-3 text-center rounded-none;
+  }
 }
 
 .p-dialog-header-icons {
@@ -17,9 +21,3 @@
     @apply !hidden;
 
 } */
-
-.p-inputtext	{
-
-    @apply text-2xl !px-3 text-center rounded-none;
-
-}

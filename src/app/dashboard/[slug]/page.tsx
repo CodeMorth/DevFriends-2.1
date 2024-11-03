@@ -23,7 +23,7 @@ export default function Page({ params }: any) {
   //estado para mostrar la musica local o global
   const [TipoMusica, setTipoMusica] = useState(' ')
 
-  const [idWork, setidWork] = useState<any>({ id_work_space: null })
+  const [idWork, setIdWork] = useState<any>({ id_work_space: null })
   //estado del link de la musica
   const [Musica, setMusica] = useState<any>(" ")
   //estado del link de la musica Global
@@ -45,7 +45,7 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
 
   useEffect(() => {
     const id = obtenerLocal('work_space')
-    if (id !== null) setidWork({ id_work_space: id })
+    if (id !== null) setIdWork({ id_work_space: id })
 
     // Elimina el token después de 1 minuto
     setTimeout(() => {
@@ -163,12 +163,24 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
                     </div>
                     <button className="members-text">Miembros +</button>
                   </div>
+                  <div className="members-container">
+                    <div className="members-image">
+                      <Image
+                        src={'/dashboard/group_2990282.png'}
+                        alt=""
+                        width={1000}
+                        height={1000}
+                        className="w-full h-full"
+                      ></Image>
+                    </div>
+                    <button className="members-text">Configuración</button>
+                  </div>
                 </div>
               </AccordionHorizontal>
             </div>
           </div>
-          <div className="container-slug-rigth">
-            <div className="header-rigth">
+          <div className="container-slug-right">
+            <div className="header-right">
               <h1 className="title-table">{decodeURIComponent(slug)}</h1>
 
               <div className="container_input_link_musica ">

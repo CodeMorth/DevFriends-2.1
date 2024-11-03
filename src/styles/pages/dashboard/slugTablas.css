@@ -1,5 +1,5 @@
    /* slugTablas main principal*/
-.main-rigth{
+.main-right{
     @apply max-h-full w-full h-full  flex flex-col gap-10 z-[2] backdrop-blur-[1rem] ;
 
     background: rgb(50, 56, 82);
@@ -45,7 +45,7 @@
     }
 }
 
-.main-rigth::after{
+.main-right::after{
     content: " ";
     position: absolute;
     width: 100%;

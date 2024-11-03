@@ -5,18 +5,27 @@ import { Accordion, AccordionTab } from 'primereact/accordion'
 import { useEffect } from 'react'
 import { WorkSpace, WorkSpaceUser } from '@/interface/page'
 import { userLocalStoras } from '@/hook'
+import { BiCog } from 'react-icons/bi'
+import { MdOutlineDashboardCustomize } from 'react-icons/md'
+import { FaUsers } from 'react-icons/fa'
 
 interface WorkSpacesProps {
   allWorkSpaces: () => void
-  setidWork: (id: string) => void
+  setIdWork: (id: string) => void
   Work_Space_user: WorkSpaceUser[] | null
+  setdataSelected: any
 }
 
 const { agregarLocal } = userLocalStoras()
 
-export const WorkSpaces = ({ setidWork, allWorkSpaces, Work_Space_user }: WorkSpacesProps) => {
+export const WorkSpaces = ({
+  setIdWork,
+  allWorkSpaces,
+  Work_Space_user,
+  setdataSelected
+}: WorkSpacesProps) => {
   const enviarId = (id: string) => {
-    setidWork(id)
+    setIdWork(id)
     agregarLocal('work_space', id)
   }
 
@@ -35,35 +44,35 @@ export const WorkSpaces = ({ setidWork, allWorkSpaces, Work_Space_user }: WorkSp
             header={data?.name_work_space}
           >
             <div className="container">
-              <div className="boards-container">
-                <div className="boards-image">
-                  <Image
-                    src={'/dashboard/tablero.png'}
-                    alt=""
-                    width={1000}
-                    height={1000}
-                    className="w-full h-full"
-                  ></Image>
+              <button
+                onClick={() => {
+                  enviarId(data?.id_work_space), setdataSelected('tablesWorks')
+                }}
+                className="boards-container"
+              >
+                <div className="icon_container">
+                  <MdOutlineDashboardCustomize className="w-full h-full" />
                 </div>
-                <h1
-                  className="boards-text"
-                  onClick={() => enviarId(data?.id_work_space)}
-                >
-                  Tableros
-                </h1>
-              </div>
-              <div className="members-container">
-                <div className="members-image">
-                  <Image
-                    src={'/dashboard/group_2990282.png'}
-                    alt=""
-                    width={1000}
-                    height={1000}
-                    className="w-full h-full"
-                  ></Image>
+                <h1 className="boards-text">Tableros</h1>
+              </button>
+              <button
+                onClick={() => setdataSelected('membersWorks')}
+                className="members-container"
+              >
+                <div className="icon_container">
+                  <FaUsers className="w-full h-full" />
                 </div>
-                <div className="members-text">Miembros +</div>
-              </div>
+                <div className="members-text">Miembros</div>
+              </button>
+              <button
+                onClick={() => setdataSelected('configurationWorks')}
+                className="members-container"
+              >
+                <div className="icon_container">
+                  <BiCog className="w-full h-full" />
+                </div>
+                <button className="members-text">Configuración</button>
+              </button>
             </div>
           </AccordionTab>
         ))}

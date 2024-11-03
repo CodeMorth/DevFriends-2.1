@@ -26,7 +26,7 @@ export const SlugTablas = () => {
   const cardRefs = useRef<HTMLDivElement[]>([])
 
   return (
-    <div ref={constrainTask} className="main-rigth ">
+    <div ref={constrainTask} className="main-right ">
       <button className="buton_add_cards" onClick={openModal}>
         Añadir Tarjeta +
       </button>

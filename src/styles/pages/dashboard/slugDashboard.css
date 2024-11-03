@@ -23,7 +23,7 @@
     } */
   }
 
-  .container-slug-rigth {
+  .container-slug-right {
     @apply flex flex-col  w-full !relative  ;
     
     .container_input_link_musica{
@@ -41,7 +41,7 @@
   }
   
 
-  .header-rigth {
+  .header-right {
     @apply  flex flex-col items-center gap-[1rem] border-b-primaryPink border-b-[0.2rem] w-full  p-[1rem] ;
     /* overflow-hidden */
     @screen tablet{

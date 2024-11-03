@@ -89,7 +89,11 @@ export const AccordionHorizontal = ({
           />
         </motion.svg>
       </motion.button>
-      <div className="AccordionHorizontal main-page">
+      <div
+        className={`AccordionHorizontal main-page ${
+          open ? '' : 'pointer-events-none'
+        }`}
+      >
         <motion.div
           className="container-accordion-general"
           initial={false}
