@@ -11,25 +11,21 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { FaShareAltSquare } from 'react-icons/fa'
 import { FaRegCirclePause, FaRegCirclePlay } from 'react-icons/fa6'
 import { toast } from 'sonner'
-import { useSearchParams} from 'next/navigation';
+import { useSearchParams } from 'next/navigation'
+import { socket } from '@/lib/socket'
 
 export default function Page({ params }: any) {
-
-
-
- 
-
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams()
   //estado para mostrar la musica local o global
   const [TipoMusica, setTipoMusica] = useState(' ')
 
   const [idWork, setIdWork] = useState<any>({ id_work_space: null })
   //estado del link de la musica
-  const [Musica, setMusica] = useState<any>(" ")
+  const [Musica, setMusica] = useState<any>(' ')
   //estado del link de la musica Global
-  const [MusicaGlobal, setMusicaGlobal] = useState<any>(" ")
-//neuvo estado de musica global
-const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
+  const [MusicaGlobal, setMusicaGlobal] = useState<any>(' ')
+  //neuvo estado de musica global
+  const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(' ')
 
   //estado de referencia del play o pause
   const audioPlayerRef = useRef<any>(null)
@@ -39,9 +35,25 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
 
   const { obtenerLocal } = userLocalStoras()
 
-  const { slug } = params;
-  const idTable:any = searchParams.get('id');
+  const { slug } = params
+  const idTable: any = searchParams.get('id')
 
+  //sokect io de musica global
+  useEffect(() => {
+    // Unirse a la sala específica de la tarjeta cuando el componente se monta
+    socket.emit('joinTable', idTable)
+
+    if (TipoMusica === 'global') {
+      socket.on('addMusic', (data) => {
+        setMusicaGlobal(data.musicaUpdate)
+      })
+    }
+
+    // Limpia el evento cuando el componente se desmonte
+    return () => {
+      socket.off('addMusic')
+    }
+  }, [TipoMusica, setMusicaGlobal])
 
   useEffect(() => {
     const id = obtenerLocal('work_space')
@@ -75,62 +87,55 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
   const handlePause = (ref: any) => ref.current.pause()
 
   // funcion para manejar volumen
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>,ref:any) => {
+  const handleVolumeChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    ref: any
+  ) => {
     const volume = parseInt(e.target.value, 10)
     ref.current?.setVolume(volume)
   }
 
   const changeMusica = (e: any) => {
- 
-    if (e.target.value === " ") {
-      setMusica(" ")
-      setMusicaGlobal(" ")
+    if (e.target.value === ' ') {
+      setMusica(' ')
+      setMusicaGlobal(' ')
     }
-    setTipoMusica(e.target.value);
-   
+    setTipoMusica(e.target.value)
   }
 
-
-
   //funcion para llamar link de la base de dato
-
   const getMusicaGlobal = async () => {
-     await musicaTable(idTable).then(res=> setMusicaGlobal(res.data[0].link_musica )).catch(error => console.log(error))
+    await musicaTable(idTable)
+      .then((res) => setMusicaGlobal(res.data[0].link_musica))
+      .catch((error) => console.log(error))
   }
   //funcion para enviar el link de musica
 
   const postMusicaglobal = async () => {
     const musicaDatos = {
-      link_musica : MusicaGlobal ,
-      id_table : idTable
+      link_musica: MusicaGlobal,
+      id_table: idTable
     }
     await musicaService(musicaDatos)
   }
 
   //llamado al link global
- useEffect(() => {
-  if (TipoMusica === "global") {
-    getMusicaGlobal();
-  }
- 
-}, [TipoMusica ]);
-
-   // Evaluar cambios en MusicaGlobal
-   useEffect(() => {
-    // Compara con el valor anterior
-    if (MusicaGlobal !== prevMusicaGlobal) { 
-      postMusicaglobal() 
-        .then(() => getMusicaGlobal()) // Luego obtiene el nuevo valor
-        .catch(error => console.log(error));
+  useEffect(() => {
+    if (TipoMusica === 'global') {
+      getMusicaGlobal()
     }
-    setPrevMusicaGlobal(MusicaGlobal); // Actualiza el valor anterior
+  }, [TipoMusica])
 
-  
-    
-  }, [MusicaGlobal]);
-  
-
-
+  // Evaluar cambios en MusicaGlobal
+  useEffect(() => {
+    // Compara con el valor anterior
+    if (MusicaGlobal !== prevMusicaGlobal) {
+      postMusicaglobal()
+        .then(() => getMusicaGlobal()) // Luego obtiene el nuevo valor
+        .catch((error) => console.log(error))
+    }
+    setPrevMusicaGlobal(MusicaGlobal) // Actualiza el valor anterior
+  }, [MusicaGlobal])
   return (
     <>
       <div className="SlugDashboard ">
@@ -209,7 +214,7 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
                       min="0"
                       max="100"
                       defaultValue="100"
-                      onChange={(e) =>handleVolumeChange(e,audioPlayerRef)}
+                      onChange={(e) => handleVolumeChange(e, audioPlayerRef)}
                     />
 
                     <FaRegCirclePause
@@ -218,8 +223,8 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
                     />
                   </div>
                 )}
-                 {/* musica global */}
-                 {TipoMusica === "global" && (
+                {/* musica global */}
+                {TipoMusica === 'global' && (
                   <input
                     placeholder="Link musica Global"
                     type="text"
@@ -239,7 +244,9 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
                       min="0"
                       max="100"
                       defaultValue="100"
-                      onChange={(e) =>handleVolumeChange(e,audioPlayerGlobalRef)}
+                      onChange={(e) =>
+                        handleVolumeChange(e, audioPlayerGlobalRef)
+                      }
                     />
                     <FaRegCirclePause
                       onClick={() => handlePause(audioPlayerGlobalRef)}
@@ -263,7 +270,10 @@ const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(" ");
               )}
 
               <div className="generate-token-container ">
-                <button onClick={generadorInvitation} className=" btn_login_box_ingreso ">
+                <button
+                  onClick={generadorInvitation}
+                  className=" btn_login_box_ingreso "
+                >
                   <div>
                     <FaShareAltSquare />
                   </div>

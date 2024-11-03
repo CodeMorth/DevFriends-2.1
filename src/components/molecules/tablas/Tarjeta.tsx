@@ -27,7 +27,7 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
     [id_task: string]: boolean
   }>({});
   const { closeModals, isModalOpen, openModals } = useMultipleModal();
-  const { task, getTaskTabH, updateTaskH } = useTaskXTable();
+  const { task, getTaskTabH, updateTaskH , setTask} = useTaskXTable();
   
   const cardRef = useRef<HTMLDivElement>(null);
   const [create, setcreate] = useState(true);
@@ -39,18 +39,23 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
 
   useEffect(() => {
     // Unirse a la sala específica de la tarjeta cuando el componente se monta
-    const cardRoom = `card_${card.id_card}`;
     socket.emit('joinTask', card.id_card);
 
     // Escuchar el evento `newTask`
     socket.on('newTask', (newTask) => {
       // Actualiza el estado de las tareas
-      getTaskTabH(card);  // Podrías simplemente agregar la nueva tarea a `task`
+      getCards();  
     });
+    // Escuchar el evento `updateTask`
+  socket.on('updateTask', (updatedTask) => {
+    // Actualiza el estado de las tareas con la tarea actualizada
+    getCards();  
+  });
 
     // Limpia el evento cuando el componente se desmonte
     return () => {
       socket.off('newTask');
+    socket.off('updateTask');
     };
   }, [card.id_card, getTaskTabH]);
 
@@ -123,6 +128,7 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
       }
       toggleMenu(task?.id_task)
     } else {
+   
       if (inputElement) {
         inputElement.classList.remove('!border-none', 'border-2')
       }
@@ -130,7 +136,7 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
         id_task: task?.id_task,
         id_card: card?.id_card + 1
       })
-      await getTaskTabH(card)
+      await getCards()
       toggleMenu(task?.id_task)
     }
   }
