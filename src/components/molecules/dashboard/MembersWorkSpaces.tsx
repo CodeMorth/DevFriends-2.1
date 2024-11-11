@@ -4,27 +4,45 @@ import { InputText } from 'primereact/inputtext'
 import { IconField } from 'primereact/iconfield'
 import { InputIcon } from 'primereact/inputicon'
 import { UserDataCard } from './UserDataCard'
-import { allUserTableService } from '@/services'
+import { getWorkSpace } from '@/services'
 import { HiMiniUserGroup } from 'react-icons/hi2'
 import { MdBroadcastOnPersonal } from 'react-icons/md'
 import { RiAdminFill } from 'react-icons/ri'
 
-export const MembersWorkSpaces = () => {
+interface MembersWorkSpacesProps {
+  idWork: string
+}
+
+export const MembersWorkSpaces = ({ idWork }: MembersWorkSpacesProps) => {
   const [usersData, setUsersData] = useState<null | []>(null)
+  const [inputData, setInputData] = useState('')
 
   useEffect(() => {
     ;(async () => {
       try {
-        const response = await allUserTableService()
-        setUsersData(response.data)
+        const response = await getWorkSpace(idWork)
+        setUsersData(response.data.users)
       } catch (error) {}
     })()
-  }, [])
+  }, [idWork])
 
-  console.log("usersData",usersData)
+  const filtredData = usersData?.filter((data: any) => {
+    for (let key in data) {
+      if (typeof data[key] === 'string') {
+        if (data[key].toLowerCase().includes(inputData.toLowerCase())) {
+          return true
+        }
+      }
+    }
+    return false
+  })
 
-  const amountActive = usersData?.filter((user: any) => user?.status === 'connected').length
-  const amountAdmin = usersData?.filter((user: any) => user?.rols?.[0]?.type_rol === 'admin').length
+  const amountActive = filtredData?.filter(
+    (user: any) => user?.status === 'connected'
+  ).length
+  const amountAdmin = filtredData?.filter(
+    (user: any) => user?.rols?.[0]?.type_rol === 'admin'
+  ).length
 
   return (
     <div className="flex flex-col gap-6 w-full">
@@ -39,7 +57,7 @@ export const MembersWorkSpaces = () => {
       <div className="grid grid-cols-[repeat(auto-fill,minmax(min(19rem,100%),1fr))] gap-6 w-full ">
         <MembersDataCard
           tittle="Total miembros"
-          value={usersData?.length}
+          value={filtredData?.length ?? 0}
           icon={<HiMiniUserGroup className="w-full h-full text-primaryBlue" />}
         />
         <MembersDataCard
@@ -59,16 +77,16 @@ export const MembersWorkSpaces = () => {
         <IconField className="w-full" iconPosition="left">
           <InputIcon className="pi pi-search text-white " />
           <InputText
-            // value={searchData}
+            value={inputData}
             className=" bg-[#2A2A4A] text-start w-full p-2 tablet:p-3 tablet:pl-9 tablet:text-xl border border-primaryBlue rounded-md tablet:w-1/2 laptop:w-auto "
-            // onChange={(e) => setsearchData(e.target.value)}
+            onChange={(e) => setInputData(e.target.value)}
             placeholder="Buscar miembro"
           />
         </IconField>
       </div>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(min(24rem,100%),1fr))]  gap-10">
-        {usersData &&
-          usersData?.map((user: any) => (
+        {filtredData &&
+          filtredData?.map((user: any) => (
             <UserDataCard
               key={user?.id_user}
               urlImage={

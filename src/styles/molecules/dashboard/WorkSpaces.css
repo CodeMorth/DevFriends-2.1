@@ -1,6 +1,6 @@
 .WorkSpaces {
   .accordion-container {
-    @apply flex flex-col gap-[2.5rem] pt-[2.5rem] pb-[2.5rem];
+    @apply flex flex-col gap-[1rem] pt-[1.5rem] pb-[1.5rem];
   }
 
   .container {

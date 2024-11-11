@@ -2,6 +2,9 @@ import { axiosGlobal } from '@/interceptor'
 
 //generateToken
 export const generateTokenInvitations = (data: any) => {
+  
+  console.log("data del generateTokenInvitations",data)
+
   return axiosGlobal.post(`generateToken`, data)
 }
 

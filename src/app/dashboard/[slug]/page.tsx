@@ -57,7 +57,7 @@ export default function Page({ params }: any) {
 
   useEffect(() => {
     const id = obtenerLocal('work_space')
-    if (id !== null) setIdWork({ id_work_space: id })
+    if (id !== null) setIdWork(id)
 
     // Elimina el token después de 1 minuto
     setTimeout(() => {
@@ -67,7 +67,7 @@ export default function Page({ params }: any) {
   }, [tokenIn])
 
   const generadorInvitation = async () => {
-    await generateTokenInvitations(idWork).then((res: any) =>
+    await generateTokenInvitations({id_work_space:idWork,id_table:idTable}).then((res: any) =>
       setTokenIn(res.data)
     ).catch
 

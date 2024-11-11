@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
-import Image from 'next/image'
 import { Accordion, AccordionTab } from 'primereact/accordion'
 import { useEffect } from 'react'
-import { WorkSpace, WorkSpaceUser } from '@/interface/page'
+import { WorkSpace } from '@/interface/page'
 import { userLocalStoras } from '@/hook'
 import { BiCog } from 'react-icons/bi'
 import { MdOutlineDashboardCustomize } from 'react-icons/md'
@@ -12,7 +11,7 @@ import { FaUsers } from 'react-icons/fa'
 interface WorkSpacesProps {
   allWorkSpaces: () => void
   setIdWork: (id: string) => void
-  Work_Space_user: WorkSpaceUser[] | null
+  Work_Space_user: any
   setdataSelected: any
 }
 
@@ -34,10 +33,12 @@ export const WorkSpaces = ({
     allWorkSpaces()
   }, [])
 
+  console.log("Work_Space_user",Work_Space_user)
+
   return (
     <div className="WorkSpaces">
       <Accordion className="accordion-container" activeIndex={0}>
-        {Work_Space_user?.[0]?.work_spaces?.map((data: WorkSpace) => (
+        {Work_Space_user?.map((data: WorkSpace) => (
           <AccordionTab
             key={data?.id_work_space}
             className="dev-friends"
@@ -56,7 +57,9 @@ export const WorkSpaces = ({
                 <h1 className="boards-text">Tableros</h1>
               </button>
               <button
-                onClick={() => setdataSelected('membersWorks')}
+                onClick={() => {
+                  enviarId(data?.id_work_space), setdataSelected('membersWorks')
+                }}
                 className="members-container"
               >
                 <div className="icon_container">
@@ -65,7 +68,10 @@ export const WorkSpaces = ({
                 <div className="members-text">Miembros</div>
               </button>
               <button
-                onClick={() => setdataSelected('configurationWorks')}
+                onClick={() => {
+                  enviarId(data?.id_work_space),
+                    setdataSelected('configurationWorks')
+                }}
                 className="members-container"
               >
                 <div className="icon_container">

@@ -44,6 +44,26 @@ export const AccordionHorizontal = ({
 
   const toggleOpen = useCallback(() => setOpen((prev) => !prev), [])
 
+  const letterTitle = title?.split('').map((character, index) => (
+    <motion.h1
+      key={index}
+      style={{
+        display: 'inline-block',
+        overflow: 'hidden',
+        marginTop: '2rem',
+        color: titleColor
+      }}
+      initial={{ opacity: 1, x: 0 }}
+      animate={{
+        opacity: open ? 1 : '0',
+        x: open ? 0 : '100%'
+      }}
+      transition={{ delay: (title.length - index - 1) * 0.02 }}
+    >
+      {character === ' ' ? '\u00A0' : character}
+    </motion.h1>
+  ))
+
   return (
     <>
       <motion.button
@@ -106,25 +126,7 @@ export const AccordionHorizontal = ({
           <div className=" container-accordion  ">
             <div className="container-arrow">
               <div className="container-letter" style={{ display: 'flex' }}>
-                {title?.split('').map((character, index) => (
-                  <motion.h1
-                    key={index}
-                    style={{
-                      display: 'inline-block',
-                      overflow: 'hidden',
-                      marginTop: '2rem',
-                      color: titleColor
-                    }}
-                    initial={{ opacity: 1, x: 0 }}
-                    animate={{
-                      opacity: open ? 1 : '0',
-                      x: open ? 0 : '100%'
-                    }}
-                    transition={{ delay: (title.length - index - 1) * 0.02 }}
-                  >
-                    {character === ' ' ? '\u00A0' : character}
-                  </motion.h1>
-                ))}
+                {letterTitle}
               </div>
             </div>
             {children}

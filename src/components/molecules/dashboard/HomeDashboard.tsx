@@ -18,8 +18,6 @@ export const HomeDashboard = () => {
   const { WorkSpaceUser, getAllWorkSpaces } = useWorkSpaceAll()
   const [dataSelected, setdataSelected] = useState("")
 
-  console.log("dataSelected",dataSelected)
-
   return (
     <>
       <div className="dashboard main-page">
@@ -43,7 +41,7 @@ export const HomeDashboard = () => {
               </button>
               <p
                 onClick={() => openModals('codigo')}
-                className="mt-[1rem] bg-[#F183B6] text-center font-bold text-[#2B3146] rounded-md duration-300 ease-in-out hover:bg-primaryPink hover:cursor-pointer"
+                className="mt-[1.5rem] bg-[#F183B6] p-2 text-center font-bold text-[#2B3146] rounded-md duration-300 ease-in-out hover:bg-primaryPink hover:cursor-pointer"
               >
                 Código de Invitación
               </p>
@@ -53,10 +51,10 @@ export const HomeDashboard = () => {
             <TablesWorkSpaces idWork={idWork} />
           )}
           {dataSelected === "membersWorks" && (
-            <MembersWorkSpaces />
+            <MembersWorkSpaces idWork={idWork}/>
           )}
           {dataSelected === "configurationWorks" && (
-            <ConfigurationWorkSpaces />
+            <ConfigurationWorkSpaces idWork={idWork} getAllWorkSpaces={getAllWorkSpaces}/>
           )}
         </main>
         <ModalDashboard
