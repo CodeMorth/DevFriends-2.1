@@ -5,19 +5,16 @@ import type { NextRequest } from 'next/server'
 export async function middleware(req: NextRequest) {
   const cookieStore = cookies()
   const cookie = cookieStore.get('token')
-  // const pathname = req.nextUrl.pathname
+  const cookie2 = req.cookies.get('token')
 
-  if (!cookie) {
+  // Cambiamos la condición a `&&` para que pase si al menos una cookie existe
+  if (!cookie && !cookie2) {
     return NextResponse.redirect(new URL('/', req.url))
   }
-
-  // if (cookie && pathname === '/') {
-  //   return NextResponse.redirect(new URL('/dashboard', req.url))
-  // }
 
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/perfil/:path*']
+  matcher: ['/dashboard/:path*', '/perfil/:path*'],
 }
