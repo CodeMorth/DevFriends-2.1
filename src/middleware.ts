@@ -11,9 +11,9 @@ export async function middleware(req: NextRequest) {
   console.log('Soy el cookie 2', cookie2)
 
   // Cambiamos la condición a `&&` para que pase si al menos una cookie existe
-  if (!cookie && !cookie2) {
-    return NextResponse.redirect(new URL('/', req.url))
-  }
+  // if (!cookie && !cookie2) {
+  //   return NextResponse.redirect(new URL('/', req.url))
+  // }
 
   return NextResponse.next()
 }
