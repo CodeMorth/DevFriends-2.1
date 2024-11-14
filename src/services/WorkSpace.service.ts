@@ -21,3 +21,7 @@ export const updateWorkSpace = (id: string, data: object) => {
 export const deleteWorkSpaceS = (id: string) => {
   return axiosGlobal.delete(`deleteWork_space/${id}`)
 }
+
+export const getWorkSpaceMembers = (id_work_space: string) => {
+  return axiosGlobal.get(`work_Space_Members/${id_work_space}`)
+}

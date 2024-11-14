@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
+import Image from 'next/image'
 import { Accordion, AccordionTab } from 'primereact/accordion'
 import { useEffect } from 'react'
-import { WorkSpace } from '@/interface/page'
+import { WorkSpace, WorkSpaceUser } from '@/interface/page'
 import { userLocalStoras } from '@/hook'
 import { BiCog } from 'react-icons/bi'
 import { MdOutlineDashboardCustomize } from 'react-icons/md'
@@ -11,7 +12,7 @@ import { FaUsers } from 'react-icons/fa'
 interface WorkSpacesProps {
   allWorkSpaces: () => void
   setIdWork: (id: string) => void
-  Work_Space_user: any
+  Work_Space_user: WorkSpaceUser[] | null
   setdataSelected: any
 }
 
@@ -33,12 +34,10 @@ export const WorkSpaces = ({
     allWorkSpaces()
   }, [])
 
-  console.log("Work_Space_user",Work_Space_user)
-
   return (
     <div className="WorkSpaces">
       <Accordion className="accordion-container" activeIndex={0}>
-        {Work_Space_user?.map((data: WorkSpace) => (
+        {Work_Space_user?.[0]?.work_spaces?.map((data: WorkSpace) => (
           <AccordionTab
             key={data?.id_work_space}
             className="dev-friends"
@@ -77,7 +76,7 @@ export const WorkSpaces = ({
                 <div className="icon_container">
                   <BiCog className="w-full h-full" />
                 </div>
-                <button className="members-text">Configuración</button>
+                <span className="members-text">Configuración</span>
               </button>
             </div>
           </AccordionTab>

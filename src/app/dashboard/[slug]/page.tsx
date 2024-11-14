@@ -1,21 +1,30 @@
 'use client'
 import { AccordionHorizontal } from '@/components/design'
-import { AudioPlayer } from '@/components/musica/AudioPlayer'
-import { AudioPlayerGlobal } from '@/components/musica/AudioPlayerGlobal'
-import { SlugTablas } from '@/components/organins'
+
 import { userLocalStoras } from '@/hook'
 import { generateTokenInvitations } from '@/services/generateTokenInvitation.service'
 import { musicaService, musicaTable } from '@/services/musica.service'
-import Image from 'next/image'
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { FaShareAltSquare } from 'react-icons/fa'
-import { FaRegCirclePause, FaRegCirclePlay } from 'react-icons/fa6'
+import { useEffect, useRef, useState } from 'react'
+import { FaUsers } from 'react-icons/fa'
 import { toast } from 'sonner'
 import { useSearchParams } from 'next/navigation'
 import { socket } from '@/lib/socket'
+import { MdOutlineDashboardCustomize } from 'react-icons/md'
+import { BiCog } from 'react-icons/bi'
+import TasksPage from '@/components/page/slug/TasksPage'
+import {
+  ConfigurationWorkSpaces,
+  MembersWorkSpaces,
+  ModalCodigoInvitation
+} from '@/components/molecules'
+import { useMultipleModal } from '@/hook/useMultipeModal'
 
 export default function Page({ params }: any) {
   const searchParams = useSearchParams()
+
+  const { isModalOpen, openModals, closeModals } = useMultipleModal()
+
+
   //estado para mostrar la musica local o global
   const [TipoMusica, setTipoMusica] = useState(' ')
 
@@ -26,6 +35,8 @@ export default function Page({ params }: any) {
   const [MusicaGlobal, setMusicaGlobal] = useState<any>(' ')
   //neuvo estado de musica global
   const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(' ')
+
+  const [dataSelected, setdataSelected] = useState('')
 
   //estado de referencia del play o pause
   const audioPlayerRef = useRef<any>(null)
@@ -67,9 +78,10 @@ export default function Page({ params }: any) {
   }, [tokenIn])
 
   const generadorInvitation = async () => {
-    await generateTokenInvitations({id_work_space:idWork,id_table:idTable}).then((res: any) =>
-      setTokenIn(res.data)
-    ).catch
+    await generateTokenInvitations({
+      id_work_space: idWork,
+      id_table: idTable
+    }).then((res: any) => setTokenIn(res.data)).catch
 
     // Elimina el token después de 1 minuto
     setTimeout(() => {
@@ -144,160 +156,87 @@ export default function Page({ params }: any) {
             <div className="menu-slug">
               <AccordionHorizontal title={'Dev Friend'} titleColor="#f969aa">
                 <div className="container">
-                  <div className="boards-container">
-                    <div className="boards-image">
-                      <Image
-                        src={'/dashboard/tablero.png'}
-                        alt=""
-                        width={1000}
-                        height={1000}
-                        className="w-full h-full"
-                      ></Image>
+                  <button
+                    onClick={() => {
+                      setdataSelected('task')
+                    }}
+                    className="boards-container"
+                  >
+                    <div className="icon_container">
+                      <MdOutlineDashboardCustomize className="w-full h-full" />
                     </div>
-                    <button className="boards-text">Tableros</button>
-                  </div>
-                  <div className="members-container">
-                    <div className="members-image">
-                      <Image
-                        src={'/dashboard/group_2990282.png'}
-                        alt=""
-                        width={1000}
-                        height={1000}
-                        className="w-full h-full"
-                      ></Image>
+                    <h1 className="boards-text">Tareas</h1>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setdataSelected('membersWorks')
+                    }}
+                    className="members-container"
+                  >
+                    <div className="icon_container">
+                      <FaUsers className="w-full h-full" />
                     </div>
-                    <button className="members-text">Miembros +</button>
-                  </div>
-                  <div className="members-container">
-                    <div className="members-image">
-                      <Image
-                        src={'/dashboard/group_2990282.png'}
-                        alt=""
-                        width={1000}
-                        height={1000}
-                        className="w-full h-full"
-                      ></Image>
+                    <div className="members-text">Miembros</div>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setdataSelected('configurationWorks')
+                    }}
+                    className="members-container"
+                  >
+                    <div className="icon_container">
+                      <BiCog className="w-full h-full" />
                     </div>
-                    <button className="members-text">Configuración</button>
-                  </div>
+                    <span className="members-text">Configuración</span>
+                  </button>
                 </div>
               </AccordionHorizontal>
             </div>
-          </div>
-          <div className="container-slug-right">
-            <div className="header-right">
-              <h1 className="title-table">{decodeURIComponent(slug)}</h1>
-
-              <div className="container_input_link_musica ">
-                <select onChange={changeMusica} value={TipoMusica}>
-                  <option value=" ">elige el tipo de musica</option>
-                  <option value="local">Musica Local</option>
-                  <option value="global">Musica Global</option>
-                </select>
-
-                {TipoMusica === 'local' && (
-                  <input
-                    placeholder="Coloca link de tu musica "
-                    type="text"
-                    name="musicaElegir"
-                    onChange={(e) => setMusica(e.target.value)}
-                  />
-                )}
-                {Musica !== ' ' && (
-                  <div className="content_input_play_pause">
-                    <FaRegCirclePlay
-                      onClick={() => handlePlay(audioPlayerRef)}
-                      className="cursor-pointer"
-                    />
-                    <input
-                      type="range"
-                      min="0"
-                      max="100"
-                      defaultValue="100"
-                      onChange={(e) => handleVolumeChange(e, audioPlayerRef)}
-                    />
-
-                    <FaRegCirclePause
-                      onClick={() => handlePause(audioPlayerRef)}
-                      className="cursor-pointer"
-                    />
-                  </div>
-                )}
-                {/* musica global */}
-                {TipoMusica === 'global' && (
-                  <input
-                    placeholder="Link musica Global"
-                    type="text"
-                    name="musicaElegir"
-                    value={MusicaGlobal}
-                    onChange={(e) => setMusicaGlobal(e.target.value)}
-                  />
-                )}
-                {MusicaGlobal !== ' ' && (
-                  <div className="content_input_play_pause">
-                    <FaRegCirclePlay
-                      onClick={() => handlePlay(audioPlayerGlobalRef)}
-                      className="cursor-pointer"
-                    />
-                    <input
-                      type="range"
-                      min="0"
-                      max="100"
-                      defaultValue="100"
-                      onChange={(e) =>
-                        handleVolumeChange(e, audioPlayerGlobalRef)
-                      }
-                    />
-                    <FaRegCirclePause
-                      onClick={() => handlePause(audioPlayerGlobalRef)}
-                      className="cursor-pointer"
-                    />
-                  </div>
-                )}
-              </div>
-
-              {Musica !== ' ' ? (
-                <AudioPlayer videoUrl={Musica} ref={audioPlayerRef} />
-              ) : (
-                <p className="content_video_music_two "></p>
-              )}
-
-              {MusicaGlobal !== ' ' && (
-                <AudioPlayerGlobal
-                  videoUrlGlobal={MusicaGlobal}
-                  ref={audioPlayerGlobalRef}
-                />
-              )}
-
-              <div className="generate-token-container ">
-                <button
-                  onClick={generadorInvitation}
-                  className=" btn_login_box_ingreso "
-                >
-                  <div>
-                    <FaShareAltSquare />
-                  </div>
-                  <p>Generar Codigo Invitation</p>
-                </button>
-                {tokenIn !== '' && (
-                  <div className="flex justify-between items-center  btn_login_box_ingreso !text-[1rem] ">
-                    <h3 className="!text-[1.3rem]">
-                      {tokenIn.slice(0, 10)}...{tokenIn.slice(-10)}
-                    </h3>
-                    <span
-                      className=" p-[.5rem] bg-[#2B3146] !text-[1.3rem] rounded-md hover:cursor-pointer duration-300 ease-in-out hover:bg-[#4E5163]"
-                      onClick={handleCopy}
-                    >
-                      Copiar
-                    </span>
-                  </div>
-                )}
-              </div>
+            <div>
+            <p
+                onClick={() => openModals('codigo')}
+                className="mt-[1.5rem] bg-[#F183B6] mx-10 p-2 text-center text-3xl  font-bold text-[#2B3146] rounded-md duration-300 ease-in-out hover:bg-primaryPink hover:cursor-pointer"
+              >
+                Código de Invitación
+              </p>
             </div>
-            <SlugTablas />
           </div>
+          {dataSelected === 'task' && (
+            <TasksPage
+              slug={slug}
+              changeMusica={changeMusica}
+              TipoMusica={TipoMusica}
+              setMusica={setMusica}
+              Musica={Musica}
+              setMusicaGlobal={setMusicaGlobal}
+              MusicaGlobal={MusicaGlobal}
+              audioPlayerRef={audioPlayerRef}
+              audioPlayerGlobalRef={audioPlayerGlobalRef}
+              handlePlay={handlePlay}
+              handlePause={handlePause}
+              handleVolumeChange={handleVolumeChange}
+              generadorInvitation={generadorInvitation}
+              tokenIn={tokenIn}
+              handleCopy={handleCopy}
+            />
+          )}
+          {dataSelected === 'membersWorks' && (
+           <div className='flex justify-center items-center w-full p-20 h-full'>
+             <MembersWorkSpaces idWork={idWork} />
+           </div>
+          )}
+          {dataSelected === 'configurationWorks' && (
+            <div className='py-20 w-full'>
+              <ConfigurationWorkSpaces idWork={idWork} idTable={idTable}/>
+            </div>
+
+          )}
         </div>
       </div>
+      <ModalCodigoInvitation
+          visible={isModalOpen('codigo')}
+          closeModal={() => closeModals('codigo')}
+        />
     </>
   )
 }

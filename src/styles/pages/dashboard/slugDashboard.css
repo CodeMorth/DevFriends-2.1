@@ -91,29 +91,28 @@
   /*-----------------------Work space copy classes------------------------------*/
 
   .container {
-    @apply flex flex-col gap-[1rem] mt-[2rem];
+    @apply flex flex-col gap-[2rem] py-2;
   }
 
   .dev-friends {
-    @apply text-primaryBlue;
+    @apply text-primaryBlue text-[1.9rem];
   }
 
   .boards-container,
   .members-container {
-    @apply flex justify-start items-center gap-[2rem];
+    @apply flex justify-start items-center gap-[2rem] cursor-pointer;
   }
 
-  .boards-image,
-  .members-image {
-    @apply w-[5rem] h-auto;
+  .icon_container {
+    @apply w-14 h-auto text-primaryPink;
   }
 
   .boards-text,
   .members-text {
-    @apply text-primaryPink text-[1.8rem];
+    @apply text-white font-bold text-[1.9rem];
 
     @screen laptop {
-      font-size: calc(2rem * var(--scale));
+      font-size: calc(2.1rem * var(--scale));
     }
   }
 

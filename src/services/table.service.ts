@@ -20,3 +20,7 @@ export const createTable = (data: any, file: File) => {
   // Hacer la petición con axiosGlobal usando FormData
   return axiosGlobal.post('CreateTable', formData)
 }
+
+export const updateTable = (data: any) => {
+  return axiosGlobal.put(`updateTable`, data)
+}
