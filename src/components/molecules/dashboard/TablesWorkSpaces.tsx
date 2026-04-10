@@ -18,6 +18,8 @@ export const TablesWorkSpaces = ({ idWork }: any) => {
     }
   }, [idWork])
 
+  console.log("tableWorkSpaces",tableWorkSpaces)
+
   return (
     <div className="TablesWorkSpaces">
       <div className="tables-title">Tus espacios de trabajo</div>

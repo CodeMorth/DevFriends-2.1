@@ -1,7 +1,7 @@
 'use client'
 import { deleteWorkSpaceS, getWorkSpace, updateWorkSpace } from '@/services'
 import { generateTokenInvitations } from '@/services/generateTokenInvitation.service'
-import { updateTable } from '@/services/table.service'
+import { deleteTable, updateTable } from '@/services/table.service'
 import { InputToFormData } from '@/utilities'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -71,10 +71,16 @@ export const ConfigurationWorkSpaces = ({
 
   const deleteWorkSpace = async () => {
     try {
-      await deleteWorkSpaceS(idWork)
+      
+      if (isTable) {
+        await deleteTable(idTable)
+      } else {
+        await deleteWorkSpaceS(idWork)      }
+
     } catch (error) {
     } finally {
-      getAllWorkSpaces()
+      if (!isTable) getAllWorkSpaces()
+      
     }
   }
 

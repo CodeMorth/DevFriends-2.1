@@ -3,7 +3,7 @@ import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 // eslint-disable-next-line react/display-name
 export const AudioPlayerGlobal = forwardRef(({ videoUrlGlobal }: any, ref) => {
   const iframeRefGlobal = useRef<HTMLIFrameElement>(null)
-  const videoId = videoUrlGlobal.split('v=')[1]?.split('&')[0] // Extract the video ID
+  const videoId = videoUrlGlobal?.split('v=')[1]?.split('&')[0] // Extract the video ID
 
   useImperativeHandle(ref, () => ({
     play() {

@@ -1,4 +1,6 @@
-import { userTypeLRU } from '@/interface/components'
+interface userTypeLRU {
+  [key: string]: string | File
+}
 
 export const InputToFormData = (event: React.FormEvent<HTMLFormElement>): userTypeLRU => {
 

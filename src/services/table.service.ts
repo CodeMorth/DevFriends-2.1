@@ -24,3 +24,7 @@ export const createTable = (data: any, file: File) => {
 export const updateTable = (data: any) => {
   return axiosGlobal.put(`updateTable`, data)
 }
+
+export const deleteTable = (id: string) => {
+  return axiosGlobal.delete(`deleteTable/${id}`)
+}
