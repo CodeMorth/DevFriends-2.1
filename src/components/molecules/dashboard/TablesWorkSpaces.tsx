@@ -1,9 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Image from 'next/image'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { ModalNewBoard } from '@/components/molecules'
-import { ButtonsTwo } from '@/components/atoms'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import useTableXWorkSpace from '@/hook/table/useTableXWorkSpace'
 import InvitadosModal from '../modals/tablero-modal/InvitadosModal'
 import { useMultipleModal } from '@/hook/useMultipeModal'
@@ -17,8 +15,6 @@ export const TablesWorkSpaces = ({ idWork }: any) => {
       getTableWorkSpaces(idWork)
     }
   }, [idWork])
-
-  console.log("tableWorkSpaces",tableWorkSpaces)
 
   return (
     <div className="TablesWorkSpaces">
@@ -36,19 +32,19 @@ export const TablesWorkSpaces = ({ idWork }: any) => {
               {tableWorkSpaces.map((data: any) => {
                 return (
                   <Link
-                    href={`/dashboard/${data?.title_table}?id=${data?.id_table}`}
-                    key={data?.id_table}
+                    to={`/dashboard/${encodeURIComponent(data?.titleTable ?? '')}?id=${data?.idTable}`}
+                    key={data?.idTable}
                     className="tables-map"
                     style={{
                       backgroundImage: `url(${
-                        data?.avatar_table ||
+                        data?.avatarTable ||
                         'https://img.freepik.com/vector-gratis/fondo-luces-neon-realista_52683-59889.jpg'
                       })`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center'
                     }}
                   >
-                    <h2>{data?.title_table}</h2>
+                    <h2>{data?.titleTable}</h2>
                   </Link>
                 )
               })}

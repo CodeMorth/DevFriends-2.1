@@ -1,4 +1,3 @@
-'use client'
 import { Buttonss } from '@/components/atoms'
 import { InputFileForm } from '@/components/global/InputFileForm'
 import { InputForm } from '@/components/global/InputForm'
@@ -11,61 +10,70 @@ import { useForm } from 'react-hook-form'
 import { CgBriefcase } from 'react-icons/cg'
 import { FaLocationDot } from 'react-icons/fa6'
 
-export default function PagePerfil() {
-  const { data, loading, putUpdateH } = useProfileService();
-  const [edit, setEdit] = useState(false);
-  const [initialValues, setInitialValues] = useState(null);
+export default function PerfilPage() {
+  const { data, loading, putUpdateH } = useProfileService()
+  const [edit, setEdit] = useState(false)
+  const [initialValues, setInitialValues] = useState<Record<
+    string,
+    unknown
+  > | null>(null)
 
   const {
     control,
     handleSubmit,
     formState: { errors },
     reset,
-    watch,
+    watch
   } = useForm({
-    resolver: zodResolver(perfilValidador),
-  });
+    resolver: zodResolver(perfilValidador)
+  })
 
-  const watchedData = watch();
+  const watchedData = watch()
 
-  const handleProfileUpdate = async (formData: any) => {
-    await putUpdateH(formData);
-    setEdit(false);
-  };
+  const handleProfileUpdate = async (formData: Record<string, unknown>) => {
+    await putUpdateH(formData)
+    setEdit(false)
+  }
 
   useEffect(() => {
     if (data?.getByToken) {
-      reset(data.getByToken);
-      setInitialValues(data.getByToken);
+      reset(data.getByToken)
+      setInitialValues(data.getByToken)
     }
-  }, [data, reset]);
+  }, [data, reset])
 
   useEffect(() => {
     if (initialValues) {
-      const hasChanged = JSON.stringify(initialValues) !== JSON.stringify(watchedData);
-      setEdit(hasChanged);
+      const hasChanged =
+        JSON.stringify(initialValues) !== JSON.stringify(watchedData)
+      setEdit(hasChanged)
     }
-  }, [watchedData, initialValues]);
+  }, [watchedData, initialValues])
 
   return (
     <>
       <LoaderComponent loading={loading?.propiertyData} />
-      {data.getByToken&& (
+      {data?.getByToken && (
         <article className="perfil-box main-page">
           <form onSubmit={handleSubmit(handleProfileUpdate)}>
             <div className="imagen-avatar">
-              <InputFileForm control={control} name="avatar" errors={errors} hidden />
+              <InputFileForm
+                control={control as never}
+                name="avatar"
+                errors={errors}
+                hidden
+              />
             </div>
             <div className="w-full flex justify-center items-center">
               <InputForm
-                control={control}
+                control={control as never}
                 name="first_name"
                 errors={errors}
                 placeholder="Kevin"
                 className="input_first_name"
               />
               <InputForm
-                control={control}
+                control={control as never}
                 name="last_name"
                 errors={errors}
                 placeholder="Ramirez"
@@ -74,14 +82,14 @@ export default function PagePerfil() {
             </div>
             <div className="w-full flex flex-col gap-3 justify-center items-center laptop:gap-8">
               <InputForm
-                control={control}
+                control={control as never}
                 name="username"
                 errors={errors}
                 placeholder="CodeMorth"
                 className="input_username"
               />
               <InputForm
-                control={control}
+                control={control as never}
                 name="email"
                 errors={errors}
                 placeholder="email@gmail.com"
@@ -125,5 +133,5 @@ export default function PagePerfil() {
         </article>
       )}
     </>
-  );
+  )
 }

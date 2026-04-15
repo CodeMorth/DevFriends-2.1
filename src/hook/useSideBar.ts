@@ -1,4 +1,4 @@
-import { useRouter } from 'next/navigation'
+import { useNavigate } from 'react-router-dom'
 import { userLocalStoras } from '@/hook'
 import { logoutService } from '@/services'
 
@@ -13,7 +13,7 @@ interface SidebarHook {
 }
 
 export function useSidebar(setclose: () => void): SidebarHook {
-  const router = useRouter()
+  const navigate = useNavigate()
   const { eliminarLocal } = userLocalStoras()
 
   const url: SidebarLink[] = [
@@ -33,13 +33,13 @@ export function useSidebar(setclose: () => void): SidebarHook {
 
   const navigateRuta = (ruta: string) => {
     if (ruta === '/') {
-      router.push(ruta)
+      navigate(ruta)
       eliminarLocal('token')
       eliminarLocal('work_space')
       logoutService()
       setclose()
     } else {
-      router.push(ruta)
+      navigate(ruta)
       setclose()
     }
   }

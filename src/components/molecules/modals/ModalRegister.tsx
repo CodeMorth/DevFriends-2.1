@@ -1,5 +1,4 @@
 import { Modal } from '@/components/global'
-import Image from 'next/image'
 import { Buttonss } from '@/components/atoms'
 import { Labels, Inputs } from '@/components/atoms'
 import { postRegister } from '@/services/userServices.service'

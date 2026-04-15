@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 
@@ -33,8 +32,8 @@ export const DropZoneImage = ({ setimageData, imageUrl }: DropZoneImageProps) =>
   return (
     <div {...getRootProps({ className: 'dropzone' })}>
       <input {...getInputProps()} />
-      <Image
-        src={imageSrc} // Si no hay imagen, mostramos un avatar por defecto
+      <img
+        src={imageSrc}
         alt="logo"
         width={1000}
         height={1000}

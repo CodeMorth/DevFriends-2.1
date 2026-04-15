@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef, useState } from 'react'
 import { ModalTareas } from '@/components/molecules'
 import useTaskXTable from '@/hook/task/useTaskXTable'
@@ -57,7 +56,7 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
       socket.off('newTask');
     socket.off('updateTask');
     };
-  }, [card.id_card, getTaskTabH]);
+  }, [card.idCard, getTaskTabH]);
 
   const toggleMenu = (id_task: string) => {
     setMenuTaskOpen((prevState) => ({
@@ -68,13 +67,13 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
 
   const handleTimeChange = (taskId: any, value: string) => {
     
-    const {title_task ,id_task } = taskId;
+    const {title_task ,idTask } = taskId;
     setTimeValues((prevState) => ({
       ...prevState,
       [taskId]: value
     }))
 
-    const inputElement = timeInputRefs.current[id_task]
+    const inputElement = timeInputRefs.current[idTask]
 
     // Validar el valor del tiempo
     if (value === '' || value === '00:00' ) {
@@ -85,7 +84,7 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
     } else {
       if (inputElement) {
         inputElement.classList.remove('!border-red-500', 'border-2') // Quitar borde rojo
-        taskUpdateServicio({ id_task: id_task, homework_time: value }).then(
+        taskUpdateServicio({ id_task: idTask, homework_time: value }).then(
           (res) => {
             if (res.data) {
               getTaskTabH(card)
@@ -171,7 +170,7 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
           dragConstraints={constrainsTask}
           onDragEnd={(event, info) =>{
             const inputElement = timeInputRefs.current[task?.id_task];
-            const timeValue = timeValues[task?.id_task] || task?.homework_time || '';
+            const timeValue = timeValues[task?.idTask] || task?.homework_time || '';
         
             // Validar si el tiempo es válido
             if (timeValue === '' || timeValue === '00:00' ) {
@@ -184,7 +183,7 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
               if (inputElement) {
                 inputElement.classList.remove('!border-red-500', 'border-2'); // Quitar borde rojo
               }
-              updateTaskH(task?.id_task, info, cardRefs, getCards); // Actualizar la tarea
+              updateTaskH(task?.idTask, info, cardRefs, getCards); // Actualizar la tarea
             }
           }
             
@@ -242,19 +241,19 @@ export const Tarjeta: React.FC<TarjetaProps> = ({
             <article className="modal_fecha_entrega ">
               <FaRegCalendarAlt />
               <p className="text-[1.5rem]">
-                {formatFecha(task?.fecha_de_entrega)}
+                {formatFecha(task?.fechaDeEntrega)}
               </p>
             </article>
             <article className="modal_tiempo_desarrollo">
               <input
                 ref={(el) => {
-                  timeInputRefs.current[task?.id_task] = el
+                  timeInputRefs.current[task?.idTask] = el
                 }}
                 onChange={(e) =>
                   
                   handleTimeChange(task, e.target.value)
                 }
-                value={timeValues[task?.id_task] || task?.homework_time || ''}
+                value={timeValues[task?.idTask] || task?.homeworkTime || ''}
                 type="time"
                 name="time"
               />

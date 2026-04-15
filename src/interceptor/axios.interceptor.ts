@@ -6,11 +6,17 @@ import { ulrValidatorToken } from '@/utilities/urlValidatorToken'
 import axios from 'axios'
 import { toast } from 'sonner'
 
-const url = process.env.NEXT_PUBLIC_BASIC_URL
+const url = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/$/, '')
+
+if (import.meta.env.DEV && !url) {
+  console.error(
+    '[DevFriends] Falta VITE_API_BASE_URL en .env — las peticiones irán al servidor de Vite y fallarán con 404.'
+  )
+}
 
 export const axiosGlobal = axios.create({
-  baseURL: `${url}`,
-  timeout: 1000 | 5000,
+  baseURL: url ? `${url}/` : '',
+  timeout: 15_000,
   withCredentials: true
 })
 

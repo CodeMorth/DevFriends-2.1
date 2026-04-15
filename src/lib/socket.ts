@@ -1,10 +1,19 @@
-import { io } from 'socket.io-client';
+import { io } from 'socket.io-client'
 
-// Crear una instancia de socket y conectarla
-export const socket = io(process.env.NEXT_PUBLIC_BASIC_URL || 'http://localhost:8000', {
+const apiBase = import.meta.env.VITE_API_BASE_URL ?? ''
+const useSameOrigin =
+  typeof apiBase === 'string' &&
+  (apiBase.startsWith('/') || apiBase === '')
+
+// Con VITE_API_BASE_URL=/api/ el socket va al mismo origen (Vite proxy → /socket.io).
+const socketUrl = useSameOrigin
+  ? window.location.origin
+  : (apiBase.replace(/\/$/, '') || 'http://localhost:8000')
+
+export const socket = io(socketUrl, {
   withCredentials: true,
-  reconnection: true, 
-});
+  reconnection: true
+})
 
 
 

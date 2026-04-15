@@ -3,7 +3,6 @@ import { Modal } from '@/components/global'
 import { DevFriendLogo } from '@/components/global/DevFriendLogo'
 import { postCreateWorkSpace } from '@/services'
 import { InputToFormData } from '@/utilities'
-import Image from 'next/image'
 
 interface ModalDashboard {
   visible: boolean

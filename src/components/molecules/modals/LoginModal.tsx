@@ -5,7 +5,7 @@ import { userTypeLRU } from '@/interface/components'
 import { onUsuariosConectado, socket } from '@/lib/socket'
 import { postLogin } from '@/services/userServices.service'
 import { InputToFormData } from '@/utilities'
-import { useRouter } from 'next/navigation'
+import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { toast } from 'sonner'
 interface ModalLogin {
@@ -14,7 +14,7 @@ interface ModalLogin {
 }
 
 export const LoginModal = ({ visible, closeModal }: ModalLogin) => {
-  const router = useRouter()
+  const navigate = useNavigate()
 
   useEffect(() => {
     //funcion para que escuche el evento
@@ -36,12 +36,13 @@ export const LoginModal = ({ visible, closeModal }: ModalLogin) => {
 
     const dataRegister: userTypeLRU = InputToFormData(event)
 
+    console.log("dataRegister",dataRegister)
     await postLogin(dataRegister).then((res) => {
       if (res.data.username) {
         // Emitir el evento de inicio de sesión al servidor
         socket.emit('joinWorkspace', res.data.id_work_space)
       }
-      router.push('/dashboard'), closeModal()
+      navigate('/dashboard'), closeModal()
     }).catch
   }
 

@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import {Modal} from "@/components/global";
-import Image from "next/image";
 import { useEffect , useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { motion } from "framer-motion";
@@ -85,7 +84,7 @@ export const ModalNewBoard = ({
           <div {...getRootProps({ className: "dropzone" })}>
             <input type="file" name="avatar_table" {...getInputProps()} />
             {acceptedFiles.length > 0 ? (
-              <Image
+              <img
                 src={URL.createObjectURL(acceptedFiles[0])}
                 alt=""
                 width={1000}

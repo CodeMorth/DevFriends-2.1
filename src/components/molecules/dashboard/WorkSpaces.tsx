@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
-import Image from 'next/image'
 import { Accordion, AccordionTab } from 'primereact/accordion'
 import { useEffect } from 'react'
-import { WorkSpace, WorkSpaceUser } from '@/interface/page'
+import type { WorkSpace, WorkSpaceUser } from '@/interface/page'
 import { userLocalStoras } from '@/hook'
 import { BiCog } from 'react-icons/bi'
 import { MdOutlineDashboardCustomize } from 'react-icons/md'
@@ -13,7 +12,7 @@ interface WorkSpacesProps {
   allWorkSpaces: () => void
   setIdWork: (id: string) => void
   Work_Space_user: WorkSpaceUser[] | null
-  setdataSelected: any
+  setdataSelected: (view: string) => void
 }
 
 const { agregarLocal } = userLocalStoras()
@@ -24,20 +23,23 @@ export const WorkSpaces = ({
   Work_Space_user,
   setdataSelected
 }: WorkSpacesProps) => {
-  const enviarId = (id: string) => {
-    setIdWork(id)
-    agregarLocal('work_space', id)
+  const enviarId = (id: string | number) => {
+    const idStr = String(id)
+    setIdWork(idStr)
+    agregarLocal('work_space', idStr)
   }
 
   useEffect(() => {
-    //trae los work_space_user
     allWorkSpaces()
   }, [])
+
+  const list =
+    Work_Space_user?.[0]?.work_spaces ?? Work_Space_user?.[0]?.workSpaces ?? []
 
   return (
     <div className="WorkSpaces">
       <Accordion className="accordion-container" activeIndex={0}>
-        {Work_Space_user?.[0]?.work_spaces?.map((data: WorkSpace) => (
+        {list.map((data: WorkSpace) => (
           <AccordionTab
             key={data?.id_work_space}
             className="dev-friends"
@@ -45,8 +47,10 @@ export const WorkSpaces = ({
           >
             <div className="container">
               <button
+                type="button"
                 onClick={() => {
-                  enviarId(data?.id_work_space), setdataSelected('tablesWorks')
+                  enviarId(data?.id_work_space)
+                  setdataSelected('tablesWorks')
                 }}
                 className="boards-container"
               >
@@ -56,9 +60,8 @@ export const WorkSpaces = ({
                 <h1 className="boards-text">Tableros</h1>
               </button>
               <button
-                onClick={() => {
-                  enviarId(data?.id_work_space), setdataSelected('membersWorks')
-                }}
+                type="button"
+                onClick={() => setdataSelected('membersWorks')}
                 className="members-container"
               >
                 <div className="icon_container">
@@ -67,16 +70,14 @@ export const WorkSpaces = ({
                 <div className="members-text">Miembros</div>
               </button>
               <button
-                onClick={() => {
-                  enviarId(data?.id_work_space),
-                    setdataSelected('configurationWorks')
-                }}
+                type="button"
+                onClick={() => setdataSelected('configurationWorks')}
                 className="members-container"
               >
                 <div className="icon_container">
                   <BiCog className="w-full h-full" />
                 </div>
-                <span className="members-text">Configuración</span>
+                <div className="members-text">Configuración</div>
               </button>
             </div>
           </AccordionTab>

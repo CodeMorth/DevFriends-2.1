@@ -1,15 +1,29 @@
 @import './globals.css';
 @import './scale.css';
-@import './pages/';
-@import './iu/';
-@import './organins/';
-@import './molecules/';
-@import './pages/perfil/';
-@import './design/';
+
+@import './pages/dashboard/dashboard.css';
+@import './pages/dashboard/slugDashboard.css';
+@import './pages/dashboard/slugTablas.css';
+@import './pages/perfil/perfil.css';
+
+@import './iu/navbar.css';
+@import './iu/SideBar.css';
+
+@import './organins/homeDev.css';
+
+@import './molecules/dashboard/WorkSpaces.css';
+@import './molecules/dashboard/TablesWorkSpaces.css';
+@import './molecules/dashboard/MembersWorkSpaces.css';
+
+@import './molecules/modals/dashboard/ModalNewBoard.css';
+@import './molecules/modals/dashboard/ModalDashboard.css';
+@import './molecules/modals/dashboard/modalTarjetas.css';
+@import './molecules/modals/dashboard/modalTareas.css';
+@import './molecules/modals/loginModal.css';
+@import './molecules/modals/mienbros/mienbrosModal.css';
+
+@import './molecules/tablas/tarjeta.css';
+
+@import './design/AccordionHorizontal.css';
 
 @import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
-
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

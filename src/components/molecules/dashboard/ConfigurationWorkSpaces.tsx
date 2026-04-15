@@ -3,7 +3,7 @@ import { deleteWorkSpaceS, getWorkSpace, updateWorkSpace } from '@/services'
 import { generateTokenInvitations } from '@/services/generateTokenInvitation.service'
 import { deleteTable, updateTable } from '@/services/table.service'
 import { InputToFormData } from '@/utilities'
-import { usePathname } from 'next/navigation'
+import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { FiSave } from 'react-icons/fi'
 import { IoIosAlert, IoMdTrash } from 'react-icons/io'
@@ -27,7 +27,7 @@ export const ConfigurationWorkSpaces = ({
     'Invita a tus amigos a unirse a tu espacio de trabajo compartiéndoles tu código de invitación'
   )
 
-  const path = usePathname()
+  const { pathname: path } = useLocation()
 
   const isTable = path.slice(10).startsWith("/")
 

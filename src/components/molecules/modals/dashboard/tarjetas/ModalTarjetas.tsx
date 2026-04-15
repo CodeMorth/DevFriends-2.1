@@ -1,8 +1,7 @@
 import { Modal } from '@/components/global'
 import { useFormss } from '@/hook'
 import { createCard } from '@/services/card.service'
-import { useSearchParams } from 'next/navigation'
-import React, { useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 interface ModalTarjetas {
   visible: boolean
@@ -15,7 +14,7 @@ export const ModalTarjetas = ({
   closeModal,
   render
 }: ModalTarjetas) => {
-  const searchParams = useSearchParams()
+  const [searchParams] = useSearchParams()
   const id = searchParams.get('id')
 
   const { capTure, datos } = useFormss()

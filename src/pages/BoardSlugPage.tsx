@@ -1,76 +1,68 @@
-'use client'
 import { AccordionHorizontal } from '@/components/design'
-
-import { userLocalStoras } from '@/hook'
-import { generateTokenInvitations } from '@/services/generateTokenInvitation.service'
-import { musicaService, musicaTable } from '@/services/musica.service'
-import { useEffect, useRef, useState } from 'react'
-import { FaUsers } from 'react-icons/fa'
-import { toast } from 'sonner'
-import { useSearchParams } from 'next/navigation'
-import { socket } from '@/lib/socket'
-import { MdOutlineDashboardCustomize } from 'react-icons/md'
-import { BiCog } from 'react-icons/bi'
 import TasksPage from '@/components/page/slug/TasksPage'
 import {
   ConfigurationWorkSpaces,
   MembersWorkSpaces,
   ModalCodigoInvitation
 } from '@/components/molecules'
+import { userLocalStoras } from '@/hook'
 import { useMultipleModal } from '@/hook/useMultipeModal'
+import { generateTokenInvitations } from '@/services/generateTokenInvitation.service'
+import { musicaService, musicaTable } from '@/services/musica.service'
+import { socket } from '@/lib/socket'
+import { useEffect, useRef, useState } from 'react'
+import { useParams, useSearchParams } from 'react-router-dom'
+import { FaUsers } from 'react-icons/fa'
+import { toast } from 'sonner'
+import { MdOutlineDashboardCustomize } from 'react-icons/md'
+import { BiCog } from 'react-icons/bi'
 
-export default function Page({ params }: any) {
-  const searchParams = useSearchParams()
-
+export default function BoardSlugPage() {
+  const { slug } = useParams<{ slug: string }>()
+  const [searchParams] = useSearchParams()
   const { isModalOpen, openModals, closeModals } = useMultipleModal()
 
-
-  //estado para mostrar la musica local o global
   const [TipoMusica, setTipoMusica] = useState(' ')
-
-  const [idWork, setIdWork] = useState<any>({ id_work_space: null })
-  //estado del link de la musica
-  const [Musica, setMusica] = useState<any>(' ')
-  //estado del link de la musica Global
-  const [MusicaGlobal, setMusicaGlobal] = useState<any>(' ')
-  //neuvo estado de musica global
-  const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<any>(' ')
-
+  const [idWork, setIdWork] = useState<string | { id_work_space: null }>(
+    { id_work_space: null }
+  )
+  const [Musica, setMusica] = useState<string>(' ')
+  const [MusicaGlobal, setMusicaGlobal] = useState<string>(' ')
+  const [prevMusicaGlobal, setPrevMusicaGlobal] = useState<string>(' ')
   const [dataSelected, setdataSelected] = useState('')
-
-  //estado de referencia del play o pause
-  const audioPlayerRef = useRef<any>(null)
-  const audioPlayerGlobalRef = useRef<any>(null)
-
+  const audioPlayerRef = useRef<{
+    play: () => void
+    pause: () => void
+    setVolume: (v: number) => void
+  } | null>(null)
+  const audioPlayerGlobalRef = useRef<{
+    play: () => void
+    pause: () => void
+    setVolume: (v: number) => void
+  } | null>(null)
   const [tokenIn, setTokenIn] = useState<string>('')
 
   const { obtenerLocal } = userLocalStoras()
+  const idTable = searchParams.get('id')
 
-  const { slug } = params
-  const idTable: any = searchParams.get('id')
-
-  //sokect io de musica global
   useEffect(() => {
-    // Unirse a la sala específica de la tarjeta cuando el componente se monta
-    socket.emit('joinTable', idTable)
+    if (idTable) socket.emit('joinTable', idTable)
 
     if (TipoMusica === 'global') {
-      socket.on('addMusic', (data) => {
+      socket.on('addMusic', (data: { musicaUpdate: string }) => {
         setMusicaGlobal(data.musicaUpdate)
       })
     }
 
-    // Limpia el evento cuando el componente se desmonte
     return () => {
       socket.off('addMusic')
     }
-  }, [TipoMusica, setMusicaGlobal])
+  }, [TipoMusica, idTable])
 
   useEffect(() => {
     const id = obtenerLocal('work_space')
     if (id !== null) setIdWork(id)
 
-    // Elimina el token después de 1 minuto
     setTimeout(() => {
       setTokenIn('')
     }, 60000)
@@ -81,33 +73,35 @@ export default function Page({ params }: any) {
     await generateTokenInvitations({
       id_work_space: idWork,
       id_table: idTable
-    }).then((res: any) => setTokenIn(res.data)).catch
+    })
+      .then((res: { data: string }) => setTokenIn(res.data))
+      .catch(() => {})
 
-    // Elimina el token después de 1 minuto
     setTimeout(() => {
       setTokenIn('')
     }, 1500000000)
   }
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(tokenIn).then(() => {
+    void navigator.clipboard.writeText(tokenIn).then(() => {
       toast.success('Codigo de Invitacion copiado ')
     })
   }
 
-  const handlePlay = (ref: any) => ref.current.play()
-  const handlePause = (ref: any) => ref.current.pause()
+  const handlePlay = (ref: { current: { play: () => void } | null }) =>
+    ref.current?.play()
+  const handlePause = (ref: { current: { pause: () => void } | null }) =>
+    ref.current?.pause()
 
-  // funcion para manejar volumen
   const handleVolumeChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    ref: any
+    ref: { current: { setVolume?: (v: number) => void } | null }
   ) => {
-    const volume = parseInt(e.target.value, 10)
-    ref.current?.setVolume(volume)
+    const volume = Number.parseInt(e.target.value, 10)
+    ref.current?.setVolume?.(volume)
   }
 
-  const changeMusica = (e: any) => {
+  const changeMusica = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value === ' ') {
       setMusica(' ')
       setMusicaGlobal(' ')
@@ -115,15 +109,15 @@ export default function Page({ params }: any) {
     setTipoMusica(e.target.value)
   }
 
-  //funcion para llamar link de la base de dato
   const getMusicaGlobal = async () => {
+    if (!idTable) return
     await musicaTable(idTable)
       .then((res) => setMusicaGlobal(res.data[0].link_musica))
       .catch((error) => console.log(error))
   }
-  //funcion para enviar el link de musica
 
   const postMusicaglobal = async () => {
+    if (!idTable) return
     const musicaDatos = {
       link_musica: MusicaGlobal,
       id_table: idTable
@@ -131,23 +125,23 @@ export default function Page({ params }: any) {
     await musicaService(musicaDatos)
   }
 
-  //llamado al link global
   useEffect(() => {
     if (TipoMusica === 'global') {
-      getMusicaGlobal()
+      void getMusicaGlobal()
     }
   }, [TipoMusica])
 
-  // Evaluar cambios en MusicaGlobal
   useEffect(() => {
-    // Compara con el valor anterior
     if (MusicaGlobal !== prevMusicaGlobal) {
-      postMusicaglobal()
-        .then(() => getMusicaGlobal()) // Luego obtiene el nuevo valor
+      void postMusicaglobal()
+        .then(() => getMusicaGlobal())
         .catch((error) => console.log(error))
     }
-    setPrevMusicaGlobal(MusicaGlobal) // Actualiza el valor anterior
+    setPrevMusicaGlobal(MusicaGlobal)
   }, [MusicaGlobal])
+
+  const slugStr = slug ?? ''
+
   return (
     <>
       <div className="SlugDashboard ">
@@ -157,6 +151,7 @@ export default function Page({ params }: any) {
               <AccordionHorizontal title={'Dev Friend'} titleColor="#f969aa">
                 <div className="container">
                   <button
+                    type="button"
                     onClick={() => {
                       setdataSelected('task')
                     }}
@@ -168,6 +163,7 @@ export default function Page({ params }: any) {
                     <h1 className="boards-text">Tareas</h1>
                   </button>
                   <button
+                    type="button"
                     onClick={() => {
                       setdataSelected('membersWorks')
                     }}
@@ -179,6 +175,7 @@ export default function Page({ params }: any) {
                     <div className="members-text">Miembros</div>
                   </button>
                   <button
+                    type="button"
                     onClick={() => {
                       setdataSelected('configurationWorks')
                     }}
@@ -193,7 +190,8 @@ export default function Page({ params }: any) {
               </AccordionHorizontal>
             </div>
             <div>
-            <p
+              <p
+                role="presentation"
                 onClick={() => openModals('codigo')}
                 className="mt-[1.5rem] bg-[#F183B6] mx-10 p-2 text-center text-3xl  font-bold text-[#2B3146] rounded-md duration-300 ease-in-out hover:bg-primaryPink hover:cursor-pointer"
               >
@@ -203,7 +201,7 @@ export default function Page({ params }: any) {
           </div>
           {dataSelected === 'task' && (
             <TasksPage
-              slug={slug}
+              slug={slugStr}
               changeMusica={changeMusica}
               TipoMusica={TipoMusica}
               setMusica={setMusica}
@@ -221,22 +219,24 @@ export default function Page({ params }: any) {
             />
           )}
           {dataSelected === 'membersWorks' && (
-           <div className='flex justify-center items-center w-full p-20 h-full'>
-             <MembersWorkSpaces idWork={idWork} />
-           </div>
+            <div className="flex justify-center items-center w-full p-20 h-full">
+              <MembersWorkSpaces idWork={idWork as string} />
+            </div>
           )}
           {dataSelected === 'configurationWorks' && (
-            <div className='py-20 w-full'>
-              <ConfigurationWorkSpaces idWork={idWork} idTable={idTable}/>
+            <div className="py-20 w-full">
+              <ConfigurationWorkSpaces
+                idWork={idWork as string}
+                idTable={idTable ?? undefined}
+              />
             </div>
-
           )}
         </div>
       </div>
       <ModalCodigoInvitation
-          visible={isModalOpen('codigo')}
-          closeModal={() => closeModals('codigo')}
-        />
+        visible={isModalOpen('codigo')}
+        closeModal={() => closeModals('codigo')}
+      />
     </>
   )
 }

@@ -5,14 +5,14 @@ import { LoginModal } from '@/components/molecules'
 import { userLocalStoras } from '@/hook'
 import { Buttonss } from '@/components/atoms/Buttonss'
 import { SideBar } from '@/components/ui'
-import { usePathname } from 'next/navigation'
+import { useLocation } from 'react-router-dom'
 import { useMultipleModal } from '@/hook/useMultipeModal'
 import { DevFriendLogo } from '@/components/global/DevFriendLogo'
 
 export const Navbar = () => {
   const [visible, setvisible] = useState<boolean>(false)
   const [users, setusers] = useState<string | null>(null)
-  const path = usePathname()
+  const { pathname: path } = useLocation()
   const { isModalOpen, closeModals, openModals } = useMultipleModal()
   const { obtenerLocal } = userLocalStoras()
 

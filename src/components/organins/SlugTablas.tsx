@@ -4,12 +4,12 @@ import { ModalTarjetas } from '@/components/molecules'
 import { useOpenModal } from '@/hook'
 import { Tarjeta } from '@/components/molecules'
 import { cardsPerUser } from '@/services/card.service'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'react-router-dom'
 import { tittleCardInterface } from '@/interface/components/modals/SlugTablas.interface'
 import { socket } from '@/lib/socket'
 
 export const SlugTablas = () => {
-  const searchParams = useSearchParams()
+  const [searchParams] = useSearchParams()
   const idTable = searchParams.get('id')
 
   const { closeModal, open, openModal } = useOpenModal()

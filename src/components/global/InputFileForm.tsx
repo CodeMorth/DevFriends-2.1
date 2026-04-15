@@ -1,6 +1,5 @@
 import { Control, Controller } from 'react-hook-form'
 import { InputHTMLAttributes, useRef, useState } from 'react'
-import Image from 'next/image'
 
 interface InputFileFormProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string
@@ -45,7 +44,7 @@ export const InputFileForm = ({
               className="page-perfil text-dark focus:border-primary focus-visible:outline-none dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary cursor-pointer  w-52 h-52 overflow-hidden rounded-full flex justify-center items-center"
             >
               {preview ? (
-                <Image
+                <img
                   src={preview}
                   alt="imagen"
                   width={1000}
@@ -53,7 +52,7 @@ export const InputFileForm = ({
                   className="w-full h-auto object-cover rounded-[0.5rem]"
                 />
               ) : field.value ? (
-                <Image
+                <img
                   src={field.value}
                   alt="imagen"
                   width={1000}

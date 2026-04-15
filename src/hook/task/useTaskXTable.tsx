@@ -8,7 +8,7 @@ const useTaskXTable = () => {
   const [task, setTask] = useState<TaskInterface[]>([])
 
   const getTaskTabH = async (card: tittleCardInterface) => {
-    await getTaskTab(card.id_card)
+    await getTaskTab(card.idCard)
       .then(({ data }) => setTask(data))
       .catch((err) => console.log(err))
   }
@@ -25,12 +25,12 @@ const useTaskXTable = () => {
         taskY >= cardRect.top &&
         taskY <= cardRect.bottom
       )
-    })?.data.id_card
+    })?.data.idCard
     
     //variable para ver si la card es mayor
-    const cardUpdate = cardRefs.current[0].data.id_card;
+    const cardUpdate = cardRefs.current[0].data.idCard;
     if (cardLocal > cardUpdate) {
-        await taskUpdateCard({ id_task: taskLocal, id_card: cardLocal }).then(()=>getCards()).catch
+        await taskUpdateCard({ id_task: taskLocal, idCard: cardLocal }).then(()=>getCards()).catch
     }else{
       toast('solo un admin puede regresar una tarea')
     }

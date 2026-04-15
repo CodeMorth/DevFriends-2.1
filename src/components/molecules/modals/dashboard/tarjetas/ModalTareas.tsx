@@ -28,7 +28,7 @@ export const ModalTareas = ({
     e.preventDefault()
 
     if (create) {
-      datos.id_card = table.id_card
+      datos.idCard = table.idCard
       await createTasks(datos)
         .then(({ data }) => {
           if (data?.message === 'tarea creada exitosamente')

@@ -4,7 +4,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { interpolate } from 'flubber'
 import { useSpring, animated } from 'react-spring'
 import { useSVGS } from '@/hook'
-import { usePathname } from 'next/navigation'
+import { useLocation } from 'react-router-dom'
 import { useMoToL } from '@/hook/useMoToL'
 
 interface AccordionHorizontalProps {
@@ -21,7 +21,7 @@ export const AccordionHorizontal = ({
   const [open, setOpen] = useState(true)
   const { BurningArrowSVG, ArrowIceSVG } = useSVGS()
   const { movile, tablet } = useMoToL()
-  const pathname = usePathname()
+  const { pathname } = useLocation()
 
   const interpolator = useMemo(
     () => interpolate(BurningArrowSVG, ArrowIceSVG),

@@ -1,14 +1,9 @@
 'use client'
-import React from 'react'
 import { ModalRegister } from '@/components/molecules'
-import Image from 'next/image'
-import { useOpenModal } from '@/hook'
 import { useMultipleModal } from '@/hook/useMultipeModal'
 import { MdElectricBolt } from 'react-icons/md'
 import { LuShield } from 'react-icons/lu'
 import { AiOutlineSmile } from 'react-icons/ai'
-import Link from 'next/link'
-
 export const HomeDev = () => {
   const { isModalOpen, closeModals, openModals } = useMultipleModal()
 
@@ -49,7 +44,15 @@ export const HomeDev = () => {
         </h3>
         <div className="buttons_container ">
           <button onClick={() => openModals('register')} className="animate-bounce bg-primaryPink cursor-pointer">Comienza gratis</button>
-          <Link href="https://github.com/CodeMorth/DevFriends-2.1" target='_blank'  className=" bg-white text-primaryBlack"> Codigo</Link>
+          <a
+            href="https://github.com/CodeMorth/DevFriends-2.1"
+            target="_blank"
+            rel="noreferrer"
+            className=" bg-white text-primaryBlack"
+          >
+            {' '}
+            Codigo
+          </a>
         </div>
         <div className="data_container">
           <div className="box_container">

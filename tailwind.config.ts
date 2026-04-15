@@ -1,11 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './src/**/*.css'],
   theme: {
     extend: {
       backgroundImage: {
@@ -18,7 +14,7 @@ const config: Config = {
         primaryBlack: '#1D2735',
         primaryPink: '#fb79b7',
         primaryBlue: '#427eff',
-        primaryLead : "#606582"
+        primaryLead: '#606582'
       },
       screens: {
         phone: '414px',

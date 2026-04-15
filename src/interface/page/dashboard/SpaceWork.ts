@@ -7,11 +7,12 @@ export interface SpaceWork {
 }
 
 export interface WorkSpace {
-  id_work_space: string
+  id_work_space: string | number
   name_work_space: string
 }
 
 export interface WorkSpaceUser {
   id_user: number
-  work_spaces: WorkSpace[]
+  work_spaces?: WorkSpace[]
+  workSpaces?: WorkSpace[]
 }
